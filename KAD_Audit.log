@@ -43,3 +43,10 @@
 [2026-07-30 10:24:27] | Operador: a.riqborges | Acao: NotificarUsuario | Alvo: ptu-dt-46768.kinrossgold.com | Status: Mensagem: Favor salvar seus trabalhos em...
 [2026-07-30 11:27:43] | Operador: a.gasantiago | Acao: UpdateVetorh | Alvo: 16635 | Status: SUCESSO: LTU
 [2026-07-30 11:27:54] | Operador: a.gasantiago | Acao: UpdateVetorh | Alvo: 7798 | Status: SUCESSO: LTU
+[2026-07-31 09:09:55] | Operador: a.riqborges | Acao: ResetSenha | Alvo: AdSeOliveira | Status: Desbloqueio: True | ForceChange: True
+[2026-07-31 11:29:43] | Operador: a.gasantiago | Acao: UpdateVetorh | Alvo: 60677 | Status: SUCESSO: ETU
+[2026-07-31 14:35:59] | Operador: a.kauasilva | Acao: Diag_SPLUNK | Alvo: Guilherme.Jesus | Status: EXECUTADO
+[2026-07-31 14:36:30] | Operador: a.kauasilva | Acao: Desbloquear | Alvo: Guilherme.Jesus | Status: SUCESSO
+[2026-07-31 14:36:30] | Operador: a.kauasilva | Acao: Desbloquear | Alvo: Guilherme.Jesus | Status: SUCESSO
+[2026-07-31 14:36:31] | Operador: a.kauasilva | Acao: Desbloquear | Alvo: Guilherme.Jesus | Status: SUCESSO
+[2026-08-03 07:45:49] | Operador: a.riqborges | Acao: ResetSenha | Alvo: Marcos.Fernandes | Status: Desbloqueio: True | ForceChange: True

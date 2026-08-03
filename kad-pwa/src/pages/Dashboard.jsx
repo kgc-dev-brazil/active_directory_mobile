@@ -69,6 +69,26 @@ export default function Dashboard() {
   const navigate = useNavigate();
   const handleLogout = () => { localStorage.removeItem('@kad_token'); navigate('/'); };
 
+  // --- NOVO: FORÇAR ATUALIZAÇÃO DO SERVICE WORKER E DO CACHE DO PWA ---
+  const handleForceUpdate = () => {
+    toast.loading('Atualizando aplicativo...', { duration: 2000 });
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+          registration.update();
+        }
+      });
+    }
+    if ('caches' in window) {
+      caches.keys().then((names) => {
+        for (let name of names) caches.delete(name);
+      });
+    }
+    setTimeout(() => {
+      window.location.reload(true);
+    }, 500);
+  };
+
   // Helper para chamar o Modal de Confirmação
   const showConfirm = (title, message, action) => {
     setConfirmConfig({ isOpen: true, title, message, action });
@@ -640,6 +660,16 @@ export default function Dashboard() {
             <h2 style={{ margin: 0, fontSize: '18px', color: COLORS.gold, fontWeight: 600 }}>KAD Mobile</h2>
           </div>
           <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+            
+            {/* --- NOVO: BOTÃO DE ATUALIZAR PWA --- */}
+            <button 
+              onClick={handleForceUpdate} 
+              style={styles.headerIconBtn} 
+              title="Forçar Atualização do App"
+            >
+              <RefreshCw size={18} />
+            </button>
+
             <button onClick={handleOpenAudit} style={styles.headerIconBtn} title="Histórico de Auditoria">
               <FileText size={18} />
             </button>

@@ -9,6 +9,11 @@ export default defineConfig({
     basicSsl(),
     VitePWA({
       registerType: 'autoUpdate',
+      workbox: {
+        cleanupOutdatedCaches: true, // <-- DELETA CACHES ANTIGOS AUTOMATICAMENTE
+        skipWaiting: true,           // <-- NÃO ESPERA O USUÁRIO FECHAR TODAS AS ABAS
+        clientsClaim: true           // <-- ASSUME O CONTROLE IMEDIATAMENTE
+      },
       injectRegister: 'auto',
       devOptions: {
         enabled: false // <-- Desativa o SW no modo teste para o SSL falso não bloquear o app

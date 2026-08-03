@@ -14,6 +14,8 @@ import ssl # <-- Adicione este import
 import ldap3 
 from ldap3 import Server, Connection, ALL, SUBTREE, Tls, RESTARTABLE # <-- Atualize esta linha
 from pydantic import BaseModel
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 
 app = FastAPI(title="KAD Mobile API - Módulo Avançado AD com Auditoria")
 
@@ -938,3 +940,35 @@ def notify_active_user(hostname: str, payload: NotifyPayload, creds: dict = Depe
     run_powershell(script, creds, return_json=False)
     AuditLogger.log(creds["username"], "NotificarUsuario", network_target, f"Mensagem: {msg_clean[:30]}...")
     return {"message": f"Alerta enviado com sucesso para a tela de {hostname.rstrip('$')}!"}
+
+# ==========================================================
+# MÓDULO FRONTEND PWA (SERVIR INTERFACE REACT NA RAIZ)
+# ==========================================================
+
+# Resolve o caminho para a pasta dist do Vite
+PWA_DIST_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "kad-pwa", "dist")
+
+if os.path.exists(PWA_DIST_DIR):
+    # 1. Libera a pasta /assets (arquivos CSS, JS e imagens gerados pelo Vite)
+    assets_dir = os.path.join(PWA_DIST_DIR, "assets")
+    if os.path.exists(assets_dir):
+        app.mount("/assets", StaticFiles(directory=assets_dir), name="assets")
+
+    # 2. Rota Catch-All: Entrega arquivos estáticos soltos ou retorna index.html
+    @app.get("/{full_path:path}", include_in_schema=False)
+    async def serve_pwa(full_path: str):
+        file_path = os.path.join(PWA_DIST_DIR, full_path)
+        
+        # Se for um arquivo existente no dist, entrega ele:
+        if full_path and os.path.exists(file_path) and os.path.isfile(file_path):
+            return FileResponse(file_path)
+        
+        # BLINDAGEM: Se o navegador pedir favicon.ico e não achar, retorna 404
+        # em vez de entregar index.html para não corromper o ícone no navegador
+        if full_path.endswith(('.ico', '.png', '.svg', '.webmanifest')):
+            return FileResponse(file_path, status_code=404)
+
+        # Caso contrário, serve a tela principal da aplicação React:
+        return FileResponse(os.path.join(PWA_DIST_DIR, "index.html"))
+else:
+    print("AVISO: Pasta kad-pwa/dist não encontrada. Verifique se executou 'npm run build'.")

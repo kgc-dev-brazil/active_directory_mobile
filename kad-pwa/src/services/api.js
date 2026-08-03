@@ -1,8 +1,9 @@
 import axios from 'axios';
 
+// Em desenvolvimento (Vite local): usa '/api' para passar pelo proxy do vite.config.js
+// Em produção (Servidor PTU-GTI-05): usa '' (string vazia) para chamar /token, /users, etc. diretamente na raiz HTTPS
 const api = axios.create({
-  // O Vite se encarrega de repassar tudo que for /api para o Python
-  baseURL: '/api' 
+  baseURL: import.meta.env.DEV ? '/api' : ''
 });
 
 // O Interceptador: Pega o token salvo no login e cola no cabeçalho de toda nova requisição
