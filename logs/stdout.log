@@ -640,3 +640,845 @@ INFO:     10.205.48.71:53174 - "GET /users/62811 HTTP/1.1" 404 Not Found
 INFO:     10.205.99.242:51529 - "GET /sw.js HTTP/1.1" 200 OK
 INFO:     10.205.99.242:51529 - "GET /workbox-9c191d2f.js HTTP/1.1" 200 OK
 INFO:     10.205.99.242:51529 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.99.242:51865 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:51865 - "GET /workbox-9c191d2f.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64994 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64994 - "GET /workbox-9c191d2f.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:63280 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:63280 - "GET / HTTP/1.1" 200 OK
+INFO:     10.205.99.242:63280 - "GET /assets/index-w3v0DWeB.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:63280 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:63280 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 200 OK
+INFO:     10.205.99.242:62416 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.99.242:63280 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:63280 - "GET /pwa-192x192.png HTTP/1.1" 200 OK
+INFO:     10.205.99.242:63280 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.99.242:63280 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:63280 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:63280 - "GET /users/26068 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:63280 - "GET /vetorh/26068 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:63280 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:63280 - "POST /users/Marcos.Fernandes/reset-password HTTP/1.1" 200 OK
+INFO:     10.205.200.96:51117 - "GET /dashboard HTTP/1.1" 200 OK
+INFO:     10.205.200.96:51117 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 200 OK
+INFO:     10.205.200.96:51117 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.200.96:51117 - "GET /assets/index-w3v0DWeB.js HTTP/1.1" 200 OK
+INFO:     10.205.200.96:51117 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.200.96:51117 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.200.96:51117 - "GET /workbox-9c191d2f.js HTTP/1.1" 200 OK
+INFO:     10.205.200.96:51121 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.200.96:51117 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.200.96:51117 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.200.96:51117 - "GET /assets/index-w3v0DWeB.js HTTP/1.1" 304 Not Modified
+INFO:     10.205.200.96:51117 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 304 Not Modified
+INFO:     10.205.200.96:51117 - "GET /pwa-192x192.png HTTP/1.1" 200 OK
+INFO:     10.205.200.96:51117 - "GET /pwa-512x512.png HTTP/1.1" 200 OK
+INFO:     10.205.200.96:51117 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.200.96:51117 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.200.96:51117 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.200.96:51117 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.200.96:51117 - "GET /users/I.JAbadia HTTP/1.1" 404 Not Found
+INFO:     10.205.99.242:53892 - "GET /printers/ptu-prn-01 HTTP/1.1" 401 Unauthorized
+INFO:     10.205.99.242:53892 - "GET /dashboard HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53892 - "GET /assets/index-w3v0DWeB.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53892 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53892 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 200 OK
+INFO:     10.205.99.242:49364 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53892 - "GET /dashboard/summary HTTP/1.1" 401 Unauthorized
+INFO:     10.205.99.242:53892 - "GET /dashboard/summary HTTP/1.1" 401 Unauthorized
+INFO:     10.205.99.242:53892 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:53892 - "GET /pwa-192x192.png HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53892 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:53892 - "POST /token HTTP/1.1" 401 Unauthorized
+INFO:     10.205.99.242:53892 - "GET / HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53892 - "GET /assets/index-w3v0DWeB.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53892 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53892 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:53892 - "GET /pwa-192x192.png HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53892 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53892 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:53892 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53892 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53892 - "GET /printers/ptu-prn-01 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53475 - "GET /dashboard HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53475 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53475 - "GET /assets/index-w3v0DWeB.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53475 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 200 OK
+INFO:     10.205.99.242:50052 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53475 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:53475 - "GET /pwa-192x192.png HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53475 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53475 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.173:44106 - "GET / HTTP/1.1" 200 OK
+INFO:     10.205.49.173:33584 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.49.173:33584 - "GET /workbox-9c191d2f.js HTTP/1.1" 200 OK
+INFO:     10.205.49.173:33584 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.49.173:33578 - "GET /pwa-512x512.png HTTP/1.1" 200 OK
+INFO:     10.205.49.173:33584 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.173:33584 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.173:33584 - "GET /users/Riqborges HTTP/1.1" 200 OK
+INFO:     10.205.99.41:62044 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.41:62044 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.99.41:62044 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.41:62044 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.41:62044 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.41:62044 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:63488 - "GET /users/riqborges HTTP/1.1" 200 OK
+INFO:     10.205.99.242:63488 - "GET /vetorh/60474 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:63488 - "GET /users/a.sinval HTTP/1.1" 404 Not Found
+INFO:     10.205.99.242:63488 - "GET /users/sinval HTTP/1.1" 200 OK
+INFO:     10.205.99.41:55357 - "GET /users/Waxsanta HTTP/1.1" 404 Not Found
+INFO:     10.205.99.41:55357 - "GET /users/Waxsantana HTTP/1.1" 404 Not Found
+INFO:     10.205.99.41:55357 - "GET /users/61744 HTTP/1.1" 404 Not Found
+INFO:     10.205.99.41:55357 - "GET /users/61744 HTTP/1.1" 404 Not Found
+INFO:     10.205.99.242:56406 - "GET /users/47075 HTTP/1.1" 401 Unauthorized
+INFO:     10.205.99.242:56406 - "GET /dashboard HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56406 - "GET /assets/index-w3v0DWeB.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56406 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56406 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58519 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56406 - "GET /dashboard/summary HTTP/1.1" 401 Unauthorized
+INFO:     10.205.99.242:56406 - "GET /dashboard/summary HTTP/1.1" 401 Unauthorized
+INFO:     10.205.99.242:56406 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:56406 - "GET /pwa-192x192.png HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56406 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:56406 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56406 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:56406 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56406 - "GET /users/47075 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56406 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.48.143:63974 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.48.143:63974 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.48.143:63974 - "GET /workbox-9c191d2f.js HTTP/1.1" 200 OK
+INFO:     10.205.48.143:63974 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.48.143:63974 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.48.143:63974 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.48.143:63974 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.48.143:49673 - "GET /users/634608 HTTP/1.1" 404 Not Found
+INFO:     10.205.48.143:49673 - "GET /users/24276 HTTP/1.1" 200 OK
+INFO:     10.205.48.143:49673 - "GET /vetorh/24276 HTTP/1.1" 200 OK
+INFO:     10.205.49.173:42380 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.49.173:42380 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.49.173:42380 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.173:42380 - "GET / HTTP/1.1" 200 OK
+INFO:     10.205.49.173:42380 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.173:42380 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.49.173:42380 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.173:42380 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.173:58874 - "GET /audit/latest?limit=20 HTTP/1.1" 200 OK
+INFO:     10.205.49.173:58874 - "GET /users/RIQBORGES HTTP/1.1" 200 OK
+INFO:     10.205.49.173:58874 - "GET /vetorh/60474 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52686 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52686 - "GET /workbox-9c191d2f.js HTTP/1.1" 200 OK
+INFO:     10.205.48.143:56867 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.48.143:56867 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.48.143:56867 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.48.143:56867 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.48.143:56867 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.48.143:56867 - "GET /users/graber.fernando HTTP/1.1" 200 OK
+INFO:     10.205.48.143:56867 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:62729 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:62729 - "GET /pwa-192x192.png HTTP/1.1" 200 OK
+INFO:     10.205.99.242:62729 - "GET / HTTP/1.1" 200 OK
+INFO:     10.205.99.242:62729 - "GET /assets/index-w3v0DWeB.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:62729 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:62729 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 200 OK
+INFO:     10.205.99.242:65534 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.99.242:62729 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:65522 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.99.242:65522 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:65522 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:65522 - "GET /users/22903 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:65522 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:65522 - "GET /vetorh/22903 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:65522 - "POST /users/Paulo.Lima/reset-password HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53571 - "GET /users/a.vreis HTTP/1.1" 401 Unauthorized
+INFO:     10.205.99.242:53571 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:53571 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53571 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:53571 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53571 - "GET /users/A.VREIS HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53571 - "POST /users/a.vreis/unlock HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53571 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53571 - "GET /users/A.VREIS HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53571 - "GET /dashboard HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53571 - "GET /assets/index-w3v0DWeB.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53571 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53571 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54344 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53571 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:53571 - "GET /pwa-192x192.png HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53571 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53571 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55421 - "GET /users/24927 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55421 - "GET /vetorh/24927 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53638 - "POST /users/Wadson.Peres/reset-password HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53638 - "GET /users/61555 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53638 - "GET /vetorh/61555 HTTP/1.1" 200 OK
+INFO:     10.205.49.56:42980 - "GET / HTTP/1.1" 200 OK
+INFO:     10.205.49.56:48278 - "GET /pwa-512x512.png HTTP/1.1" 200 OK
+INFO:     10.205.49.56:48294 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.49.56:48294 - "GET /workbox-9c191d2f.js HTTP/1.1" 200 OK
+INFO:     10.205.49.56:48294 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.49.56:48294 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.56:48294 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:57792 - "GET /users/41730 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:57792 - "GET /computers/PTU-DT-41730%24/security HTTP/1.1" 200 OK
+INFO:     10.205.49.56:51860 - "GET / HTTP/1.1" 200 OK
+INFO:     10.205.49.56:51864 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.49.56:51864 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.49.56:51864 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.56:51864 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.187:49675 - "GET / HTTP/1.1" 200 OK
+INFO:     10.205.49.187:49675 - "GET /assets/index-w3v0DWeB.js HTTP/1.1" 200 OK
+INFO:     10.205.49.187:49675 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 200 OK
+INFO:     10.205.49.187:49675 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.49.187:61666 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.49.187:49675 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.49.187:49675 - "GET /pwa-192x192.png HTTP/1.1" 200 OK
+INFO:     10.205.49.187:49675 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.49.187:49675 - "GET /workbox-9c191d2f.js HTTP/1.1" 200 OK
+INFO:     10.205.49.187:49675 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.49.187:49675 - "GET /assets/index-w3v0DWeB.js HTTP/1.1" 304 Not Modified
+INFO:     10.205.49.187:49675 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 304 Not Modified
+INFO:     10.205.49.187:49675 - "GET /pwa-192x192.png HTTP/1.1" 200 OK
+INFO:     10.205.49.187:49675 - "GET /pwa-512x512.png HTTP/1.1" 200 OK
+INFO:     10.205.49.187:49675 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.49.187:49675 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.49.187:49675 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.187:49675 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.187:49675 - "GET /users/victor.reis HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.49.56:47448 - "GET /dashboard HTTP/1.1" 200 OK
+INFO:     10.205.49.56:47448 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.49.56:47448 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.56:47448 - "GET /users/RIQBORGES HTTP/1.1" 200 OK
+INFO:     10.205.49.56:47448 - "GET /vetorh/60474 HTTP/1.1" 200 OK
+INFO:     10.205.49.56:47448 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.187:49675 - "GET /users/23987 HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.49.187:49675 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.49.187:49675 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.49.187:49675 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.49.187:49675 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.187:49675 - "GET /users/23987 HTTP/1.1" 200 OK
+INFO:     10.205.49.187:49675 - "GET /vetorh/23987 HTTP/1.1" 200 OK
+INFO:     10.205.49.187:49675 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.187:49675 - "GET /users/a.vreis HTTP/1.1" 200 OK
+INFO:     10.205.49.187:49675 - "POST /users/a.vreis/unlock HTTP/1.1" 200 OK
+INFO:     10.205.49.187:49675 - "GET /users/a.vreis HTTP/1.1" 200 OK
+INFO:     10.205.49.187:49675 - "GET /users/a.vreis HTTP/1.1" 200 OK
+INFO:     10.205.49.187:49675 - "GET /printers/ptu-prn-01 HTTP/1.1" 200 OK
+INFO:     10.205.49.187:49675 - "GET /printers/ptu-prn-sma-01 HTTP/1.1" 400 Bad Request
+INFO:     10.205.49.187:49675 - "GET /diagnostics/a.vreis/splunk HTTP/1.1" 200 OK
+INFO:     10.205.49.187:49675 - "GET /users/ptu-lt-45909 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61261 - "GET /users/luiz.souza%40kinross.com HTTP/1.1" 401 Unauthorized
+INFO:     10.205.99.242:61261 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:61261 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61261 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:61261 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61261 - "GET /users/LUIZ.SOUZA%40KINROSS.COM HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61261 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61261 - "GET /dashboard HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61261 - "GET /assets/index-w3v0DWeB.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61261 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61261 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61309 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61261 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:61261 - "GET /pwa-192x192.png HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61261 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61261 - "GET /users/LUIZ.SOUZA%40KINROSS.COM HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61261 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61261 - "GET /vetorh/41238 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58021 - "GET /users/26067 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58021 - "GET /vetorh/26067 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58021 - "POST /users/Lucivaldo.Barbosa/unlock HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58021 - "GET /users/26067 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58021 - "GET /vetorh/26067 HTTP/1.1" 200 OK
+INFO:     10.205.99.41:54346 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.41:54346 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.41:54346 - "GET /workbox-9c191d2f.js HTTP/1.1" 200 OK
+INFO:     10.205.99.41:54346 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.99.41:54346 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.41:54346 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.41:54346 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.41:54346 - "GET /users/WaXSantana HTTP/1.1" 200 OK
+INFO:     10.205.99.41:54346 - "GET /vetorh/61744 HTTP/1.1" 200 OK
+INFO:     10.205.99.41:54346 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.41:54346 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.41:54346 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.41:54346 - "GET /users/WaXSantana HTTP/1.1" 200 OK
+INFO:     10.205.99.41:54346 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.41:54346 - "GET /vetorh/61744 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61268 - "GET /users/30612 HTTP/1.1" 404 Not Found
+INFO:     10.205.48.143:52800 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.48.143:52800 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.48.143:52800 - "GET /workbox-9c191d2f.js HTTP/1.1" 200 OK
+INFO:     10.205.48.143:52800 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.48.143:52800 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.48.143:52800 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.48.143:52800 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.48.143:52800 - "GET /users/EdsOliveira HTTP/1.1" 200 OK
+INFO:     10.205.48.143:52800 - "GET /vetorh/131390 HTTP/1.1" 200 OK
+INFO:     10.205.48.143:52800 - "POST /vetorh/update HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58566 - "GET /users/30612 HTTP/1.1" 404 Not Found
+INFO:     10.205.99.242:53360 - "GET /users/a.vreis HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53360 - "POST /users/a.vreis/unlock HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53360 - "GET /users/a.vreis HTTP/1.1" 200 OK
+INFO:     10.205.48.143:65504 - "GET /users/30612 HTTP/1.1" 404 Not Found
+INFO:     10.205.99.242:51139 - "GET /users/a.vreis HTTP/1.1" 200 OK
+INFO:     10.205.99.242:51139 - "GET /diagnostics/a.vreis/splunk HTTP/1.1" 200 OK
+INFO:     10.205.99.242:51139 - "GET /diagnostics/a.vreis/splunk HTTP/1.1" 401 Unauthorized
+INFO:     10.205.99.242:51139 - "POST /users/a.vreis/unlock HTTP/1.1" 401 Unauthorized
+INFO:     10.205.99.242:51139 - "GET /dashboard/summary HTTP/1.1" 401 Unauthorized
+INFO:     10.205.99.242:51139 - "GET /dashboard/summary HTTP/1.1" 401 Unauthorized
+INFO:     10.205.99.242:51139 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:51139 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:51139 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:51139 - "GET /workbox-9c191d2f.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:51139 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.99.242:51139 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:51139 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:51139 - "GET /users/A.VREIS HTTP/1.1" 200 OK
+INFO:     10.205.99.242:51139 - "POST /users/a.vreis/unlock HTTP/1.1" 200 OK
+INFO:     10.205.99.242:51139 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:51139 - "GET /users/A.VREIS HTTP/1.1" 200 OK
+INFO:     10.205.99.242:51139 - "GET /diagnostics/a.vreis/splunk HTTP/1.1" 200 OK
+INFO:     10.205.99.242:49667 - "GET /users/Everson HTTP/1.1" 200 OK
+INFO:     10.205.99.242:49667 - "GET /vetorh/27409 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55807 - "GET /users/22727 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55807 - "GET /vetorh/22727 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55807 - "GET /diagnostics/Joao.Lopes/splunk HTTP/1.1" 200 OK
+INFO:     10.205.99.242:60574 - "POST /users/Joao.Lopes/reset-password HTTP/1.1" 200 OK
+INFO:     10.205.99.242:60574 - "GET /users/WELLISON.DIAS HTTP/1.1" 200 OK
+INFO:     10.205.99.242:60574 - "GET /vetorh/26337 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:60574 - "POST /users/WeDias/reset-password HTTP/1.1" 200 OK
+INFO:     10.205.99.242:60574 - "GET /users/RAMON.AMARAL HTTP/1.1" 200 OK
+INFO:     10.205.99.242:60574 - "GET /vetorh/24242 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:60574 - "POST /users/Ramon.Amaral/reset-password HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64856 - "GET /users/PTU%20GG_OPS_DTEC HTTP/1.1" 200 OK
+INFO:     10.205.48.143:52776 - "GET /users/ACosme HTTP/1.1" 404 Not Found
+INFO:     10.205.48.143:52776 - "GET /vetorh/61546 HTTP/1.1" 401 Unauthorized
+INFO:     10.205.48.143:52776 - "GET /vetorh/61546 HTTP/1.1" 401 Unauthorized
+INFO:     10.205.48.143:52776 - "GET /vetorh/61546 HTTP/1.1" 401 Unauthorized
+INFO:     10.205.48.143:52776 - "GET /vetorh/61546 HTTP/1.1" 401 Unauthorized
+INFO:     10.205.48.143:52776 - "GET /dashboard/summary HTTP/1.1" 401 Unauthorized
+INFO:     10.205.48.143:52776 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.48.143:52776 - "GET /dashboard/summary HTTP/1.1" 401 Unauthorized
+INFO:     10.205.48.143:52776 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.48.143:52776 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.48.143:52776 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.48.143:52776 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.48.143:52776 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.48.143:52776 - "GET /vetorh/61546 HTTP/1.1" 200 OK
+INFO:     10.205.48.143:52776 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.48.143:52776 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.48.143:52776 - "GET /vetorh/61546 HTTP/1.1" 200 OK
+INFO:     10.205.48.143:52776 - "GET /vetorh/61546 HTTP/1.1" 200 OK
+INFO:     10.205.48.143:52776 - "GET /vetorh/61546 HTTP/1.1" 200 OK
+INFO:     10.205.48.143:52776 - "GET /vetorh/61546 HTTP/1.1" 200 OK
+INFO:     10.205.48.143:52776 - "GET /vetorh/61546 HTTP/1.1" 200 OK
+INFO:     10.205.48.143:52776 - "GET /vetorh/41148 HTTP/1.1" 200 OK
+INFO:     10.205.48.143:52776 - "GET /vetorh/41148 HTTP/1.1" 200 OK
+INFO:     10.205.48.143:52776 - "GET /vetorh/41148 HTTP/1.1" 200 OK
+INFO:     10.205.48.143:52776 - "GET /vetorh/41148 HTTP/1.1" 200 OK
+INFO:     10.205.48.143:52776 - "POST /vetorh/update HTTP/1.1" 200 OK
+INFO:     10.205.48.143:59185 - "GET /users/41148 HTTP/1.1" 200 OK
+INFO:     10.205.48.143:59185 - "GET /vetorh/41148 HTTP/1.1" 200 OK
+INFO:     10.205.48.143:59185 - "GET /users/kauasilva HTTP/1.1" 200 OK
+INFO:     10.205.48.143:59185 - "GET /users/kauasilva HTTP/1.1" 200 OK
+INFO:     10.205.48.143:59185 - "GET /vetorh/41148 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55344 - "GET /users/a.vreis HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55344 - "POST /users/a.vreis/unlock HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55344 - "GET /users/a.vreis HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54635 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54635 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54635 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:54635 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54635 - "GET /users/A.VREIS HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54635 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54635 - "POST /users/a.vreis/unlock HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54635 - "GET /users/A.VREIS HTTP/1.1" 200 OK
+INFO:     10.205.99.242:59171 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:59171 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.99.242:59171 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:59171 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:59171 - "GET /users/A.VREIS HTTP/1.1" 200 OK
+INFO:     10.205.99.242:59171 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:59171 - "POST /users/a.vreis/unlock HTTP/1.1" 200 OK
+INFO:     10.205.99.242:59171 - "GET /users/A.VREIS HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56996 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56996 - "GET /workbox-9c191d2f.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56996 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56996 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56996 - "GET /assets/index-w3v0DWeB.js HTTP/1.1" 304 Not Modified
+INFO:     10.205.99.242:56996 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 304 Not Modified
+INFO:     10.205.99.242:58943 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56996 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:56996 - "GET /pwa-192x192.png HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56996 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56996 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.41:56333 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.41:56333 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.41:56333 - "GET /workbox-9c191d2f.js HTTP/1.1" 200 OK
+INFO:     10.205.99.41:56333 - "POST /token HTTP/1.1" 401 Unauthorized
+INFO:     10.205.99.41:56333 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.99.41:56333 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.41:56333 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.41:56333 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.41:56333 - "GET /vetorh/62639 HTTP/1.1" 200 OK
+INFO:     10.205.99.41:56333 - "POST /vetorh/update HTTP/1.1" 200 OK
+INFO:     10.205.99.41:56333 - "GET /vetorh/6466 HTTP/1.1" 200 OK
+INFO:     10.205.99.41:56333 - "POST /vetorh/update HTTP/1.1" 200 OK
+INFO:     10.205.99.41:64649 - "GET /vetorh/17534 HTTP/1.1" 200 OK
+INFO:     10.205.99.41:64649 - "POST /vetorh/update HTTP/1.1" 200 OK
+INFO:     10.205.99.41:56803 - "GET /vetorh/96641 HTTP/1.1" 200 OK
+INFO:     10.205.99.41:56803 - "POST /vetorh/update HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55180 - "GET /users/22433 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56040 - "GET /vetorh/22433 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56040 - "POST /users/Ramon.Duarte/reset-password HTTP/1.1" 200 OK
+INFO:     10.205.99.41:61580 - "GET /vetorh/96641 HTTP/1.1" 200 OK
+INFO:     10.205.99.41:61580 - "GET /vetorh/60841 HTTP/1.1" 200 OK
+INFO:     10.205.99.41:61580 - "POST /vetorh/update HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54231 - "GET /users/PTU-IT-HelpDesk-L1 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58489 - "GET /users/27411 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58489 - "GET /vetorh/27411 HTTP/1.1" 200 OK
+INFO:     10.205.99.41:57323 - "GET /users/61744 HTTP/1.1" 200 OK
+INFO:     10.205.99.41:57323 - "GET /vetorh/61744 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:62843 - "GET /users/47774 HTTP/1.1" 401 Unauthorized
+INFO:     10.205.99.242:62843 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:62843 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.99.242:62843 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:62843 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:62843 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:62843 - "GET /users/47774 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:62843 - "GET /ous HTTP/1.1" 200 OK
+INFO:     10.205.99.242:62843 - "GET /computers/PTU-DT-47774%24/local-groups HTTP/1.1" 400 Bad Request
+INFO:     10.205.99.242:62843 - "GET /diagnostics/PTU-DT-47774%24/wmi HTTP/1.1" 200 OK
+INFO:     10.205.99.242:62843 - "GET /users/47752 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:62843 - "POST /computers/PTU-DT-47752%24/notify HTTP/1.1" 400 Bad Request
+INFO:     10.205.99.242:62843 - "GET /computers/PTU-DT-47752%24/local-groups HTTP/1.1" 400 Bad Request
+INFO:     10.205.99.242:53065 - "GET /users/47774 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53065 - "GET /computers/PTU-DT-47774%24/local-groups HTTP/1.1" 400 Bad Request
+INFO:     10.205.99.242:53065 - "GET /users/47774 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53065 - "GET /computers/PTU-DT-47774%24/local-groups HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53065 - "POST /computers/PTU-DT-47774%24/notify HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53065 - "GET /diagnostics/PTU-DT-47774%24/wmi HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53065 - "GET /users/47752 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53065 - "GET /computers/PTU-DT-47752%24/local-groups HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53065 - "POST /computers/PTU-DT-47752%24/notify HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53065 - "GET /diagnostics/PTU-DT-47752%24/wmi HTTP/1.1" 200 OK
+INFO:     10.205.99.242:63606 - "GET /users/46443 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:63606 - "GET /computers/PTU-DT-46443%24/local-groups HTTP/1.1" 400 Bad Request
+INFO:     10.205.99.242:63606 - "GET /users/47774 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:63606 - "GET /computers/PTU-DT-47774%24/local-groups HTTP/1.1" 200 OK
+INFO:     10.205.99.242:63606 - "POST /computers/PTU-DT-47774%24/notify HTTP/1.1" 200 OK
+INFO:     10.205.99.242:63606 - "GET /computers/PTU-DT-47774%24/local-groups HTTP/1.1" 200 OK
+INFO:     10.205.99.242:63606 - "GET /diagnostics/PTU-DT-47774%24/wmi HTTP/1.1" 200 OK
+INFO:     10.205.99.242:65152 - "POST /computers/PTU-DT-47774%24/notify HTTP/1.1" 200 OK
+INFO:     10.205.99.242:65152 - "GET /users/46443 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:65152 - "GET /computers/PTU-DT-46443%24/local-groups HTTP/1.1" 200 OK
+INFO:     10.205.99.242:65152 - "GET /diagnostics/PTU-DT-46443%24/wmi HTTP/1.1" 200 OK
+INFO:     10.205.99.242:65152 - "POST /computers/PTU-DT-46443%24/notify HTTP/1.1" 200 OK
+INFO:     10.205.49.250:36002 - "GET / HTTP/1.1" 200 OK
+INFO:     10.205.49.250:36002 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.49.250:36002 - "GET /workbox-9c191d2f.js HTTP/1.1" 200 OK
+INFO:     10.205.49.250:36008 - "GET /pwa-512x512.png HTTP/1.1" 200 OK
+INFO:     10.205.49.250:36002 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.49.250:36024 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.250:54398 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.49.250:54398 - "GET /users/46443 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:52369 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /users/46443 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /computers/PTU-DT-46443%24/local-groups HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /diagnostics/PTU-DT-46443%24/wmi HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "POST /computers/PTU-DT-46443%24/notify HTTP/1.1" 200 OK
+INFO:     10.205.49.250:49200 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.49.250:49200 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.49.250:49200 - "GET /dashboard HTTP/1.1" 200 OK
+INFO:     10.205.49.250:49200 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 304 Not Modified
+INFO:     10.205.49.250:49200 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.49.250:49200 - "GET /assets/index-w3v0DWeB.js HTTP/1.1" 304 Not Modified
+INFO:     10.205.49.250:49200 - "GET /pwa-192x192.png HTTP/1.1" 200 OK
+INFO:     10.205.49.250:49212 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.49.250:49200 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.250:49200 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /users/47766 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /diagnostics/PTU-DT-47766%24/wmi HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.49.250:49200 - "GET /users/47766 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /users/47766 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.250:49200 - "GET /computers/PTU-DT-47766%24/local-groups HTTP/1.1" 400 Bad Request
+INFO:     10.205.99.242:52369 - "GET /diagnostics/PTU-DT-47766%24/wmi HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:52369 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:52369 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:52369 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:52369 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:52369 - "GET /dashboard HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /assets/index-w3v0DWeB.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54369 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:52369 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:52369 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /users/47766 HTTP/1.1" 200 OK
+INFO:     10.205.49.250:49200 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.250:49200 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.250:49200 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.250:49200 - "GET /users/47766 HTTP/1.1" 200 OK
+INFO:     10.205.49.250:49200 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52369 - "GET /computers/PTU-DT-47766%24/local-groups HTTP/1.1" 400 Bad Request
+INFO:     10.205.99.242:58357 - "POST /computers/PTU-DT-47766%24/notify HTTP/1.1" 400 Bad Request
+INFO:     10.205.99.242:56946 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56946 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56946 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56946 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56946 - "GET /assets/index-Nrw_G6Pj.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56946 - "GET /pwa-192x192.png HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56946 - "GET /pwa-512x512.png HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56946 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56946 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:56946 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56946 - "GET /users/47766 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56946 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.250:54640 - "GET /assets/index-Nrw_G6Pj.js HTTP/1.1" 200 OK
+INFO:     10.205.49.250:54640 - "GET /pwa-192x192.png HTTP/1.1" 200 OK
+INFO:     10.205.49.250:54640 - "GET /pwa-512x512.png HTTP/1.1" 200 OK
+INFO:     10.205.49.250:54640 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.250:54640 - "GET /users/47766 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56946 - "GET /computers/PTU-DT-47766%24/local-groups HTTP/1.1" 400 Bad Request
+INFO:     10.205.49.250:54640 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.250:54640 - "GET /dashboard HTTP/1.1" 200 OK
+INFO:     10.205.49.250:54640 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.250:54640 - "GET /users/47766 HTTP/1.1" 200 OK
+INFO:     10.205.49.250:54640 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56946 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56946 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56946 - "GET /assets/index-Nrw_G6Pj.js HTTP/1.1" 304 Not Modified
+INFO:     10.205.99.242:56946 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56946 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 304 Not Modified
+INFO:     10.205.99.242:51218 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56946 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:56946 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56946 - "GET /users/47766 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56946 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.250:54640 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.49.250:54640 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.49.250:54640 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.49.250:54640 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 200 OK
+INFO:     10.205.49.250:54640 - "GET /assets/index-CNcHccjc.js HTTP/1.1" 200 OK
+INFO:     10.205.49.250:54640 - "GET /pwa-192x192.png HTTP/1.1" 200 OK
+INFO:     10.205.49.250:54640 - "GET /pwa-512x512.png HTTP/1.1" 200 OK
+INFO:     10.205.49.250:54640 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.49.250:54640 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.250:54640 - "GET /users/47766 HTTP/1.1" 200 OK
+INFO:     10.205.49.250:54640 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55314 - "GET /assets/index-CNcHccjc.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55314 - "GET /pwa-192x192.png HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55314 - "GET /pwa-512x512.png HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55314 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:55314 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55314 - "GET /users/47766 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55314 - "POST /computers/PTU-DT-47766%24/enable-winrm HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:55314 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53009 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53009 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53009 - "GET /assets/index-CNcHccjc.js HTTP/1.1" 304 Not Modified
+INFO:     10.205.99.242:53009 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53009 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 304 Not Modified
+INFO:     10.205.99.242:53724 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53009 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:53009 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53009 - "GET /users/47766 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53009 - "POST /computers/PTU-DT-47766%24/enable-winrm HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:53009 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.250:39742 - "GET /dashboard HTTP/1.1" 200 OK
+INFO:     10.205.49.250:39742 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.49.250:39742 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.49.250:39742 - "GET /assets/index-CNcHccjc.js HTTP/1.1" 304 Not Modified
+INFO:     10.205.49.250:39742 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.49.250:39742 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 304 Not Modified
+INFO:     10.205.49.250:39758 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.49.250:39742 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.250:39742 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.250:39742 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53009 - "GET /users/46912 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53009 - "POST /computers/PTU-LT-46912%24/enable-winrm HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:53009 - "POST /computers/PTU-LT-46912%24/enable-winrm HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:53009 - "GET /computers/PTU-LT-46912%24/local-groups HTTP/1.1" 400 Bad Request
+INFO:     10.205.99.242:53009 - "GET /diagnostics/PTU-LT-46912%24/wmi HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64013 - "GET /computers/PTU-LT-46912%24/local-groups HTTP/1.1" 400 Bad Request
+INFO:     10.205.99.242:62196 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:62196 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.99.242:62196 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:62196 - "GET /assets/index-CNcHccjc.js HTTP/1.1" 304 Not Modified
+INFO:     10.205.99.242:62196 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 304 Not Modified
+INFO:     10.205.99.242:57169 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.99.242:62196 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:62196 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:62196 - "GET /users/46912 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:62196 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:62196 - "POST /computers/PTU-LT-46912%24/enable-winrm HTTP/1.1" 408 Request Timeout
+INFO:     10.205.49.250:42330 - "GET /users/47766 HTTP/1.1" 200 OK
+INFO:     10.205.49.250:42330 - "GET /dashboard HTTP/1.1" 200 OK
+INFO:     10.205.49.250:42330 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.49.250:42330 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.49.250:42330 - "GET /assets/index-CNcHccjc.js HTTP/1.1" 304 Not Modified
+INFO:     10.205.49.250:42330 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 304 Not Modified
+INFO:     10.205.49.250:39518 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.49.250:42330 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.49.250:42330 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.250:42330 - "GET /users/46443 HTTP/1.1" 200 OK
+INFO:     10.205.49.250:42330 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54663 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54663 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54663 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54663 - "GET /assets/index-CNcHccjc.js HTTP/1.1" 304 Not Modified
+INFO:     10.205.99.242:54663 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 304 Not Modified
+INFO:     10.205.99.242:56752 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54663 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:54663 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54663 - "GET /users/46912 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54663 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54663 - "POST /computers/PTU-LT-46912%24/enable-winrm HTTP/1.1" 400 Bad Request
+INFO:     10.205.99.242:61044 - "GET /diagnostics/PTU-LT-46912%24/ping HTTP/1.1" 200 OK
+INFO:     10.205.49.250:52794 - "GET /dashboard HTTP/1.1" 200 OK
+INFO:     10.205.49.250:52794 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.49.250:52794 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.49.250:52794 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 304 Not Modified
+INFO:     10.205.49.250:52794 - "GET /assets/index-CNcHccjc.js HTTP/1.1" 304 Not Modified
+INFO:     10.205.49.250:52804 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.49.250:52794 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.49.250:52794 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.250:52794 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.250:52794 - "GET /users/46443 HTTP/1.1" 200 OK
+INFO:     10.205.49.250:52794 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.250:52794 - "GET /diagnostics/PTU-DT-46443%24/ping HTTP/1.1" 200 OK
+INFO:     10.205.49.250:52794 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:60156 - "GET /users/47766 HTTP/1.1" 200 OK
+INFO:     10.205.49.250:52794 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:60156 - "POST /computers/PTU-DT-47766%24/enable-winrm HTTP/1.1" 408 Request Timeout
+INFO:     10.205.99.242:60156 - "GET /diagnostics/PTU-DT-47766%24/ping HTTP/1.1" 200 OK
+INFO:     10.205.99.242:60156 - "GET /diagnostics/PTU-DT-47766%24/ping HTTP/1.1" 200 OK
+INFO:     10.205.99.242:60156 - "GET /diagnostics/PTU-DT-47766%24/ping HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61904 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61904 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61904 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61904 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 304 Not Modified
+INFO:     10.205.99.242:61904 - "GET /assets/index-CNcHccjc.js HTTP/1.1" 304 Not Modified
+INFO:     10.205.99.242:52891 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61904 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:61904 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61904 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61904 - "GET /users/46912 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:50842 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:50842 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:50842 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:50842 - "GET /users/47766 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:50842 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:50842 - "GET /diagnostics/PTU-DT-47766%24/ping HTTP/1.1" 200 OK
+INFO:     10.205.99.242:49867 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:49867 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.99.242:49867 - "GET /assets/index-CNcHccjc.js HTTP/1.1" 304 Not Modified
+INFO:     10.205.99.242:49867 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 304 Not Modified
+INFO:     10.205.99.242:49867 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:49667 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.99.242:49867 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:49867 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:49867 - "GET /users/46912 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:49867 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:57059 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:57059 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:57059 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:57059 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58058 - "GET /users/47774 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:65515 - "GET /users/a.vreis HTTP/1.1" 200 OK
+INFO:     10.205.99.242:65515 - "POST /users/a.vreis/unlock HTTP/1.1" 200 OK
+INFO:     10.205.99.242:65515 - "POST /users/a.vreis/unlock HTTP/1.1" 200 OK
+INFO:     10.205.99.242:65515 - "GET /users/a.vreis HTTP/1.1" 200 OK
+INFO:     10.205.99.242:65515 - "GET /users/a.vreis HTTP/1.1" 200 OK
+INFO:     10.205.99.242:65515 - "GET /users/a.vreis HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61481 - "GET /users/47774 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58760 - "GET /users/47774 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58760 - "GET /users/46443 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58760 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58760 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58760 - "GET /assets/index-CNcHccjc.js HTTP/1.1" 304 Not Modified
+INFO:     10.205.99.242:58760 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 304 Not Modified
+INFO:     10.205.99.242:58760 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52640 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58760 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:58760 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58760 - "GET /users/47766 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58760 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58760 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:58760 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58760 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58760 - "GET /users/46912 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58760 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58760 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:58760 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58760 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58760 - "GET /audit/latest?limit=20 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58760 - "GET /users/47754 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58760 - "GET /users/47757 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58760 - "GET /users/47758 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:57050 - "POST /computers/PTU-DT-47758%24/enable-winrm HTTP/1.1" 408 Request Timeout
+INFO:     10.205.99.242:57050 - "GET /users/47774 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:57050 - "GET /computers/PTU-DT-47774%24/local-groups HTTP/1.1" 200 OK
+INFO:     10.205.99.242:57050 - "GET /diagnostics/PTU-DT-47774%24/wmi HTTP/1.1" 200 OK
+INFO:     10.205.99.242:57050 - "POST /computers/PTU-DT-47774%24/notify HTTP/1.1" 200 OK
+INFO:     10.205.99.242:58089 - "GET /vetorh/13633 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:50200 - "GET /users/13633 HTTP/1.1" 404 Not Found
+INFO:     10.205.99.242:49713 - "GET /users/riqborges HTTP/1.1" 401 Unauthorized
+INFO:     10.205.99.242:49713 - "GET /users/riqborges HTTP/1.1" 401 Unauthorized
+INFO:     10.205.99.242:49713 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:49713 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.99.242:49713 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:49713 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:49713 - "GET /users/RIQBORGES HTTP/1.1" 200 OK
+INFO:     10.205.99.242:49713 - "GET /vetorh/60474 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:49713 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53331 - "GET /diagnostics/RiqBorges/splunk HTTP/1.1" 200 OK
+INFO:     10.205.99.242:65318 - "GET /users/KGC-PTU-mFn3ZFA HTTP/1.1" 200 OK
+INFO:     10.205.99.242:65318 - "POST /computers/KGC-PTU-MFN3ZFA%24/enable-winrm HTTP/1.1" 408 Request Timeout
+INFO:     10.205.99.242:65318 - "GET /computers/KGC-PTU-MFN3ZFA%24/security HTTP/1.1" 200 OK
+INFO:     10.205.99.242:65318 - "GET /diagnostics/KGC-PTU-MFN3ZFA%24/ping HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64907 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64907 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64907 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64907 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64907 - "GET /assets/index-pMZ3VWXv.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64907 - "GET /pwa-192x192.png HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64907 - "GET /pwa-512x512.png HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64907 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64907 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64907 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:64907 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:64907 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64907 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64907 - "GET /users/RIQBORGES HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64907 - "GET /vetorh/60474 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64907 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64907 - "GET /users/RIQBORGES HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64907 - "GET /vetorh/13633 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64907 - "GET /users/13633 HTTP/1.1" 404 Not Found
+INFO:     10.205.99.242:64907 - "GET /users/13633 HTTP/1.1" 404 Not Found
+INFO:     10.205.99.242:64907 - "GET /users/RIQBORGES HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64907 - "GET /vetorh/60474 HTTP/1.1" 200 OK
+INFO:     10.205.49.250:38708 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.49.250:38708 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.49.250:38708 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.49.250:38708 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 200 OK
+INFO:     10.205.49.250:38708 - "GET /assets/index-pMZ3VWXv.js HTTP/1.1" 200 OK
+INFO:     10.205.49.250:38708 - "GET /pwa-192x192.png HTTP/1.1" 200 OK
+INFO:     10.205.49.250:38708 - "GET /pwa-512x512.png HTTP/1.1" 200 OK
+INFO:     10.205.49.250:38708 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.49.250:38708 - "GET /dashboard/summary HTTP/1.1" 401 Unauthorized
+INFO:     10.205.49.250:38708 - "GET /dashboard/summary HTTP/1.1" 401 Unauthorized
+INFO:     10.205.49.250:38708 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.49.250:38708 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.49.250:51804 - "GET /users/RIQBORGES HTTP/1.1" 200 OK
+INFO:     10.205.49.250:51804 - "GET /vetorh/60474 HTTP/1.1" 200 OK
+INFO:     10.205.49.250:51804 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:57569 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:57569 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:57569 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.99.242:57569 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 200 OK
+INFO:     10.205.99.242:57569 - "GET /assets/index-P0gHPTLy.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:57569 - "GET /pwa-192x192.png HTTP/1.1" 200 OK
+INFO:     10.205.99.242:57569 - "GET /pwa-512x512.png HTTP/1.1" 200 OK
+INFO:     10.205.99.242:57569 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.99.242:57569 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:57569 - "GET /assets/index-P0gHPTLy.js HTTP/1.1" 304 Not Modified
+INFO:     10.205.99.242:57569 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:57569 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:57569 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:57569 - "GET /users/13633 HTTP/1.1" 404 Not Found
+INFO:     10.205.99.242:57569 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:60357 - "GET /vetorh/13633 HTTP/1.1" 200 OK
+INFO:     10.205.48.94:50272 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.48.94:50272 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.48.94:50272 - "GET /workbox-9c191d2f.js HTTP/1.1" 200 OK
+INFO:     10.205.48.94:50272 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.48.94:50272 - "GET /assets/index-P0gHPTLy.js HTTP/1.1" 200 OK
+INFO:     10.205.48.94:50272 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.48.94:50272 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.48.94:50272 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.48.94:50272 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.48.94:50272 - "GET /vetorh/13633 HTTP/1.1" 200 OK
+INFO:     10.205.48.94:50272 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.48.94:50272 - "GET /assets/index-P0gHPTLy.js HTTP/1.1" 304 Not Modified
+INFO:     10.205.48.94:50272 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 200 OK
+INFO:     10.205.48.94:62457 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.48.94:50272 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.48.94:50272 - "GET /pwa-192x192.png HTTP/1.1" 200 OK
+INFO:     10.205.48.94:50272 - "GET /vetorh/13633 HTTP/1.1" 200 OK
+INFO:     10.205.48.94:50272 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.48.94:50272 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.48.94:50272 - "GET /users/41148 HTTP/1.1" 200 OK
+INFO:     10.205.48.94:50272 - "GET /vetorh/41148 HTTP/1.1" 200 OK
+INFO:     10.205.48.94:50272 - "GET /vetorh/13633%2C%2041148 HTTP/1.1" 200 OK
+INFO:     10.205.48.94:50272 - "GET /vetorh/13633 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54513 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54513 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54513 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54513 - "GET /assets/index-ZqHLgHXm.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54513 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54513 - "GET /pwa-192x192.png HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54513 - "GET /pwa-512x512.png HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54513 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54513 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54513 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:54513 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54513 - "GET /users/13633 HTTP/1.1" 404 Not Found
+INFO:     10.205.99.242:54513 - "GET /vetorh/search/13633 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54513 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54513 - "GET /vetorh/search/13633%2C%2060474 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54513 - "GET /vetorh/search/13633%2C%2060474%2C%2026573%2C%209876 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54513 - "GET /vetorh/search/13633%2C%2060474%2C%2026573%2C%2013643 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54513 - "GET /vetorh/search/13633%2C%2060474%2C%2010147%2C%2013643 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54513 - "GET /vetorh/search/13633%2C%2060474%2C%2010147%2C%2013643%2C%2026581 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54513 - "GET /users/13633 HTTP/1.1" 404 Not Found
+INFO:     10.205.99.242:54513 - "GET /users/RIQBORGES HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54513 - "GET /vetorh/60474 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54513 - "GET /vetorh/search/13633 HTTP/1.1" 200 OK
+INFO:     10.205.48.94:59270 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.48.94:59270 - "GET /workbox-9c191d2f.js HTTP/1.1" 200 OK
+INFO:     10.205.48.94:59270 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.48.94:59270 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.48.94:59270 - "GET /assets/index-ZqHLgHXm.js HTTP/1.1" 200 OK
+INFO:     10.205.48.94:59270 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 200 OK
+INFO:     10.205.48.94:59270 - "GET /pwa-192x192.png HTTP/1.1" 200 OK
+INFO:     10.205.48.94:59270 - "GET /pwa-512x512.png HTTP/1.1" 200 OK
+INFO:     10.205.48.94:59270 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.48.94:59270 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.48.94:59270 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.48.94:59270 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54513 - "GET /vetorh/search/13633%2C%2060474%2C%2010147%2C%2013643%2C%2026581 HTTP/1.1" 200 OK
+INFO:     10.205.48.94:59270 - "GET /vetorh/search/41148 HTTP/1.1" 200 OK
+INFO:     10.205.48.94:59270 - "GET /vetorh/search/13633%2C%2060474%2C%2010147%2C%2013643%2C%2026581 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52341 - "GET /vetorh/search/13633 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52341 - "GET /vetorh/search/13633%2C%2060474%2C%2010147%2C%2013643%2C%2026581 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:57540 - "GET /users/a.vreis HTTP/1.1" 200 OK
+INFO:     10.205.99.242:57540 - "POST /users/a.vreis/unlock HTTP/1.1" 200 OK
+INFO:     10.205.99.242:57540 - "POST /users/a.vreis/unlock HTTP/1.1" 200 OK
+INFO:     10.205.99.242:57540 - "GET /users/a.vreis HTTP/1.1" 200 OK
+INFO:     10.205.99.242:57540 - "GET /users/a.vreis HTTP/1.1" 200 OK

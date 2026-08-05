@@ -57,7 +57,8 @@ export default function Dashboard() {
   const [compareResult, setCompareResult] = useState(null);
 
   // Estados: Vetorh
-  const [vetorhData, setVetorhData] = useState({ tipcol: 1, techacc: 'NTU' });
+  // Antes: const [vetorhData, setVetorhData] = useState({ tipcol: 1, techacc: 'NTU' });
+  const [vetorhData, setVetorhData] = useState({ tipcol: 1, techacc: 'NTU', sitafa: '...', igadigid: '...' });
   const [vetorhStatus, setVetorhStatus] = useState('Aguardando...');
   const [vetorhLoading, setVetorhLoading] = useState(false);
 
@@ -365,7 +366,9 @@ export default function Dashboard() {
   const selectUserForDetail = (user) => {
     setSelectedUser(user);
     setEditData({ title: user.Title || '', department: user.Department || '', telephone: user.TelephoneNumber || '' });
-    setVetorhData({ tipcol: 1, techacc: 'NTU' });
+    
+    // Zera os dados enquanto busca
+    setVetorhData({ tipcol: 1, techacc: 'NTU', sitafa: 'Carregando...', igadigid: 'Carregando...' });
 
     if (user.Type === 'User' && user.EmployeeID) {
       setVetorhStatus('Consultando DB...');
@@ -374,18 +377,25 @@ export default function Dashboard() {
         .then(res => {
           const fetchedTipcol = parseInt(res.data.tipcol) || 1;
           const fetchedTechacc = res.data.techacc ? res.data.techacc.trim().toUpperCase() : 'NTU';
+          const fetchedSitafa = res.data.sitafa || 'Desconhecido';
+          const fetchedIgadigid = res.data.igadigid || 'N/A';
           const tipoStr = fetchedTipcol === 1 ? 'Próprio' : 'Terceiro';
           
-          setVetorhData({ tipcol: fetchedTipcol, techacc: fetchedTechacc });
+          // Atualiza os novos campos
+          setVetorhData({ tipcol: fetchedTipcol, techacc: fetchedTechacc, sitafa: fetchedSitafa, igadigid: fetchedIgadigid });
 
           if (res.data.error) setVetorhStatus(`Erro: ${res.data.error}`);
           else if (res.data.message) setVetorhStatus(res.data.message);
           else setVetorhStatus(`${fetchedTechacc} (${tipoStr})`);
         })
-        .catch(() => setVetorhStatus('Falha de conexão com SQL'))
+        .catch(() => {
+          setVetorhStatus('Falha de conexão com SQL');
+          setVetorhData(prev => ({ ...prev, sitafa: 'Erro SQL', igadigid: 'Erro SQL' }));
+        })
         .finally(() => setVetorhLoading(false));
     } else {
       setVetorhStatus('Sem Matrícula');
+      setVetorhData({ tipcol: 1, techacc: 'NTU', sitafa: 'N/A', igadigid: 'N/A' });
     }
   };
 
@@ -525,13 +535,18 @@ export default function Dashboard() {
   const handleVetorhDirectSearch = async (e) => {
     if (e) e.preventDefault();
     if (!vetorhSearchMat.trim()) return;
+    
     setVetorhSearchLoading(true);
     setVetorhSearchResult(null);
+    
+    // MELHORIA 2: Auto-preenche o campo da Procedure com as matrículas pesquisadas!
+    setVetorhDirectInput(vetorhSearchMat.trim());
+    
     try {
-      const res = await api.get(`/vetorh/${vetorhSearchMat.trim()}`);
-      setVetorhSearchResult(res.data);
+      const res = await api.get(`/vetorh/search/${vetorhSearchMat.trim()}`);
+      setVetorhSearchResult(res.data.data); // Recebe o Array
     } catch (err) {
-      toast.error('Falha ao consultar matrícula no SQL Server.');
+      toast.error('Falha ao consultar matrículas no SQL Server.');
     } finally {
       setVetorhSearchLoading(false);
     }
@@ -909,7 +924,19 @@ export default function Dashboard() {
                             <div style={styles.detailItem}><span style={styles.detailLabel}>Senha Nunca Expira?</span><span style={styles.detailValue}>{selectedUser.PasswordNeverExpires ? 'Sim' : 'Não'}</span></div>
                             <div style={styles.detailItem}><span style={styles.detailLabel}>Pode Alterar Senha?</span><span style={{...styles.detailValue, color: COLORS.muted}}>N/A (Via AD ACLs)</span></div>
                             <div style={styles.detailItemFull}><span style={styles.detailLabel}>Último Logon</span><span style={styles.detailValue}>{selectedUser.LastLogon}</span></div>
-                            <div style={styles.detailItemFull}><span style={styles.detailLabel}>Acesso Vetorh</span><span style={{...styles.detailValue, color: COLORS.gold}}>{vetorhStatus}</span></div>
+                            
+                            {/* LINHAS ORIGINAIS E NOVAS DO VETORH */}
+                            <div style={styles.detailItemFull}><span style={styles.detailLabel}>Acesso Vetorh (Role)</span><span style={{...styles.detailValue, color: COLORS.gold}}>{vetorhStatus}</span></div>
+                            
+                            <div style={styles.detailItem}><span style={styles.detailLabel}>SITAFA (Situação RH)</span>
+                              <span style={{
+                                ...styles.detailValue, 
+                                color: vetorhData.sitafa.includes('Trabalhando') ? COLORS.success : 
+                                       vetorhData.sitafa.includes('Demitido') ? COLORS.danger : COLORS.warning
+                              }}>{vetorhData.sitafa}</span>
+                            </div>
+                            
+                            <div style={styles.detailItem}><span style={styles.detailLabel}>IGA DIGID</span><span style={{...styles.detailValue, fontFamily: 'monospace'}}>{vetorhData.igadigid}</span></div>
                           </div>
                         </>
                       )}
@@ -1129,10 +1156,9 @@ export default function Dashboard() {
                          <>
                            <div style={styles.resetContainer}>
                              <p style={styles.sectionLabel}>Tipo de Colaborador</p>
-                             <select value={vetorhData.tipcol} onChange={(e) => setVetorhData({...vetorhData, tipcol: parseInt(e.target.value)})} style={styles.modalSelect}>
-                               <option value={1}>1 - Próprio</option>
-                               <option value={2}>2 - Terceiro</option>
-                             </select>
+                             <div style={{ ...styles.inputReset, backgroundColor: 'transparent', color: COLORS.muted, cursor: 'not-allowed', border: `1px solid ${COLORS.border}` }}>
+                               {vetorhData.tipcol === 1 ? '1 - Próprio' : '2 - Terceiro'} (Detectado Automaticamente)
+                             </div>
                            </div>
                            <div style={styles.resetContainer}>
                              <p style={styles.sectionLabel}>Nível de Acesso Técnico</p>
@@ -1292,12 +1318,12 @@ export default function Dashboard() {
             {/* CARD 1: CONSULTA RÁPIDA POR MATRÍCULA */}
             <div style={styles.card}>
               <h3 style={styles.cardTitle}>Consulta SQL (Vetorh)</h3>
-              <p style={styles.hintText}>Verifique o nível técnico atual na tabela r034cpl.</p>
+              <p style={styles.hintText}>Insira uma ou várias matrículas (separadas por vírgula).</p>
               
               <form onSubmit={handleVetorhDirectSearch} style={{ display: 'flex', gap: '8px', marginTop: '10px' }}>
                 <input
                   type="text"
-                  placeholder="Número da Matrícula (Ex: 10452)..."
+                  placeholder="Ex: 10452, 10453, 10454..."
                   value={vetorhSearchMat}
                   onChange={(e) => setVetorhSearchMat(e.target.value)}
                   style={styles.inputReset}
@@ -1307,20 +1333,92 @@ export default function Dashboard() {
                 </button>
               </form>
 
-              {vetorhSearchResult && (
-                <div style={{ ...styles.resetContainer, marginTop: '15px', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                  <div>
-                    <span style={styles.detailLabel}>Nível Técnico</span>
-                    <strong style={{ color: COLORS.gold, fontSize: '18px' }}>{vetorhSearchResult.techacc}</strong>
-                  </div>
-                  <div>
-                    <span style={styles.detailLabel}>Tipo Colaborador</span>
-                    <strong style={{ color: COLORS.text, fontSize: '14px' }}>
-                      {vetorhSearchResult.tipcol === 1 ? '1 - Próprio' : '2 - Terceiro'}
-                    </strong>
-                  </div>
-                  {vetorhSearchResult.message && (
-                    <span style={{ color: COLORS.warning, fontSize: '12px' }}>{vetorhSearchResult.message}</span>
+              {vetorhSearchResult && Array.isArray(vetorhSearchResult) && (
+                <div style={{ marginTop: '15px' }}>
+                  {vetorhSearchResult.length === 0 ? (
+                    <div style={styles.errorBox}><AlertTriangle size={16} /> Nenhuma matrícula correspondente localizada.</div>
+                  ) : vetorhSearchResult.length === 1 ? (
+                    
+                    /* DOSSIÊ INDIVIDUAL (1 ÚNICA MATRÍCULA) */
+                    <div style={styles.resetContainer}>
+                      <p style={{...styles.sectionLabel, marginBottom: '15px'}}>Dossiê do Colaborador (Vetorh)</p>
+                      <div style={styles.detailGrid}>
+                        <div style={styles.detailItemFull}>
+                          <span style={styles.detailLabel}>Nome Completo (nomfun)</span>
+                          <span style={styles.detailValue}>{vetorhSearchResult[0].nomfun}</span>
+                        </div>
+                        <div style={styles.detailItem}>
+                          <span style={styles.detailLabel}>AD Display (addisname)</span>
+                          <span style={styles.detailValue}>{vetorhSearchResult[0].usu_addisname || 'N/A'}</span>
+                        </div>
+                        <div style={styles.detailItem}>
+                          <span style={styles.detailLabel}>Network ID</span>
+                          <span style={styles.detailValue}>{vetorhSearchResult[0].networkid || 'N/A'}</span>
+                        </div>
+                        <div style={styles.detailItem}>
+                          <span style={styles.detailLabel}>Situação (sitafa)</span>
+                          <span style={{
+                            ...styles.detailValue, 
+                            color: vetorhSearchResult[0].sitafa.includes('Trabalhando') ? COLORS.success : 
+                                   vetorhSearchResult[0].sitafa.includes('Demitido') ? COLORS.danger : COLORS.warning
+                          }}>
+                            {vetorhSearchResult[0].sitafa}
+                          </span>
+                        </div>
+                        <div style={styles.detailItem}>
+                          <span style={styles.detailLabel}>Acesso (techacc)</span>
+                          <span style={{...styles.detailValue, color: COLORS.gold, fontWeight: 'bold'}}>{vetorhSearchResult[0].techacc}</span>
+                        </div>
+                        <div style={styles.detailItem}>
+                          <span style={styles.detailLabel}>Empresa (numemp)</span>
+                          <span style={styles.detailValue}>{vetorhSearchResult[0].numemp}</span>
+                        </div>
+                        <div style={styles.detailItem}>
+                          <span style={styles.detailLabel}>Tipo (tipcol)</span>
+                          <span style={styles.detailValue}>{vetorhSearchResult[0].tipcol === 1 ? '1 - Próprio' : '2 - Terceiro'}</span>
+                        </div>
+                        <div style={styles.detailItemFull}>
+                          <span style={styles.detailLabel}>IGA DIGID</span>
+                          <span style={{...styles.detailValue, fontFamily: 'monospace'}}>{vetorhSearchResult[0].igadigid}</span>
+                        </div>
+                        <div style={styles.detailItemFull}>
+                          <span style={styles.detailLabel}>E-mails (Comercial / Particular)</span>
+                          <span style={styles.detailValue}>
+                            {vetorhSearchResult[0].emacom || 'S/N'} <strong style={{color: COLORS.muted}}> | </strong> {vetorhSearchResult[0].emapar || 'S/N'}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+
+                  ) : (
+
+                    /* TABELA DINÂMICA (MÚLTIPLAS MATRÍCULAS) */
+                    <div style={{...styles.resetContainer, overflowX: 'auto'}}>
+                      <p style={{...styles.sectionLabel, marginBottom: '15px'}}>Pesquisa em Lote ({vetorhSearchResult.length} resultados)</p>
+                      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px', textAlign: 'left', color: COLORS.text }}>
+                         <thead>
+                            <tr style={{ borderBottom: `1px solid ${COLORS.border}` }}>
+                               <th style={{ padding: '8px', color: COLORS.muted }}>Matrícula</th>
+                               <th style={{ padding: '8px', color: COLORS.muted }}>Nome</th>
+                               <th style={{ padding: '8px', color: COLORS.muted }}>SITAFA</th>
+                               <th style={{ padding: '8px', color: COLORS.muted }}>Acesso</th>
+                               <th style={{ padding: '8px', color: COLORS.muted }}>IGA DIGID</th>
+                            </tr>
+                         </thead>
+                         <tbody>
+                            {vetorhSearchResult.map((row, idx) => (
+                                <tr key={idx} style={{ borderBottom: `1px solid ${COLORS.border}` }}>
+                                   <td style={{ padding: '8px' }}>{row.numcad}</td>
+                                   <td style={{ padding: '8px', fontWeight: 'bold' }}>{row.nomfun}</td>
+                                   <td style={{ padding: '8px', color: row.sitafa.includes('Trabalhando') ? COLORS.success : row.sitafa.includes('Demitido') ? COLORS.danger : COLORS.warning }}>{row.sitafa}</td>
+                                   <td style={{ padding: '8px', color: COLORS.gold, fontWeight: 'bold' }}>{row.techacc}</td>
+                                   <td style={{ padding: '8px', fontFamily: 'monospace' }}>{row.igadigid || 'N/A'}</td>
+                                </tr>
+                            ))}
+                         </tbody>
+                      </table>
+                    </div>
+
                   )}
                 </div>
               )}
@@ -1329,7 +1427,7 @@ export default function Dashboard() {
             {/* CARD 2: EXECUÇÃO DA PROCEDURE (SIMPLES OU EM LOTE) */}
             <div style={styles.card}>
               <h3 style={styles.cardTitle}>Executar SP_IntTITechAcc</h3>
-              <p style={styles.hintText}>Insira uma ou várias matrículas (separadas por vírgula ou quebra de linha).</p>
+              <p style={styles.hintText}>Insira uma ou várias matrículas. O sistema detectará o tipo do colaborador automaticamente.</p>
               
               <textarea
                 value={vetorhDirectInput}
@@ -1338,20 +1436,9 @@ export default function Dashboard() {
                 style={styles.textArea}
               />
 
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px', marginTop: '15px' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '10px', marginTop: '15px' }}>
                 <div>
-                  <span style={styles.detailLabel}>Tipo de Colaborador</span>
-                  <select
-                    value={vetorhDirectTipcol}
-                    onChange={(e) => setVetorhDirectTipcol(Number(e.target.value))}
-                    style={styles.modalSelect}
-                  >
-                    <option value={1}>1 - Próprio</option>
-                    <option value={2}>2 - Terceiro</option>
-                  </select>
-                </div>
-                <div>
-                  <span style={styles.detailLabel}>Nível de Acesso</span>
+                  <span style={styles.detailLabel}>Definir Novo Nível de Acesso</span>
                   <select
                     value={vetorhDirectTechacc}
                     onChange={(e) => setVetorhDirectTechacc(e.target.value)}
@@ -1381,10 +1468,10 @@ export default function Dashboard() {
                 }}
               >
                 <Database size={18} />
-                {vetorhDirectLoading ? 'Executando Procedure no Banco...' : 'Aplicar Procedure SQL'}
+                {vetorhDirectLoading ? 'Processando Lote...' : 'Aplicar Procedure SQL'}
               </button>
 
-              {/* BOX DE RETORNO DO SQL SERVER */}
+              {/* BOX DE RETORNO DO SQL SERVER (MANTIDO INTACTO) */}
               {vetorhDirectResult && (
                 <div style={styles.bulkResultBox}>
                   <p style={{ color: COLORS.success, fontWeight: 'bold', margin: '0 0 10px 0' }}>

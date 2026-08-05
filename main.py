@@ -182,31 +182,52 @@ def run_powershell(command: str, creds: dict, return_json: bool = True):
         raise HTTPException(status_code=400, detail=f"Falha de execução do Processo: {str(e)}")
 
 @app.post("/computers/{hostname}/enable-winrm")
-async def enable_winrm_via_dcom(hostname: str):
-    # Script PowerShell injetando o hostname da máquina alvo
-    ps_script = f"""
-    $ErrorActionPreference = 'Stop'
-    $opcao = New-CimSessionOption -Protocol Dcom
-    $sessao = New-CimSession -ComputerName {hostname} -SessionOption $opcao
-    Invoke-CimMethod -CimSession $sessao -ClassName Win32_Process -MethodName Create -Arguments @{{CommandLine = "powershell.exe -Command Enable-PSRemoting -Force"}}
-    Remove-CimSession -CimSession $sessao
-    """
+async def enable_winrm_via_dcom(hostname: str, creds: dict = Depends(get_current_credentials)):
+    # 1. Limpa o "$" e força o FQDN para o DNS achar a máquina sem dar erro de RPC
+    network_target = hostname.rstrip('$').lower()
+    if "." not in network_target:
+        network_target = f"{network_target}.{creds['domain']}"
+        
+    # 2. O EXATO CÓDIGO QUE VOCÊ TESTOU (Com injeção de Credenciais)
+    script_block = (
+        "$ErrorActionPreference = 'Stop'; "
+        "$opcao = New-CimSessionOption -Protocol Dcom; "
+        f"$sessao = New-CimSession -ComputerName '{network_target}' -SessionOption $opcao -Credential $mycreds; "
+        "$res = Invoke-CimMethod -CimSession $sessao -ClassName Win32_Process -MethodName Create -Arguments @{CommandLine = 'powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -Command Enable-PSRemoting -Force'}; "
+        "Remove-CimSession -CimSession $sessao; "
+        "if ($res.ReturnValue -ne 0) { throw 'Código de erro no processo WMI: ' + $res.ReturnValue } else { Write-Output 'SUCESSO' }"
+    )
     
     try:
-        result = subprocess.run(
-            ["powershell", "-NoProfile", "-Command", ps_script],
-            capture_output=True, text=True, timeout=30
+        # Monta a credencial do analista de forma segura
+        domain_netbios = creds['domain'].split('.')[0]
+        auth_prefix = (
+            f"$secpasswd = ConvertTo-SecureString '{creds['password']}' -AsPlainText -Force; "
+            f"$mycreds = New-Object System.Management.Automation.PSCredential ('{domain_netbios}\\{creds['username']}', $secpasswd); "
         )
         
+        full_command = f"{auth_prefix} {script_block}"
+        
+        # Executa no PowerShell do servidor com 30 segundos de tolerância
+        result = subprocess.run(
+            ["powershell", "-ExecutionPolicy", "Bypass", "-NoProfile", "-Command", full_command], 
+            capture_output=True, text=True, encoding='cp850', errors='replace', timeout=30
+        )
+        
+        # Se o PowerShell cuspir algum erro vermelho
         if result.returncode != 0:
-            raise Exception(result.stderr or "Falha desconhecida no DCOM")
+            erro = result.stderr.strip() if result.stderr else result.stdout.strip()
+            raise HTTPException(status_code=400, detail=f"Falha de RPC/DCOM: {erro}")
             
-        return {"status": "success", "message": f"Comando de ativação enviado via DCOM para {hostname}."}
+        AuditLogger.log(creds["username"], "ForcarWinRM_DCOM", network_target, "SUCESSO")
+        return {"status": "success", "message": f"WinRM ativado via DCOM na máquina {network_target}!"}
         
     except subprocess.TimeoutExpired:
-        raise HTTPException(status_code=408, detail="Timeout ao tentar comunicação DCOM. Máquina pode estar offline.")
+        raise HTTPException(status_code=408, detail="Timeout: O firewall ignorou o pacote DCOM (Drop) sem responder.")
+    except HTTPException:
+        raise
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Erro via DCOM: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Erro interno no motor Python: {str(e)}")
 
 # --- ENDPOINTS BÁSICOS E BUSCA ---
 
@@ -668,7 +689,7 @@ def compare_users(payload: CompareUsers, creds: dict = Depends(get_current_crede
 
 class VetorhUpdate(BaseModel):
     matriculas: list[str]
-    tipcol: int
+    tipcol: int = 1
     techacc: str
 
 def get_db_connection():
@@ -695,7 +716,14 @@ def get_vetorh_access(matricula: str, creds: dict = Depends(get_current_credenti
         conn = get_db_connection()
         cursor = conn.cursor()
         
-        query = "SELECT usu_techacc, numcad, tipcol FROM vetorh.r034cpl WHERE numcad = ?"
+        # A sua query exata com LEFT JOIN
+        query = """
+            SELECT fun.numemp, fun.tipcol, fun.numcad, fun.nomfun, cpl.usu_addisname, 
+                   fun.sitafa, cpl.usu_igadigid, cpl.usu_networkid, cpl.emacom, cpl.emapar, cpl.usu_techacc
+            FROM vetorh.r034fun fun 
+            LEFT JOIN vetorh.r034cpl cpl ON (fun.numemp = cpl.numemp AND fun.tipcol = cpl.tipcol AND fun.numcad = cpl.numcad)
+            WHERE fun.numcad = ?
+        """
         cursor.execute(query, mat_int)
         row = cursor.fetchone()
         
@@ -703,10 +731,97 @@ def get_vetorh_access(matricula: str, creds: dict = Depends(get_current_credenti
         conn.close()
         
         if row:
-            return {"techacc": str(row[0]).strip(), "tipcol": int(row[2])}
-        return {"techacc": "NTU", "tipcol": 1, "message": "Sem Acesso (Vazio)"}
+            sitafa_code = int(row[5]) if row[5] is not None else None
+            
+            # Dicionário de tradução do código SITAFA
+            sitafa_map = {
+                1: "1 - Trabalhando", 
+                2: "2 - Férias", 
+                3: "3 - Afastamento", 
+                7: "7 - Afastamento", 
+                16: "16 - Afastamento", 
+                22: "22 - Demitido", 
+                35: "35 - Afastamento", 
+                50: "50 - Afastamento", 
+                61: "61 - Afastamento", 
+                64: "64 - Afastamento"
+            }
+            sitafa_desc = sitafa_map.get(sitafa_code, f"Outro ({sitafa_code})") if sitafa_code is not None else "Não Informado"
+
+            return {
+                "numemp": row[0],
+                "tipcol": int(row[1]) if row[1] else 1,
+                "numcad": row[2],
+                "nomfun": str(row[3]).strip() if row[3] else "",
+                "usu_addisname": str(row[4]).strip() if row[4] else "",
+                "sitafa": sitafa_desc,
+                "igadigid": str(row[6]).strip() if row[6] else "N/A",
+                "networkid": str(row[7]).strip() if row[7] else "",
+                "emacom": str(row[8]).strip() if row[8] else "",
+                "emapar": str(row[9]).strip() if row[9] else "",
+                "techacc": str(row[10]).strip() if row[10] else "NTU"
+            }
+            
+        return {"techacc": "NTU", "tipcol": 1, "sitafa": "Desconhecido", "igadigid": "N/A", "message": "Sem Registro no DB"}
     except Exception as e:
-        return {"techacc": "NTU", "tipcol": 1, "error": f"Erro DB: {str(e)}"}
+        return {"techacc": "NTU", "tipcol": 1, "sitafa": "Erro SQL", "igadigid": "N/A", "error": f"Erro DB: {str(e)}"}
+
+@app.get("/vetorh/search/{matriculas}")
+def search_vetorh_bulk(matriculas: str, creds: dict = Depends(get_current_credentials)):
+    try:
+        # Pega a string (ex: "10452, 10453"), separa e converte apenas números válidos
+        mat_list = [int(m.strip()) for m in re.split(r'[,;\n\s]+', matriculas) if m.strip().isdigit()]
+        
+        if not mat_list:
+            return {"data": []}
+            
+        conn = get_db_connection()
+        cursor = conn.cursor()
+        
+        # Prepara os placeholders para a consulta IN (?, ?, ?)
+        placeholders = ','.join(['?'] * len(mat_list))
+        
+        query = f"""
+            SELECT fun.numemp, fun.tipcol, fun.numcad, fun.nomfun, cpl.usu_addisname, 
+                   fun.sitafa, cpl.usu_igadigid, cpl.usu_networkid, cpl.emacom, cpl.emapar, cpl.usu_techacc
+            FROM vetorh.r034fun fun 
+            LEFT JOIN vetorh.r034cpl cpl ON (fun.numemp = cpl.numemp AND fun.tipcol = cpl.tipcol AND fun.numcad = cpl.numcad)
+            WHERE fun.numcad IN ({placeholders})
+        """
+        
+        cursor.execute(query, mat_list)
+        rows = cursor.fetchall()
+        cursor.close()
+        conn.close()
+        
+        sitafa_map = {
+            1: "1 - Trabalhando", 2: "2 - Férias", 3: "3 - Afastamento", 7: "7 - Afastamento", 
+            16: "16 - Afastamento", 22: "22 - Demitido", 35: "35 - Afastamento", 
+            50: "50 - Afastamento", 61: "61 - Afastamento", 64: "64 - Afastamento"
+        }
+        
+        results = []
+        for row in rows:
+            sitafa_code = int(row[5]) if row[5] is not None else None
+            sitafa_desc = sitafa_map.get(sitafa_code, f"Outro ({sitafa_code})") if sitafa_code is not None else "Não Informado"
+            
+            results.append({
+                "numemp": row[0],
+                "tipcol": int(row[1]) if row[1] else 1,
+                "numcad": row[2],
+                "nomfun": str(row[3]).strip() if row[3] else "",
+                "usu_addisname": str(row[4]).strip() if row[4] else "",
+                "sitafa": sitafa_desc,
+                "igadigid": str(row[6]).strip() if row[6] else "N/A",
+                "networkid": str(row[7]).strip() if row[7] else "",
+                "emacom": str(row[8]).strip() if row[8] else "",
+                "emapar": str(row[9]).strip() if row[9] else "",
+                "techacc": str(row[10]).strip() if row[10] else "NTU"
+            })
+            
+        return {"data": results}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erro DB: {str(e)}")
 
 @app.post("/vetorh/update")
 def update_vetorh_access(payload: VetorhUpdate, creds: dict = Depends(get_current_credentials)):
@@ -719,17 +834,32 @@ def update_vetorh_access(payload: VetorhUpdate, creds: dict = Depends(get_curren
         for mat in payload.matriculas:
             try:
                 mat_int = int(mat)
+                
+                # 1. AUTOMAÇÃO INTELIGENTE: Busca o tipcol real do colaborador antes de qualquer coisa
+                cursor.execute("SELECT tipcol FROM vetorh.r034fun WHERE numcad = ?", mat_int)
+                row = cursor.fetchone()
+                
+                if not row:
+                    erros.append({"matricula": mat, "error": "Matrícula não localizada no banco de dados."})
+                    continue
+                    
+                tipcol_real = int(row[0])
+                
+                # 2. Executa a procedure injetando o tipcol correto descoberto na etapa 1
                 query = "{CALL vetorh.SP_IntTITechAcc (?, ?, ?)}"
-                cursor.execute(query, (payload.tipcol, mat_int, payload.techacc))
+                cursor.execute(query, (tipcol_real, mat_int, payload.techacc))
                 conn.commit()
+                
                 sucessos += 1
-                AuditLogger.log(creds["username"], "UpdateVetorh", str(mat_int), f"SUCESSO: {payload.techacc}")
+                AuditLogger.log(creds["username"], "UpdateVetorh", str(mat_int), f"SUCESSO: {payload.techacc} (Tipo Detectado: {tipcol_real})")
+                
             except Exception as e:
                 erros.append({"matricula": mat, "error": str(e)})
                 
         cursor.close()
         conn.close()
         return {"success_count": sucessos, "errors": erros}
+        
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Falha de conexão com o Banco: {str(e)}")
 

@@ -50,3 +50,67 @@
 [2026-07-31 14:36:30] | Operador: a.kauasilva | Acao: Desbloquear | Alvo: Guilherme.Jesus | Status: SUCESSO
 [2026-07-31 14:36:31] | Operador: a.kauasilva | Acao: Desbloquear | Alvo: Guilherme.Jesus | Status: SUCESSO
 [2026-08-03 07:45:49] | Operador: a.riqborges | Acao: ResetSenha | Alvo: Marcos.Fernandes | Status: Desbloqueio: True | ForceChange: True
+[2026-08-04 08:23:20] | Operador: a.riqborges | Acao: ResetSenha | Alvo: Paulo.Lima | Status: Desbloqueio: True | ForceChange: True
+[2026-08-04 10:41:18] | Operador: a.riqborges | Acao: Desbloquear | Alvo: a.vreis | Status: SUCESSO
+[2026-08-04 11:02:12] | Operador: a.riqborges | Acao: ResetSenha | Alvo: Wadson.Peres | Status: Desbloqueio: True | ForceChange: True
+[2026-08-04 11:58:56] | Operador: a.riqborges | Acao: ConsultarSeguranca | Alvo: PTU-DT-41730 | Status: LAPS/BitLocker extraídos
+[2026-08-04 12:26:34] | Operador: a.rsousa | Acao: Desbloquear | Alvo: a.vreis | Status: SUCESSO
+[2026-08-04 12:28:59] | Operador: a.rsousa | Acao: Diag_SPLUNK | Alvo: a.vreis | Status: EXECUTADO
+[2026-08-04 12:58:53] | Operador: a.riqborges | Acao: Desbloquear | Alvo: Lucivaldo.Barbosa | Status: SUCESSO
+[2026-08-04 13:04:20] | Operador: a.gasantiago | Acao: UpdateVetorh | Alvo: 61744 | Status: SUCESSO: LTU
+[2026-08-04 13:27:00] | Operador: a.kauasilva | Acao: UpdateVetorh | Alvo: 131390 | Status: SUCESSO: LTU
+[2026-08-04 14:01:25] | Operador: a.riqborges | Acao: Desbloquear | Alvo: a.vreis | Status: SUCESSO
+[2026-08-04 14:53:17] | Operador: a.riqborges | Acao: Diag_SPLUNK | Alvo: a.vreis | Status: EXECUTADO
+[2026-08-04 14:53:57] | Operador: a.riqborges | Acao: Desbloquear | Alvo: a.vreis | Status: SUCESSO
+[2026-08-04 14:54:39] | Operador: a.riqborges | Acao: Diag_SPLUNK | Alvo: a.vreis | Status: EXECUTADO
+[2026-08-04 15:02:06] | Operador: a.riqborges | Acao: Diag_SPLUNK | Alvo: Joao.Lopes | Status: EXECUTADO
+[2026-08-04 15:06:00] | Operador: a.riqborges | Acao: ResetSenha | Alvo: Joao.Lopes | Status: Desbloqueio: True | ForceChange: True
+[2026-08-04 15:07:43] | Operador: a.riqborges | Acao: ResetSenha | Alvo: WeDias | Status: Desbloqueio: True | ForceChange: True
+[2026-08-04 15:09:06] | Operador: a.riqborges | Acao: ResetSenha | Alvo: Ramon.Amaral | Status: Desbloqueio: True | ForceChange: True
+[2026-08-04 15:31:09] | Operador: a.kauasilva | Acao: UpdateVetorh | Alvo: 61546 | Status: SUCESSO: LTU
+[2026-08-04 16:00:33] | Operador: a.riqborges | Acao: Desbloquear | Alvo: a.vreis | Status: SUCESSO
+[2026-08-04 16:35:31] | Operador: a.riqborges | Acao: Desbloquear | Alvo: a.vreis | Status: SUCESSO
+[2026-08-05 08:42:50] | Operador: a.riqborges | Acao: Desbloquear | Alvo: a.vreis | Status: SUCESSO
+[2026-08-05 09:31:44] | Operador: a.gasantiago | Acao: UpdateVetorh | Alvo: 62639 | Status: SUCESSO: LTU
+[2026-08-05 09:32:08] | Operador: a.gasantiago | Acao: UpdateVetorh | Alvo: 6466 | Status: SUCESSO: LTU
+[2026-08-05 09:41:27] | Operador: a.gasantiago | Acao: UpdateVetorh | Alvo: 17534 | Status: SUCESSO: LTU
+[2026-08-05 09:49:01] | Operador: a.gasantiago | Acao: UpdateVetorh | Alvo: 96641 | Status: SUCESSO: LTU
+[2026-08-05 09:57:20] | Operador: a.riqborges | Acao: ResetSenha | Alvo: Ramon.Duarte | Status: Desbloqueio: True | ForceChange: True
+[2026-08-05 10:23:53] | Operador: a.gasantiago | Acao: UpdateVetorh | Alvo: 60841 | Status: SUCESSO: LTU
+[2026-08-05 11:03:25] | Operador: a.riqborges | Acao: Diag_WMI | Alvo: PTU-DT-47774$ | Status: EXECUTADO
+[2026-08-05 11:09:54] | Operador: a.riqborges | Acao: ConsultarGruposLocais | Alvo: PTU-DT-47774.kinrossgold.com | Status: SUCESSO
+[2026-08-05 11:10:00] | Operador: a.riqborges | Acao: NotificarUsuario | Alvo: ptu-dt-47774.kinrossgold.com | Status: Mensagem: Favor salvar seus trabalhos em...
+[2026-08-05 11:10:53] | Operador: a.riqborges | Acao: Diag_WMI | Alvo: PTU-DT-47774$ | Status: EXECUTADO
+[2026-08-05 11:12:24] | Operador: a.riqborges | Acao: ConsultarGruposLocais | Alvo: PTU-DT-47752.kinrossgold.com | Status: SUCESSO
+[2026-08-05 11:12:29] | Operador: a.riqborges | Acao: NotificarUsuario | Alvo: ptu-dt-47752.kinrossgold.com | Status: Mensagem: Favor salvar seus trabalhos em...
+[2026-08-05 11:12:56] | Operador: a.riqborges | Acao: Diag_WMI | Alvo: PTU-DT-47752$ | Status: EXECUTADO
+[2026-08-05 11:18:42] | Operador: a.riqborges | Acao: ConsultarGruposLocais | Alvo: PTU-DT-47774.kinrossgold.com | Status: SUCESSO
+[2026-08-05 11:18:50] | Operador: a.riqborges | Acao: NotificarUsuario | Alvo: ptu-dt-47774.kinrossgold.com | Status: Mensagem: Favor salvar seus trabalhos em...
+[2026-08-05 11:19:32] | Operador: a.riqborges | Acao: ConsultarGruposLocais | Alvo: PTU-DT-47774.kinrossgold.com | Status: SUCESSO
+[2026-08-05 11:19:34] | Operador: a.riqborges | Acao: Diag_WMI | Alvo: PTU-DT-47774$ | Status: EXECUTADO
+[2026-08-05 11:20:50] | Operador: a.riqborges | Acao: NotificarUsuario | Alvo: ptu-dt-47774.kinrossgold.com | Status: Mensagem: Favor salvar seus trabalhos em...
+[2026-08-05 11:21:23] | Operador: a.riqborges | Acao: ConsultarGruposLocais | Alvo: PTU-DT-46443.kinrossgold.com | Status: SUCESSO
+[2026-08-05 11:21:45] | Operador: a.riqborges | Acao: Diag_WMI | Alvo: PTU-DT-46443$ | Status: EXECUTADO
+[2026-08-05 11:21:55] | Operador: a.riqborges | Acao: NotificarUsuario | Alvo: ptu-dt-46443.kinrossgold.com | Status: Mensagem: Favor salvar seus trabalhos em...
+[2026-08-05 12:37:51] | Operador: a.riqborges | Acao: ConsultarGruposLocais | Alvo: PTU-DT-46443.kinrossgold.com | Status: SUCESSO
+[2026-08-05 12:37:51] | Operador: a.riqborges | Acao: Diag_WMI | Alvo: PTU-DT-46443$ | Status: EXECUTADO
+[2026-08-05 12:37:57] | Operador: a.riqborges | Acao: NotificarUsuario | Alvo: ptu-dt-46443.kinrossgold.com | Status: Mensagem: Favor salvar seus trabalhos em...
+[2026-08-05 12:39:30] | Operador: a.riqborges | Acao: Diag_WMI | Alvo: PTU-DT-47766$ | Status: EXECUTADO
+[2026-08-05 12:40:36] | Operador: a.riqborges | Acao: Diag_WMI | Alvo: PTU-DT-47766$ | Status: EXECUTADO
+[2026-08-05 12:59:16] | Operador: a.riqborges | Acao: Diag_WMI | Alvo: PTU-LT-46912$ | Status: EXECUTADO
+[2026-08-05 13:22:49] | Operador: a.riqborges | Acao: Diag_PING | Alvo: PTU-LT-46912$ | Status: EXECUTADO
+[2026-08-05 13:25:32] | Operador: A.riqborges | Acao: Diag_PING | Alvo: PTU-DT-46443$ | Status: EXECUTADO
+[2026-08-05 13:27:04] | Operador: a.riqborges | Acao: Diag_PING | Alvo: PTU-DT-47766$ | Status: EXECUTADO
+[2026-08-05 13:28:30] | Operador: a.riqborges | Acao: Diag_PING | Alvo: PTU-DT-47766$ | Status: EXECUTADO
+[2026-08-05 13:29:20] | Operador: a.riqborges | Acao: Diag_PING | Alvo: PTU-DT-47766$ | Status: EXECUTADO
+[2026-08-05 13:38:05] | Operador: a.riqborges | Acao: Diag_PING | Alvo: PTU-DT-47766$ | Status: EXECUTADO
+[2026-08-05 13:54:41] | Operador: a.riqborges | Acao: Desbloquear | Alvo: a.vreis | Status: SUCESSO
+[2026-08-05 13:54:41] | Operador: a.riqborges | Acao: Desbloquear | Alvo: a.vreis | Status: SUCESSO
+[2026-08-05 14:23:32] | Operador: a.riqborges | Acao: ConsultarGruposLocais | Alvo: PTU-DT-47774.kinrossgold.com | Status: SUCESSO
+[2026-08-05 14:23:38] | Operador: a.riqborges | Acao: Diag_WMI | Alvo: PTU-DT-47774$ | Status: EXECUTADO
+[2026-08-05 14:23:55] | Operador: a.riqborges | Acao: NotificarUsuario | Alvo: ptu-dt-47774.kinrossgold.com | Status: Mensagem: Favor salvar seus trabalhos em...
+[2026-08-05 14:44:00] | Operador: a.riqborges | Acao: Diag_SPLUNK | Alvo: RiqBorges | Status: EXECUTADO
+[2026-08-05 15:04:19] | Operador: a.riqborges | Acao: ConsultarSeguranca | Alvo: KGC-PTU-MFN3ZFA | Status: LAPS/BitLocker extraídos
+[2026-08-05 15:04:28] | Operador: a.riqborges | Acao: Diag_PING | Alvo: KGC-PTU-MFN3ZFA$ | Status: EXECUTADO
+[2026-08-05 15:53:59] | Operador: a.riqborges | Acao: Desbloquear | Alvo: a.vreis | Status: SUCESSO
+[2026-08-05 15:54:00] | Operador: a.riqborges | Acao: Desbloquear | Alvo: a.vreis | Status: SUCESSO
