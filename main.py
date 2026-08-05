@@ -10,7 +10,8 @@ import json
 import pyodbc
 import socket
 import re
-import ssl # <-- Adicione este import
+import ssl
+import subprocess
 import ldap3 
 from ldap3 import Server, Connection, ALL, SUBTREE, Tls, RESTARTABLE # <-- Atualize esta linha
 from pydantic import BaseModel
@@ -179,6 +180,33 @@ def run_powershell(command: str, creds: dict, return_json: bool = True):
         raise HTTPException(status_code=400, detail="Tempo limite excedido. O alvo não respondeu.")
     except subprocess.CalledProcessError as e:
         raise HTTPException(status_code=400, detail=f"Falha de execução do Processo: {str(e)}")
+
+@app.post("/computers/{hostname}/enable-winrm")
+async def enable_winrm_via_dcom(hostname: str):
+    # Script PowerShell injetando o hostname da máquina alvo
+    ps_script = f"""
+    $ErrorActionPreference = 'Stop'
+    $opcao = New-CimSessionOption -Protocol Dcom
+    $sessao = New-CimSession -ComputerName {hostname} -SessionOption $opcao
+    Invoke-CimMethod -CimSession $sessao -ClassName Win32_Process -MethodName Create -Arguments @{{CommandLine = "powershell.exe -Command Enable-PSRemoting -Force"}}
+    Remove-CimSession -CimSession $sessao
+    """
+    
+    try:
+        result = subprocess.run(
+            ["powershell", "-NoProfile", "-Command", ps_script],
+            capture_output=True, text=True, timeout=30
+        )
+        
+        if result.returncode != 0:
+            raise Exception(result.stderr or "Falha desconhecida no DCOM")
+            
+        return {"status": "success", "message": f"Comando de ativação enviado via DCOM para {hostname}."}
+        
+    except subprocess.TimeoutExpired:
+        raise HTTPException(status_code=408, detail="Timeout ao tentar comunicação DCOM. Máquina pode estar offline.")
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Erro via DCOM: {str(e)}")
 
 # --- ENDPOINTS BÁSICOS E BUSCA ---
 

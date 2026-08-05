@@ -140,6 +140,21 @@ export default function Dashboard() {
     }
   };
 
+  // --- ESTADO: ATIVAR WINRM VIA DCOM ---
+  const [winrmLoading, setWinrmLoading] = useState(false);
+
+  const handleEnableWinRM = async () => {
+    setWinrmLoading(true);
+    try {
+      const res = await api.post(`/computers/${selectedUser.SamAccountName}/enable-winrm`);
+      toast.success(res.data.message);
+    } catch (err) {
+      toast.error(err.response?.data?.detail || 'Falha ao habilitar WinRM. DCOM bloqueado ou máquina offline.');
+    } finally {
+      setWinrmLoading(false);
+    }
+  };
+
   // --- ESTADOS: NOTIFICAR USUÁRIO ATIVO DO DESKTOP ---
   const [modalNotifyOpen, setModalNotifyOpen] = useState(false);
   const [notifyMessage, setNotifyMessage] = useState('');
@@ -993,7 +1008,18 @@ export default function Dashboard() {
                         {isComputer && <button onClick={fetchLocalGroups} disabled={loadingGroups} style={styles.gridBtn}>{loadingGroups ? 'Processando...' : <><Users size={14}/> Grupos Locais</>}</button>}
                         {isComputer && <button onClick={fetchSecurityKeys} style={{...styles.gridBtn, borderColor: COLORS.success, color: COLORS.success, fontWeight: 'bold'}}><Unlock size={14}/> LAPS & BitLocker</button>}
                         
-                        {/* NOVO BOTÃO: NOTIFICAR USUÁRIO ATIVO */}
+                        {/* NOVO BOTÃO: ATIVAR WINRM VIA DCOM */}
+                        {isComputer && (
+                          <button 
+                            onClick={handleEnableWinRM} 
+                            disabled={winrmLoading}
+                            style={{ ...styles.gridBtn, borderColor: '#38BDF8', color: '#38BDF8', fontWeight: 'bold' }}
+                          >
+                            {winrmLoading ? 'Enviando...' : <><Activity size={14}/> Forçar WinRM</>}
+                          </button>
+                        )}
+                        
+                        {/* BOTÃO: NOTIFICAR USUÁRIO ATIVO */}
                         {isComputer && (
                           <button 
                             onClick={() => {
