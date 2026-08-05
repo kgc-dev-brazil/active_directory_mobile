@@ -274,7 +274,7 @@ def get_user(search_term: str, creds: dict = Depends(get_current_credentials)):
                 'userAccountControl', 'lockoutTime', 'objectClass', 
                 'description', 'operatingSystem', 'title', 'department', 
                 'telephoneNumber', 'company', 'physicalDeliveryOfficeName', 'distinguishedName',
-                'memberOf', 'member', 'dNSHostName', 'managedBy', 'lastLogonTimestamp', 
+                'memberOf', 'member', 'dNSHostName', 'managedBy', 'manager', 'lastLogonTimestamp', 
                 'whenCreated', 'whenChanged', 'uSNCreated', 'uSNChanged', 'directReports', 'groupType'
             ]
         )
@@ -301,7 +301,12 @@ def get_user(search_term: str, creds: dict = Depends(get_current_credentials)):
             grupos = [str(g).split(',')[0].replace('CN=', '') for g in entry.memberOf.values] if 'memberOf' in entry and entry.memberOf else []
             membros = [str(m).split(',')[0].replace('CN=', '') for m in entry.member.values] if 'member' in entry and entry.member else []
             
-            mgr = str(entry.managedBy.value) if 'managedBy' in entry and entry.managedBy.value else ""
+            mgr = ""
+            if 'manager' in entry and entry.manager:
+                mgr = str(entry.manager.value)
+            elif 'managedBy' in entry and entry.managedBy:
+                mgr = str(entry.managedBy.value)
+                
             manager_clean = mgr.split(',')[0].replace('CN=', '') if mgr else "N/A"
             
             last_logon = "Nunca"

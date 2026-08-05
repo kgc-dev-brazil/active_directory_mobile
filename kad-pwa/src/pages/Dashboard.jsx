@@ -914,18 +914,48 @@ export default function Dashboard() {
                             <div style={styles.detailItem}><span style={styles.detailLabel}>Empresa</span><span style={styles.detailValue}>{selectedUser.Company}</span></div>
                             <div style={styles.detailItem}><span style={styles.detailLabel}>Escritório</span><span style={styles.detailValue}>{selectedUser.Office}</span></div>
                             <div style={styles.detailItem}><span style={styles.detailLabel}>Gerente Direto</span><span style={styles.detailValue}>{selectedUser.Manager}</span></div>
-                            <div style={styles.detailItemFull}><span style={styles.detailLabel}>Supervisiona ({selectedUser.DirectReports?.length || 0})</span><span style={styles.detailValue}>{selectedUser.DirectReports?.length > 0 ? selectedUser.DirectReports.join(', ') : 'Nenhum'}</span></div>
+                            <div style={styles.detailItemFull}>
+                              <span style={styles.detailLabel}>Supervisiona ({selectedUser.DirectReports?.length || 0})</span>
+                              {selectedUser.DirectReports?.length > 0 ? (
+                                <div style={{ 
+                                  display: 'flex', 
+                                  flexWrap: 'wrap', 
+                                  gap: '6px', 
+                                  marginTop: '8px', 
+                                  maxHeight: '140px', 
+                                  overflowY: 'auto',
+                                  paddingRight: '4px'
+                                }}>
+                                  {selectedUser.DirectReports.map((report, idx) => (
+                                    <span key={idx} style={{
+                                      backgroundColor: COLORS.bg,
+                                      border: `1px solid ${COLORS.border}`,
+                                      padding: '4px 8px',
+                                      borderRadius: '4px',
+                                      fontSize: '11px',
+                                      color: COLORS.text,
+                                      display: 'flex',
+                                      alignItems: 'center',
+                                      gap: '4px'
+                                    }}>
+                                      <User size={10} color={COLORS.muted} /> {report}
+                                    </span>
+                                  ))}
+                                </div>
+                              ) : (
+                                <span style={styles.detailValue}>Nenhum</span>
+                              )}
+                            </div>
                           </div>
                           
                           <p style={{...styles.sectionLabel, marginTop: '20px'}}>Identidade e Acessos</p>
                           <div style={styles.detailGrid}>
                             <div style={styles.detailItem}><span style={styles.detailLabel}>Status da Conta</span><span style={{...styles.detailValue, color: selectedUser.Enabled ? COLORS.success : COLORS.danger}}>{selectedUser.Enabled ? 'Ativa' : 'Desativada'}</span></div>
                             <div style={styles.detailItem}><span style={styles.detailLabel}>Bloqueado?</span><span style={{...styles.detailValue, color: selectedUser.LockedOut ? COLORS.warning : COLORS.text}}>{selectedUser.LockedOut ? 'Sim' : 'Não'}</span></div>
-                            <div style={styles.detailItem}><span style={styles.detailLabel}>Senha Nunca Expira?</span><span style={styles.detailValue}>{selectedUser.PasswordNeverExpires ? 'Sim' : 'Não'}</span></div>
-                            <div style={styles.detailItem}><span style={styles.detailLabel}>Pode Alterar Senha?</span><span style={{...styles.detailValue, color: COLORS.muted}}>N/A (Via AD ACLs)</span></div>
+                            <div style={styles.detailItemFull}><span style={styles.detailLabel}>Senha Nunca Expira?</span><span style={styles.detailValue}>{selectedUser.PasswordNeverExpires ? 'Sim' : 'Não'}</span></div>
                             <div style={styles.detailItemFull}><span style={styles.detailLabel}>Último Logon</span><span style={styles.detailValue}>{selectedUser.LastLogon}</span></div>
                             
-                            {/* LINHAS ORIGINAIS E NOVAS DO VETORH */}
+                            {/* LINHAS DO VETORH */}
                             <div style={styles.detailItemFull}><span style={styles.detailLabel}>Acesso Vetorh (Role)</span><span style={{...styles.detailValue, color: COLORS.gold}}>{vetorhStatus}</span></div>
                             
                             <div style={styles.detailItem}><span style={styles.detailLabel}>SITAFA (Situação RH)</span>
