@@ -9,6 +9,58 @@ import {
   FileText, Copy, Clock, X, Bell
 } from 'lucide-react';
 
+// --- COMPONENTE DA ÁRVORE DE OUs ---
+const TreeNode = ({ node, selectedDn, onSelect, level = 0 }) => {
+  const [isOpen, setIsOpen] = React.useState(level < 1); // Deixa apenas a Raiz aberta por padrão
+  const hasChildren = node.children && node.children.length > 0;
+  const isSelected = selectedDn === node.dn;
+
+  // Paleta fixa local para garantir segurança de renderização
+  const cGold = '#C5A059';
+  const cText = '#F8FAFC';
+  const cBg = '#0B111E';
+
+  return (
+    <div style={{ paddingLeft: level === 0 ? '0px' : '20px', marginTop: '4px' }}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          padding: '6px 8px',
+          backgroundColor: isSelected ? cGold : 'transparent',
+          color: isSelected ? cBg : cText,
+          borderRadius: '4px',
+          cursor: 'pointer',
+          border: isSelected ? `1px solid ${cGold}` : '1px solid transparent',
+        }}
+        onClick={() => onSelect(node.dn)}
+      >
+        {hasChildren ? (
+          <span
+            onClick={(e) => { e.stopPropagation(); setIsOpen(!isOpen); }}
+            style={{ cursor: 'pointer', marginRight: '8px', width: '12px', display: 'inline-block', textAlign: 'center', fontWeight: 'bold' }}
+          >
+            {isOpen ? '▼' : '▶'}
+          </span>
+        ) : (
+          <span style={{ width: '12px', marginRight: '8px', display: 'inline-block', textAlign: 'center', color: '#94A3B8' }}>•</span>
+        )}
+        <span style={{ fontSize: '13px', whiteSpace: 'nowrap', fontWeight: level === 0 ? 'bold' : '500' }}>
+          {node.isRoot ? `🌐 ${node.ou}` : `📁 ${node.ou}`}
+        </span>
+      </div>
+
+      {isOpen && hasChildren && (
+        <div style={{ borderLeft: `1px dashed #24324D`, marginLeft: '6px', paddingLeft: '2px' }}>
+          {node.children.map((child, idx) => (
+            <TreeNode key={idx} node={child} selectedDn={selectedDn} onSelect={onSelect} level={level + 1} />
+          ))}
+        </div>
+      )}
+    </div>
+  );
+};
+
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('single'); 
   const [innerTab, setInnerTab] = useState('geral');
@@ -31,7 +83,7 @@ export default function Dashboard() {
   const [modalEditOpen, setModalEditOpen] = useState(false);
   const [editData, setEditData] = useState({ title: '', department: '', telephone: '' });
   const [modalMoveOpen, setModalMoveOpen] = useState(false);
-  const [ouList, setOuList] = useState([]);
+  const [treeData, setTreeData] = useState([]);
   const [selectedOu, setSelectedOu] = useState('');
   const [loadingOus, setLoadingOus] = useState(false);
 
@@ -623,13 +675,62 @@ export default function Dashboard() {
   };
 
   const openMoveModal = async () => {
-    setModalMoveOpen(true); if (ouList.length > 0) return; setLoadingOus(true);
-    try { const response = await api.get('/ous'); setOuList(response.data.data); } 
-    catch (err) { toast.error('Falha ao obter árvore de diretórios.'); } finally { setLoadingOus(false); }
+    setModalMoveOpen(true); 
+    if (treeData.length > 0) return; 
+    setLoadingOus(true);
+    try { 
+      const response = await api.get('/ous'); 
+      const flatOus = response.data.data;
+
+      if (flatOus && flatOus.length > 0) {
+        // 1. Descobre a raiz do domínio (Ex: DC=kinrossgold,DC=com)
+        const firstDnParts = flatOus[0].dn.split(',');
+        const baseDn = firstDnParts.filter(p => p.toUpperCase().startsWith('DC=')).join(',');
+        
+        const root = { dn: baseDn, ou: baseDn, isRoot: true, children: [] };
+        const nodeMap = { [baseDn.toUpperCase()]: root };
+
+        // 2. Ordena pelas OUs mais altas primeiro (menos vírgulas)
+        const sorted = [...flatOus].sort((a, b) => (a.dn.match(/,/g) || []).length - (b.dn.match(/,/g) || []).length);
+
+        // 3. Monta a árvore dinamicamente
+        sorted.forEach(item => {
+            const dn = item.dn;
+            const parts = dn.split(',');
+            const parentDn = parts.slice(1).join(',').toUpperCase(); // DN do Pai
+            
+            // Extrai só o nome da pasta limpando o OU=
+            const cleanOu = parts[0].replace('OU=', '').replace('CN=', '');
+            const newNode = { ...item, ou: cleanOu, children: [] };
+            
+            nodeMap[dn.toUpperCase()] = newNode;
+
+            if (nodeMap[parentDn]) {
+                nodeMap[parentDn].children.push(newNode);
+            } else {
+                root.children.push(newNode); // Pendura na raiz se o pai não existir
+            }
+        });
+        
+        setTreeData([root]); // Salva a árvore no estado
+      }
+    } 
+    catch (err) { toast.error('Falha ao obter árvore de diretórios.'); } 
+    finally { setLoadingOus(false); }
   };
 
   const handleMoveOu = async () => { 
-    try { await api.post(`/users/${selectedUser.SamAccountName}/move`, { new_ou: selectedOu }); toast.success('Objeto movido organizacionalmente.'); setModalMoveOpen(false); handleSearch(); } 
+    // REPLICA A REGRA DO DESKTOP: Proíbe mover para a raiz do domínio!
+    if (selectedOu.toUpperCase().includes('DC=') && !selectedOu.toUpperCase().includes('OU=')) {
+      return toast.error('Aviso: Você não pode mover um objeto diretamente para a raiz estrutural do domínio.');
+    }
+
+    try { 
+      await api.post(`/users/${selectedUser.SamAccountName}/move`, { new_ou: selectedOu }); 
+      toast.success('Objeto movido organizacionalmente.'); 
+      setModalMoveOpen(false); 
+      handleSearch(); 
+    } 
     catch (err) { toast.error('Erro ao movimentar OU.'); } 
   };
 
@@ -1658,20 +1759,48 @@ export default function Dashboard() {
         </div>
       )}
 
-      {/* MODAL: MOVER OU */}
+      {/* MODAL: MOVER OU (TREE VIEW) */}
       {modalMoveOpen && (
         <div style={styles.modalOverlay}>
-          <div style={styles.modalContent}>
-            <h3 style={{color: COLORS.gold, margin: '0 0 15px 0'}}>Movimentação Estrutural</h3>
-            {loadingOus ? <p style={{color: COLORS.gold, fontSize: '13px'}}>Carregando estrutura...</p> : (
-              <select value={selectedOu} onChange={(e) => setSelectedOu(e.target.value)} style={styles.modalSelect}>
-                <option value="">-- Destino Organizacional --</option>
-                {ouList.map((ou, idx) => <option key={idx} value={ou.dn}>{ou.ou}</option>)}
-              </select>
-            )}
+          <div style={{...styles.modalContent, maxWidth: '600px'}}>
+            <h3 style={{color: COLORS.gold, margin: '0 0 10px 0'}}>Movimentação Estrutural</h3>
+            <p style={{color: COLORS.muted, fontSize: '12px', marginBottom: '15px'}}>Expanda as pastas e selecione o destino organizacional (OU):</p>
+            
+            {/* CONTAINER DA ÁRVORE (Com fundo escuro, bordas e barra de rolagem) */}
+            <div style={{ 
+              backgroundColor: COLORS.frame, 
+              border: `1px solid ${COLORS.border}`, 
+              borderRadius: '6px', 
+              padding: '15px', 
+              height: '350px', 
+              overflowY: 'auto', 
+              overflowX: 'auto', 
+              marginBottom: '20px' 
+            }}>
+              {loadingOus ? (
+                <p style={{color: COLORS.gold, fontSize: '13px', textAlign: 'center', marginTop: '100px'}}>⏳ Desenhando estrutura do AD...</p>
+              ) : treeData.length > 0 ? (
+                treeData.map((node, idx) => (
+                  <TreeNode key={idx} node={node} selectedDn={selectedOu} onSelect={setSelectedOu} />
+                ))
+              ) : (
+                <p style={{color: COLORS.danger, fontSize: '13px'}}>Nenhuma estrutura localizada.</p>
+              )}
+            </div>
+
             <div style={styles.modalActions}>
               <button onClick={() => setModalMoveOpen(false)} style={styles.modalCancelBtn}>Cancelar</button>
-              <button onClick={handleMoveOu} style={styles.modalSaveBtn}>Movimentar</button>
+              <button 
+                onClick={handleMoveOu} 
+                disabled={!selectedOu || loadingOus} 
+                style={{
+                  ...styles.modalSaveBtn, 
+                  opacity: selectedOu ? 1 : 0.4, 
+                  backgroundColor: COLORS.warning 
+                }}
+              >
+                Confirmar Roteamento
+              </button>
             </div>
           </div>
         </div>

@@ -115,3 +115,88 @@
 [2026-08-05 15:53:59] | Operador: a.riqborges | Acao: Desbloquear | Alvo: a.vreis | Status: SUCESSO
 [2026-08-05 15:54:00] | Operador: a.riqborges | Acao: Desbloquear | Alvo: a.vreis | Status: SUCESSO
 [2026-08-05 16:25:11] | Operador: a.riqborges | Acao: UpdateVetorh | Alvo: 27418 | Status: SUCESSO: ETU (Tipo Detectado: 1)
+[2026-08-05 16:47:43] | Operador: A.riqborges | Acao: Desbloquear | Alvo: Daniel.Aquino | Status: SUCESSO
+[2026-08-05 17:04:39] | Operador: A.marcus.reis | Acao: Diag_SPLUNK | Alvo: Daniel.Aquino | Status: EXECUTADO
+[2026-08-06 08:56:19] | Operador: a.riqborges | Acao: Desbloquear | Alvo: a.vreis | Status: SUCESSO
+[2026-08-06 09:26:06] | Operador: a.gamsilva | Acao: Desbloquear | Alvo: a.RiqBorges | Status: SUCESSO
+[2026-08-06 09:47:45] | Operador: a.gamsilva | Acao: Desbloquear | Alvo: Felipe.Prado | Status: SUCESSO
+[2026-08-06 09:56:47] | Operador: a.gasantiago | Acao: UpdateVetorh | Alvo: 26416 | Status: SUCESSO: LTU (Tipo Detectado: 1)
+[2026-08-06 11:15:53] | Operador: a.riqborges | Acao: Desbloquear | Alvo: a.vreis | Status: SUCESSO
+[2026-08-06 13:30:22] | Operador: a.riqborges | Acao: ResetSenha | Alvo: Walmir.Reis | Status: Desbloqueio: True | ForceChange: False
+[2026-08-06 15:39:17] | Operador: a.riqborges | Acao: Desbloquear | Alvo: SETTA.Kezia | Status: SUCESSO
+[2026-08-06 15:40:10] | Operador: a.riqborges | Acao: Diag_SPLUNK | Alvo: SETTA.Kezia | Status: EXECUTADO
+[2026-08-06 15:47:00] | Operador: a.riqborges | Acao: UpdateVetorh | Alvo: 41223 | Status: SUCESSO: ETU (Tipo Detectado: 1)
+[2026-08-06 15:54:28] | Operador: a.riqborges | Acao: UpdateVetorh | Alvo: 62887 | Status: SUCESSO: LTU (Tipo Detectado: 2)
+[2026-08-06 16:04:00] | Operador: a.riqborges | Acao: ResetSenha | Alvo: SETTA.Kezia | Status: Desbloqueio: True | ForceChange: False
+[2026-08-07 09:47:03] | Operador: a.riqborges | Acao: Desbloquear | Alvo: a.vreis | Status: SUCESSO
+[2026-08-07 10:47:20] | Operador: a.riqborges | Acao: Desbloquear | Alvo: a.vreis | Status: SUCESSO
+[2026-08-07 11:27:17] | Operador: a.riqborges | Acao: NotificarUsuario | Alvo: ptu-dt-46443.kinrossgold.com | Status: Mensagem: Alerta do Sistema: Atualização...
+[2026-08-07 11:31:14] | Operador: a.gamsilva | Acao: UpdateVetorh | Alvo: 19529 | Status: SUCESSO: LTU (Tipo Detectado: 2)
+[2026-08-07 11:33:26] | Operador: a.gasantiago | Acao: UpdateVetorh | Alvo: 60841 | Status: SUCESSO: LTU (Tipo Detectado: 2)
+[2026-08-07 14:08:06] | Operador: a.kauasilva | Acao: UpdateVetorh | Alvo: 14779 | Status: SUCESSO: LTU (Tipo Detectado: 2)
+[2026-08-07 16:18:53] | Operador: a.kauasilva | Acao: ResetSenha | Alvo: Iago.Borges | Status: Desbloqueio: True | ForceChange: True
+[2026-08-08 08:17:19] | Operador: a.dgomes | Acao: ResetSenha | Alvo: ThLMendes | Status: Desbloqueio: False | ForceChange: True
+[2026-08-08 08:56:26] | Operador: a.dgomes | Acao: UpdateVetorh | Alvo: 62869 | Status: SUCESSO: ETU (Tipo Detectado: 2)
+[2026-08-08 09:33:50] | Operador: a.dgomes | Acao: UpdateVetorh | Alvo: 27421 | Status: SUCESSO: ETU (Tipo Detectado: 1)
+[2026-08-08 10:17:08] | Operador: a.dgomes | Acao: ResetSenha | Alvo: Raner.Goncalves | Status: Desbloqueio: True | ForceChange: True
+[2026-08-08 16:04:16] | Operador: a.dgomes | Acao: ResetSenha | Alvo: JoaoPaulo.Silva | Status: Desbloqueio: True | ForceChange: True
+[2026-08-10 07:50:51] | Operador: a.riqborges | Acao: Desbloquear | Alvo: Evaldo.Braga | Status: SUCESSO
+[2026-08-10 07:51:24] | Operador: a.riqborges | Acao: ResetSenha | Alvo: Evaldo.Braga | Status: Desbloqueio: True | ForceChange: True
+[2026-08-10 08:00:45] | Operador: a.riqborges | Acao: Desbloquear | Alvo: a.vreis | Status: SUCESSO
+[2026-08-10 08:07:53] | Operador: a.riqborges | Acao: ComparadorGeral | Alvo: 2 usuários | Status: SUCESSO
+[2026-08-10 08:11:30] | Operador: a.riqborges | Acao: Desbloquear | Alvo: Vinicius.Ferreira | Status: SUCESSO
+[2026-08-10 08:15:31] | Operador: a.riqborges | Acao: ComparadorGeral | Alvo: 2 usuários | Status: SUCESSO
+[2026-08-10 08:18:38] | Operador: a.riqborges | Acao: ResetSenha | Alvo: Paulo.Sousa | Status: Desbloqueio: True | ForceChange: True
+[2026-08-10 08:34:40] | Operador: a.riqborges | Acao: Desbloquear | Alvo: a.vreis | Status: SUCESSO
+[2026-08-10 08:47:11] | Operador: a.riqborges | Acao: ResetSenha | Alvo: DiRSantos | Status: Desbloqueio: True | ForceChange: True
+[2026-08-10 08:50:11] | Operador: a.riqborges | Acao: Desbloquear | Alvo: Asmaelton.Melo | Status: SUCESSO
+[2026-08-10 08:50:31] | Operador: a.riqborges | Acao: ResetSenha | Alvo: Asmaelton.Melo | Status: Desbloqueio: True | ForceChange: True
+[2026-08-10 08:52:02] | Operador: a.riqborges | Acao: ResetSenha | Alvo: Silvio.Reis | Status: Desbloqueio: True | ForceChange: True
+[2026-08-10 08:53:27] | Operador: a.riqborges | Acao: ResetSenha | Alvo: Alisson.Santos | Status: Desbloqueio: True | ForceChange: True
+[2026-08-10 09:12:03] | Operador: a.riqborges | Acao: Desbloquear | Alvo: a.vreis | Status: SUCESSO
+[2026-08-10 09:32:19] | Operador: a.gasantiago | Acao: UpdateVetorh | Alvo: 41177 | Status: SUCESSO: ETU (Tipo Detectado: 1)
+[2026-08-10 15:20:31] | Operador: a.kauasilva | Acao: UpdateVetorh | Alvo: 41211 | Status: SUCESSO: ETU (Tipo Detectado: 1)
+[2026-08-10 15:41:11] | Operador: a.kauasilva | Acao: UpdateVetorh | Alvo: 41211 | Status: SUCESSO: ETU (Tipo Detectado: 1)
+[2026-08-10 17:18:01] | Operador: a.dgomes | Acao: UpdateVetorh | Alvo: 26153 | Status: SUCESSO: ETU (Tipo Detectado: 1)
+[2026-08-10 19:54:16] | Operador: a.dgomes | Acao: ResetSenha | Alvo: ThLMendes | Status: Desbloqueio: True | ForceChange: True
+[2026-08-11 08:11:41] | Operador: A.riqborges | Acao: ResetSenha | Alvo: Clecio.Santos | Status: Desbloqueio: True | ForceChange: True
+[2026-08-11 08:21:50] | Operador: a.riqborges | Acao: ResetSenha | Alvo: Helio.Santos | Status: Desbloqueio: True | ForceChange: True
+[2026-08-11 08:33:49] | Operador: a.riqborges | Acao: ResetSenha | Alvo: MDaSilva | Status: Desbloqueio: True | ForceChange: False
+[2026-08-11 10:56:24] | Operador: a.riqborges | Acao: Desbloquear | Alvo: a.vreis | Status: SUCESSO
+[2026-08-11 10:56:24] | Operador: a.riqborges | Acao: Desbloquear | Alvo: a.vreis | Status: SUCESSO
+[2026-08-11 12:46:29] | Operador: A.riqborges | Acao: Diag_WMI | Alvo: KGC-PTU-GYWO1YE$ | Status: EXECUTADO
+[2026-08-11 12:46:42] | Operador: A.riqborges | Acao: Diag_PING | Alvo: KGC-PTU-GYWO1YE$ | Status: EXECUTADO
+[2026-08-11 13:11:40] | Operador: a.riqborges | Acao: AlternarStatus | Alvo: PTU-DT-27954$ | Status: SUCESSO
+[2026-08-11 13:11:51] | Operador: a.riqborges | Acao: AlternarStatus | Alvo: PTU-LT-27954$ | Status: SUCESSO
+[2026-08-11 13:18:34] | Operador: a.riqborges | Acao: ResetSenha | Alvo: Thalis.Santos | Status: Desbloqueio: True | ForceChange: True
+[2026-08-11 13:23:21] | Operador: a.riqborges | Acao: ResetSenha | Alvo: Anderson.Souza | Status: Desbloqueio: True | ForceChange: True
+[2026-08-11 13:27:40] | Operador: a.riqborges | Acao: Desbloquear | Alvo: Asmaelton.Melo | Status: SUCESSO
+[2026-08-11 13:30:16] | Operador: a.riqborges | Acao: ResetSenha | Alvo: WeSaOliveira | Status: Desbloqueio: True | ForceChange: True
+[2026-08-11 14:46:23] | Operador: a.riqborges | Acao: ResetSenha | Alvo: EsBOliveira | Status: Desbloqueio: True | ForceChange: True
+[2026-08-11 15:01:50] | Operador: a.riqborges | Acao: Desbloquear | Alvo: a.vreis | Status: SUCESSO
+[2026-08-11 16:23:57] | Operador: a.riqborges | Acao: Diag_WMI | Alvo: PTU-LT-36026$ | Status: EXECUTADO
+[2026-08-12 07:42:51] | Operador: a.riqborges | Acao: Desbloquear | Alvo: a.vreis | Status: SUCESSO
+[2026-08-12 08:02:26] | Operador: a.riqborges | Acao: ResetSenha | Alvo: Edimar.Jesus | Status: Desbloqueio: True | ForceChange: True
+[2026-08-12 09:40:58] | Operador: a.gasantiago | Acao: UpdateVetorh | Alvo: 25811 | Status: SUCESSO: LTU (Tipo Detectado: 1)
+[2026-08-12 09:52:30] | Operador: a.riqborges | Acao: UpdateVetorh | Alvo: 27417 | Status: SUCESSO: ETU (Tipo Detectado: 1)
+[2026-08-12 10:02:01] | Operador: a.gasantiago | Acao: ConsultarSeguranca | Alvo: PTU-LT-39551 | Status: LAPS/BitLocker extraídos
+[2026-08-12 10:02:39] | Operador: a.gasantiago | Acao: ConsultarSeguranca | Alvo: PTU-LT-39551 | Status: LAPS/BitLocker extraídos
+[2026-08-12 10:15:55] | Operador: a.riqborges | Acao: Desbloquear | Alvo: a.vreis | Status: SUCESSO
+[2026-08-12 10:41:45] | Operador: a.eoliveira | Acao: ConsultarSeguranca | Alvo: PTU-LT-39551 | Status: LAPS/BitLocker extraídos
+[2026-08-12 13:31:56] | Operador: a.riqborges | Acao: ConsultarSeguranca | Alvo: PTU-LT-47161 | Status: LAPS/BitLocker extraídos
+[2026-08-12 13:42:46] | Operador: a.dgomes | Acao: ResetSenha | Alvo: BrMaciel | Status: Desbloqueio: True | ForceChange: True
+[2026-08-12 13:55:54] | Operador: a.dgomes | Acao: Diag_SPLUNK | Alvo: a.vreis | Status: EXECUTADO
+[2026-08-12 13:58:33] | Operador: a.dgomes | Acao: Diag_SPLUNK | Alvo: a.vreis | Status: EXECUTADO
+[2026-08-12 15:07:18] | Operador: a.riqborges | Acao: ResetSenha | Alvo: Deliones.Santos | Status: Desbloqueio: True | ForceChange: True
+[2026-08-13 07:43:25] | Operador: a.riqborges | Acao: AlternarStatus | Alvo: PTU-DT-211646$ | Status: SUCESSO
+[2026-08-13 07:46:40] | Operador: a.gasantiago | Acao: UpdateVetorh | Alvo: 62577 | Status: SUCESSO: LTU (Tipo Detectado: 2)
+[2026-08-13 07:48:42] | Operador: a.dgomes | Acao: Desbloquear | Alvo: Jose.Magalhaes | Status: SUCESSO
+[2026-08-13 07:49:10] | Operador: a.gasantiago | Acao: UpdateVetorh | Alvo: 62542 | Status: SUCESSO: LTU (Tipo Detectado: 2)
+[2026-08-13 07:49:55] | Operador: a.gasantiago | Acao: UpdateVetorh | Alvo: 62902 | Status: SUCESSO: LTU (Tipo Detectado: 2)
+[2026-08-13 07:50:17] | Operador: a.gasantiago | Acao: UpdateVetorh | Alvo: 62903 | Status: SUCESSO: LTU (Tipo Detectado: 2)
+[2026-08-13 07:51:56] | Operador: a.gasantiago | Acao: UpdateVetorh | Alvo: 62903 | Status: SUCESSO: LTU (Tipo Detectado: 2)
+[2026-08-13 07:52:14] | Operador: a.gasantiago | Acao: UpdateVetorh | Alvo: 62905 | Status: SUCESSO: LTU (Tipo Detectado: 2)
+[2026-08-13 08:00:33] | Operador: a.riqborges | Acao: AlternarStatus | Alvo: PTU-DT-211646$ | Status: SUCESSO
+[2026-08-13 08:00:42] | Operador: a.riqborges | Acao: AlternarStatus | Alvo: PTU-DT-211646$ | Status: SUCESSO
+[2026-08-13 09:55:14] | Operador: a.riqborges | Acao: ResetSenha | Alvo: AdGSouza | Status: Desbloqueio: True | ForceChange: True
+[2026-08-13 09:59:18] | Operador: a.riqborges | Acao: ResetSenha | Alvo: Almir.Barros | Status: Desbloqueio: True | ForceChange: True

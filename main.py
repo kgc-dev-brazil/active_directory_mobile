@@ -16,7 +16,7 @@ import ldap3
 from ldap3 import Server, Connection, ALL, SUBTREE, Tls, RESTARTABLE # <-- Atualize esta linha
 from pydantic import BaseModel
 from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
+from fastapi.responses import FileResponse, RedirectResponse
 
 app = FastAPI(title="KAD Mobile API - Módulo Avançado AD com Auditoria")
 
@@ -1104,34 +1104,215 @@ def notify_active_user(hostname: str, payload: NotifyPayload, creds: dict = Depe
     AuditLogger.log(creds["username"], "NotificarUsuario", network_target, f"Mensagem: {msg_clean[:30]}...")
     return {"message": f"Alerta enviado com sucesso para a tela de {hostname.rstrip('$')}!"}
 
-# ==========================================================
-# MÓDULO FRONTEND PWA (SERVIR INTERFACE REACT NA RAIZ)
-# ==========================================================
+# --- APIS DO MOVIMEX ---
+import os
+import glob
+import traceback
+import re
 
-# Resolve o caminho para a pasta dist do Vite
+# Força o caminho real de onde o arquivo main.py está salvo
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+DATABASE_DIR = os.path.join(BASE_DIR, "database")
+
+if not os.path.exists(DATABASE_DIR):
+    os.makedirs(DATABASE_DIR)
+
+IMPRESSORA_PORTA = 9100
+
+class ImprimirRequest(BaseModel):
+    impressora_ip: str 
+    codigo_item: str
+    nota: str
+    quantidade: int
+    zpl_formula: str
+    tipo: str
+
+def carregar_dados_movimex():
+    import pandas as pd # Importação segura dentro do escopo
+    
+    arquivos_kbm = glob.glob(os.path.join(DATABASE_DIR, "KBM*.xlsx"))
+    if not arquivos_kbm:
+        arquivos_kbm = glob.glob(os.path.join(BASE_DIR, "KBM*.xlsx"))
+        if not arquivos_kbm:
+            raise Exception(f"Nenhuma planilha KBM encontrada.")
+        
+    arquivo_encontrado = arquivos_kbm[0]
+    
+    try:
+        df = pd.read_excel(arquivo_encontrado)
+        return df.fillna("") 
+    except Exception as e:
+        raise Exception(f"O Pandas falhou ao ler o Excel. Erro: {str(e)}")
+
+def carregar_impressoras_movimex():
+    import pandas as pd
+    arquivos_imp = glob.glob(os.path.join(DATABASE_DIR, "printer*.xlsx"))
+    
+    if not arquivos_imp:
+        arquivos_imp_fallback = glob.glob(os.path.join(BASE_DIR, "printer*.xlsx"))
+        if not arquivos_imp_fallback:
+            return None
+        arquivos_imp = arquivos_imp_fallback
+        
+    try:
+        df = pd.read_excel(arquivos_imp[0])
+        return df.fillna("")
+    except Exception as e:
+        return None
+
+@app.get("/api/impressora/{impressora_id}")
+def buscar_impressora_movimex(impressora_id: str):
+    impressora_limpa = impressora_id.strip().upper()
+    
+    if re.match(r"^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$", impressora_limpa):
+        return {"id": f"PRN-{impressora_limpa}", "ip": impressora_limpa, "status": "IP Direto"}
+
+    df_imp = carregar_impressoras_movimex()
+    if df_imp is not None and not df_imp.empty:
+        # Import local para uso na filtragem do df
+        import pandas as pd
+        match = df_imp[df_imp['Nome'].astype(str).str.strip().str.upper() == impressora_limpa]
+        if not match.empty:
+            return {"id": impressora_limpa, "ip": str(match.iloc[0]['IP']).strip(), "status": "Base Excel"}
+
+    try:
+        ip_resolvido = socket.gethostbyname(impressora_limpa)
+        return {"id": impressora_limpa, "ip": ip_resolvido, "status": "DNS"}
+    except socket.gaierror:
+        pass 
+
+    raise HTTPException(status_code=404, detail="Impressora não encontrada.")
+
+@app.get("/api/busca/{termo}")
+def buscar_geral_movimex(termo: str):
+    try:
+        import pandas as pd
+        import re
+        
+        df = carregar_dados_movimex()
+        
+        termo_limpo = termo.strip().upper()
+        df.columns = df.columns.str.strip()
+        
+        def limpar_coluna(coluna):
+            serie_texto = coluna.apply(lambda x: str(x) if pd.notna(x) else "")
+            serie_texto = serie_texto.str.strip()
+            serie_texto = serie_texto.str.replace(r'\.0$', '', regex=True)
+            serie_texto = serie_texto.str.upper()
+            return serie_texto
+
+        col_nota = limpar_coluna(df['Número do Documento Fiscal']) if 'Número do Documento Fiscal' in df.columns else limpar_coluna(df.iloc[:, 0])
+        col_pn = limpar_coluna(df['Part Number']) if 'Part Number' in df.columns else limpar_coluna(df.iloc[:, 4])
+        col_kinross = limpar_coluna(df['Codigo Kinross']) if 'Codigo Kinross' in df.columns else limpar_coluna(df.iloc[:, 5])
+        
+        match_nota = df[col_nota == termo_limpo]
+        match_pn = df[col_pn == termo_limpo]
+        match_kin = df[col_kinross == termo_limpo]
+        
+        df_resultado = pd.concat([match_nota, match_pn, match_kin]).drop_duplicates()
+        
+        if df_resultado.empty:
+            raise HTTPException(status_code=404, detail="Nenhum registro correspondente foi encontrado no Excel.")
+            
+        resultado = []
+        for _, row in df_resultado.iterrows():
+            nota_origem = str(row['Número do Documento Fiscal']).replace('.0', '').strip() if 'Número do Documento Fiscal' in df.columns else str(row.iloc[0]).replace('.0', '').strip()
+            part_number = str(row['Part Number']).replace('.0', '').strip() if 'Part Number' in df.columns else str(row.iloc[4]).replace('.0', '').strip()
+            codigo = str(row['Codigo Kinross']).replace('.0', '').strip() if 'Codigo Kinross' in df.columns else str(row.iloc[5]).replace('.0', '').strip()
+            descricao = str(row['Description']).strip() if 'Description' in df.columns else str(row.iloc[6]).strip()
+            endereco = str(row['Description Line 2']).strip() if 'Description Line 2' in df.columns and pd.notna(row['Description Line 2']) else "N/A"
+            
+            qtd_nome = 'Quantidade Comercial'
+            for col in df.columns:
+                if 'Quantidade Comercial' in col:
+                    qtd_nome = col
+                    break
+                    
+            try:
+                qtd = int(float(row[qtd_nome])) if qtd_nome in df.columns and pd.notna(row[qtd_nome]) else 1
+            except:
+                qtd = 1
+                
+            zpl = str(row['Formula']).strip() if 'Formula' in df.columns and pd.notna(row['Formula']) else ""
+            
+            resultado.append({
+                "codigo": codigo,
+                "part_number": part_number,
+                "descricao": descricao,
+                "qtdOriginal": qtd,
+                "volume": endereco,
+                "zpl": zpl,
+                "nota_origem": nota_origem
+            })
+            
+        tipo_de_busca = "NOTA" if not match_nota.empty else "ITEM"
+        return {"termo": termo_limpo, "tipo": tipo_de_busca, "itens": resultado}
+        
+    except HTTPException:
+        raise 
+    except Exception as e:
+        erro_detalhado = traceback.format_exc()
+        print(erro_detalhado) 
+        raise HTTPException(status_code=500, detail=f"CRASH: {str(e)}")
+
+@app.post("/api/imprimir")
+def imprimir_etiqueta_movimex(req: ImprimirRequest):
+    zpl_original = req.zpl_formula.replace('¨', '') 
+    qtd_print = req.quantidade if req.tipo == 'individual' else 1
+    
+    zpl_pronto = re.sub(r'\^PQ\d+', f'^PQ{qtd_print}', zpl_original) if re.search(r'\^PQ\d+', zpl_original) else zpl_original.replace('^XZ', f'^PQ{qtd_print}^XZ')
+    
+    try:
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.settimeout(3)
+            s.connect((req.impressora_ip, IMPRESSORA_PORTA))
+            s.sendall(zpl_pronto.encode('utf-8'))
+        return {"status": "sucesso"}
+    except Exception:
+        raise HTTPException(status_code=500, detail="Impressora offline.")
+
+# ==========================================================
+# MÓDULO FRONTEND (HOSPEDAGEM DOS DOIS SISTEMAS REACT)
+# ==========================================================
+MOVIMEX_DIST_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "movimex-dist")
 PWA_DIST_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "kad-pwa", "dist")
 
+# ----------------------------------------------------------
+# 1. ROTAS BLINDADAS DO MOVIMEX
+# ----------------------------------------------------------
+@app.get("/Movimex", include_in_schema=False)
+async def redirect_movimex():
+    return RedirectResponse(url="/Movimex/")
+
+@app.get("/Movimex/", include_in_schema=False)
+async def serve_movimex_raiz():
+    return FileResponse(os.path.join(MOVIMEX_DIST_DIR, "index.html"))
+
+@app.get("/Movimex/{file_path:path}", include_in_schema=False)
+async def serve_movimex_files(file_path: str):
+    caminho_real = os.path.join(MOVIMEX_DIST_DIR, file_path)
+    if os.path.exists(caminho_real) and os.path.isfile(caminho_real):
+        return FileResponse(caminho_real)
+    return FileResponse(os.path.join(MOVIMEX_DIST_DIR, "index.html"))
+
+# ----------------------------------------------------------
+# 2. ROTAS DO KAD MOBILE (ORIGINAL)
+# ----------------------------------------------------------
 if os.path.exists(PWA_DIST_DIR):
-    # 1. Libera a pasta /assets (arquivos CSS, JS e imagens gerados pelo Vite)
     assets_dir = os.path.join(PWA_DIST_DIR, "assets")
     if os.path.exists(assets_dir):
-        app.mount("/assets", StaticFiles(directory=assets_dir), name="assets")
+        app.mount("/assets", StaticFiles(directory=assets_dir), name="kad_assets")
 
-    # 2. Rota Catch-All: Entrega arquivos estáticos soltos ou retorna index.html
     @app.get("/{full_path:path}", include_in_schema=False)
     async def serve_pwa(full_path: str):
+        if full_path.startswith("api/") or full_path.startswith("Movimex/"):
+            raise HTTPException(status_code=404, detail="Não encontrado no escopo do KAD.")
+
         file_path = os.path.join(PWA_DIST_DIR, full_path)
-        
-        # Se for um arquivo existente no dist, entrega ele:
         if full_path and os.path.exists(file_path) and os.path.isfile(file_path):
             return FileResponse(file_path)
         
-        # BLINDAGEM: Se o navegador pedir favicon.ico e não achar, retorna 404
-        # em vez de entregar index.html para não corromper o ícone no navegador
         if full_path.endswith(('.ico', '.png', '.svg', '.webmanifest')):
             return FileResponse(file_path, status_code=404)
 
-        # Caso contrário, serve a tela principal da aplicação React:
         return FileResponse(os.path.join(PWA_DIST_DIR, "index.html"))
-else:
-    print("AVISO: Pasta kad-pwa/dist não encontrada. Verifique se executou 'npm run build'.")

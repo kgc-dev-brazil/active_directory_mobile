@@ -9,11 +9,6 @@ export default defineConfig({
     basicSsl(),
     VitePWA({
       registerType: 'autoUpdate',
-      workbox: {
-        cleanupOutdatedCaches: true, // <-- DELETA CACHES ANTIGOS AUTOMATICAMENTE
-        skipWaiting: true,           // <-- NÃO ESPERA O USUÁRIO FECHAR TODAS AS ABAS
-        clientsClaim: true           // <-- ASSUME O CONTROLE IMEDIATAMENTE
-      },
       injectRegister: 'auto',
       devOptions: {
         enabled: false // <-- Desativa o SW no modo teste para o SSL falso não bloquear o app
@@ -43,9 +38,17 @@ export default defineConfig({
             src: '/pwa-512x512.png',
             sizes: '512x512',
             type: 'image/png',
-            purpose: 'any maskable' // Garante que o ícone se adapte ao formato do Android (redondo/quadrado)
+            purpose: 'any maskable' // Garante que o ícone se adapte ao formato do Android
           }
         ]
+      },
+      workbox: {
+        // TUDO UNIFICADO AQUI DENTRO:
+        cleanupOutdatedCaches: true, // <-- DELETA CACHES ANTIGOS AUTOMATICAMENTE
+        skipWaiting: true,           // <-- NÃO ESPERA O USUÁRIO FECHAR TODAS AS ABAS
+        clientsClaim: true,          // <-- ASSUME O CONTROLE IMEDIATAMENTE
+        // A LINHA MÁGICA: Diz pro KAD ignorar o Movimex e as APIs do Python
+        navigateFallbackDenylist: [/^\/Movimex/, /^\/api/], 
       }
     })
   ],
