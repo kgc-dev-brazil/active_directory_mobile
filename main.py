@@ -252,8 +252,34 @@ async def login_for_access_token(
 
 @app.get("/users/{search_term}")
 def get_user(search_term: str, creds: dict = Depends(get_current_credentials)):
+    
+    # --- NOVO: BUSCA MESCLADA (VETORH + AD) ---
+    # Tenta descobrir o login de rede no SQL Server caso o termo seja IGA DIGID ou Matrícula
+    extra_samaccounts = []
+    try:
+        conn_db = get_db_connection()
+        if conn_db:
+            cursor_db = conn_db.cursor()
+            if search_term.isdigit():
+                # Se for número, tenta achar por IGA DIGID ou Matrícula (numcad)
+                cursor_db.execute("SELECT usu_networkid FROM vetorh.r034cpl WHERE usu_igadigid = ? OR numcad = ?", (search_term, int(search_term)))
+            else:
+                # Se for texto, busca só no IGA DIGID
+                cursor_db.execute("SELECT usu_networkid FROM vetorh.r034cpl WHERE usu_igadigid = ?", (search_term,))
+                
+            for row in cursor_db.fetchall():
+                if row[0]: 
+                    extra_samaccounts.append(str(row[0]).strip())
+                    
+            cursor_db.close()
+            conn_db.close()
+    except Exception:
+        pass # Ignora falhas de SQL em silêncio para não quebrar a busca normal do AD
+    # -------------------------------------------
+
     conn = get_ldap_connection(creds)
     try:
+        # Monta a query LDAP padrão
         ldap_filter = (
             f"(|"
             f"(sAMAccountName=*{search_term}*)"
@@ -262,8 +288,13 @@ def get_user(search_term: str, creds: dict = Depends(get_current_credentials)):
             f"(employeeID=*{search_term}*)"
             f"(pager=*{search_term}*)"
             f"(cn=*{search_term}*)"
-            f")"
         )
+        
+        # Injeta os logins encontrados no Vetorh dentro da busca do AD!
+        for sam in extra_samaccounts:
+            ldap_filter += f"(sAMAccountName={sam})"
+            
+        ldap_filter += ")" # Fecha o bloco (|...)
         
         conn.search(
             creds['search_base'], 

@@ -3641,3 +3641,22 @@ INFO:     10.205.99.242:52614 - "GET /users/Almir.barros HTTP/1.1" 200 OK
 INFO:     10.205.99.242:52614 - "GET /vetorh/26251 HTTP/1.1" 200 OK
 INFO:     10.205.99.242:52614 - "POST /users/Almir.Barros/reset-password HTTP/1.1" 200 OK
 INFO:     10.205.99.242:50726 - "GET /users/40326 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64191 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64191 - "GET /Movimex/sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64191 - "GET /Movimex/workbox-9c191d2f.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64191 - "GET /workbox-9c191d2f.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64191 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64191 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64191 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64191 - "GET /assets/index-C_EIfrM5.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64191 - "GET /pwa-192x192.png HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64191 - "GET /pwa-512x512.png HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64191 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64191 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64191 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:64191 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64191 - "GET /users/40326 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64191 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:64191 - "GET /ous HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56815 - "GET /users/riqborges HTTP/1.1" 200 OK
+INFO:     10.205.99.242:56815 - "GET /vetorh/60474 HTTP/1.1" 200 OK

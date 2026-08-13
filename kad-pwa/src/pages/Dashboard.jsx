@@ -63,6 +63,8 @@ const TreeNode = ({ node, selectedDn, onSelect, level = 0 }) => {
 
 export default function Dashboard() {
   const [activeTab, setActiveTab] = useState('single'); 
+  // ESTADO NOVO: Filtro da aba Grupos
+  const [groupSearchTerm, setGroupSearchTerm] = useState('');
   const [innerTab, setInnerTab] = useState('geral');
 
   // Estados: Busca AD
@@ -421,6 +423,7 @@ export default function Dashboard() {
     
     // Zera os dados enquanto busca
     setVetorhData({ tipcol: 1, techacc: 'NTU', sitafa: 'Carregando...', igadigid: 'Carregando...' });
+    setGroupSearchTerm(''); // <-- ADICIONE ESTA LINHA AQUI
 
     if (user.Type === 'User' && user.EmployeeID) {
       setVetorhStatus('Consultando DB...');
@@ -1098,63 +1101,83 @@ export default function Dashboard() {
                   )}
 
                   {/* ABA DE RELACIONAMENTOS */}
-                  {/* ABA DE RELACIONAMENTOS COM GESTÃO DINÂMICA (+/-) */}
-                  {innerTab === 'grupos' && (
-                    <div>
-                      {/* Formulário de Adicionar ao Grupo (Apenas para Usuários e Computadores) */}
-                      {!isGroup && (
-                        <div style={{ display: 'flex', gap: '8px', marginBottom: '15px' }}>
-                          <input
-                            type="text"
-                            placeholder="Digite o nome do grupo no AD..."
-                            value={newGroupName}
-                            onChange={(e) => setNewGroupName(e.target.value)}
-                            style={styles.inputReset}
-                          />
-                          <button
-                            type="button"
-                            onClick={handleAddGroup}
-                            disabled={groupLoading}
-                            style={{ ...styles.actionBtnSuccess, padding: '0 18px' }}
-                          >
-                            {groupLoading ? '...' : '+ Adicionar'}
-                          </button>
-                        </div>
-                      )}
+                  {innerTab === 'grupos' && (() => {
+                    // Lógica de Filtro Inteligente (Real-time)
+                    const filterStr = groupSearchTerm.toLowerCase();
+                    const filteredMembers = isGroup ? (selectedUser.Members || []).filter(m => m.toLowerCase().includes(filterStr)) : [];
+                    const filteredMemberOf = !isGroup ? (selectedUser.MemberOf || []).filter(g => g.toLowerCase().includes(filterStr)) : [];
 
-                      <div style={styles.listContainer}>
-                        {isGroup ? (
-                          selectedUser.Members?.length === 0 ? (
-                            <p style={styles.hintText}>Nenhum membro neste grupo.</p>
+                    return (
+                      <div>
+                        {/* Formulário de Adicionar ao Grupo (Apenas para Usuários e Computadores) */}
+                        {!isGroup && (
+                          <div style={{ display: 'flex', gap: '8px', marginBottom: '15px' }}>
+                            <input
+                              type="text"
+                              placeholder="Digite o nome do grupo no AD..."
+                              value={newGroupName}
+                              onChange={(e) => setNewGroupName(e.target.value)}
+                              style={styles.inputReset}
+                            />
+                            <button
+                              type="button"
+                              onClick={handleAddGroup}
+                              disabled={groupLoading}
+                              style={{ ...styles.actionBtnSuccess, padding: '0 18px' }}
+                            >
+                              {groupLoading ? '...' : '+ Adicionar'}
+                            </button>
+                          </div>
+                        )}
+
+                        {/* NOVO: CAMPO DE BUSCA INTELIGENTE DE GRUPOS */}
+                        <div style={{ display: 'flex', gap: '8px', marginBottom: '15px' }}>
+                          <div style={{...styles.searchWrapper, flex: 1, padding: '6px 12px'}}>
+                            <Search size={16} color={COLORS.muted} style={{marginRight: '8px'}} />
+                            <input
+                              type="text"
+                              placeholder={isGroup ? "Pesquisar membros..." : "Pesquisar grupos de segurança..."}
+                              value={groupSearchTerm}
+                              onChange={(e) => setGroupSearchTerm(e.target.value)}
+                              style={{...styles.input, padding: '4px 0'}}
+                            />
+                          </div>
+                        </div>
+
+                        <div style={styles.listContainer}>
+                          {isGroup ? (
+                            filteredMembers.length === 0 ? (
+                              <p style={styles.hintText}>{selectedUser.Members?.length === 0 ? "Nenhum membro neste grupo." : "Nenhum resultado na pesquisa."}</p>
+                            ) : (
+                              filteredMembers.map((m, i) => (
+                                <div key={i} style={styles.listItem}>
+                                  <User size={14} style={{ marginRight: '8px', color: COLORS.muted }} /> {m}
+                                </div>
+                              ))
+                            )
+                          ) : filteredMemberOf.length === 0 ? (
+                            <p style={styles.hintText}>{selectedUser.MemberOf?.length === 0 ? "Nenhum relacionamento encontrado." : "Nenhum resultado na pesquisa."}</p>
                           ) : (
-                            selectedUser.Members.map((m, i) => (
-                              <div key={i} style={styles.listItem}>
-                                <User size={14} style={{ marginRight: '8px', color: COLORS.muted }} /> {m}
+                            filteredMemberOf.map((g, i) => (
+                              <div key={i} style={{ ...styles.listItem, justifyContent: 'space-between' }}>
+                                <div style={{ display: 'flex', alignItems: 'center' }}>
+                                  <Users size={14} style={{ marginRight: '8px', color: COLORS.gold }} /> {g}
+                                </div>
+                                <button
+                                  type="button"
+                                  onClick={() => handleRemoveGroup(g)}
+                                  style={styles.removeGroupBtn}
+                                  title="Remover usuário deste grupo"
+                                >
+                                  <Trash2 size={14} />
+                                </button>
                               </div>
                             ))
-                          )
-                        ) : selectedUser.MemberOf?.length === 0 ? (
-                          <p style={styles.hintText}>Nenhum relacionamento encontrado.</p>
-                        ) : (
-                          selectedUser.MemberOf.map((g, i) => (
-                            <div key={i} style={{ ...styles.listItem, justifyContent: 'space-between' }}>
-                              <div style={{ display: 'flex', alignItems: 'center' }}>
-                                <Users size={14} style={{ marginRight: '8px', color: COLORS.gold }} /> {g}
-                              </div>
-                              <button
-                                type="button"
-                                onClick={() => handleRemoveGroup(g)}
-                                style={styles.removeGroupBtn}
-                                title="Remover usuário deste grupo"
-                              >
-                                <Trash2 size={14} />
-                              </button>
-                            </div>
-                          ))
-                        )}
+                          )}
+                        </div>
                       </div>
-                    </div>
-                  )}
+                    );
+                  })()}
 
                   {/* ABA DE SEGURANÇA / DIAGNÓSTICO */}
                   {innerTab === 'seguranca' && (
