@@ -200,3 +200,4 @@
 [2026-08-13 08:00:42] | Operador: a.riqborges | Acao: AlternarStatus | Alvo: PTU-DT-211646$ | Status: SUCESSO
 [2026-08-13 09:55:14] | Operador: a.riqborges | Acao: ResetSenha | Alvo: AdGSouza | Status: Desbloqueio: True | ForceChange: True
 [2026-08-13 09:59:18] | Operador: a.riqborges | Acao: ResetSenha | Alvo: Almir.Barros | Status: Desbloqueio: True | ForceChange: True
+[2026-08-13 12:58:11] | Operador: a.riqborges | Acao: ComparadorGeral | Alvo: 2 usuários | Status: SUCESSO

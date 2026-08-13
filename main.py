@@ -306,7 +306,8 @@ def get_user(search_term: str, creds: dict = Depends(get_current_credentials)):
                 'description', 'operatingSystem', 'title', 'department', 
                 'telephoneNumber', 'company', 'physicalDeliveryOfficeName', 'distinguishedName',
                 'memberOf', 'member', 'dNSHostName', 'managedBy', 'manager', 'lastLogonTimestamp', 
-                'whenCreated', 'whenChanged', 'uSNCreated', 'uSNChanged', 'directReports', 'groupType'
+                'whenCreated', 'whenChanged', 'uSNCreated', 'uSNChanged', 'directReports', 'groupType',
+                'ESIJDESSOJdeUserName' # <--- NOSSO NOVO CAMPO AQUI
             ]
         )
         
@@ -393,7 +394,8 @@ def get_user(search_term: str, creds: dict = Depends(get_current_credentials)):
                 "GroupCategory": group_cat,
                 "GroupScope": group_scope,
                 "PasswordNeverExpires": bool(uac & 65536) if uac else False,
-                "ObjectClass": entry.objectClass.values[-1] if 'objectClass' in entry and entry.objectClass.values else obj_type
+                "ObjectClass": entry.objectClass.values[-1] if 'objectClass' in entry and entry.objectClass.values else obj_type,
+                "ESIJ_User": str(entry.ESIJDESSOJdeUserName.value) if 'ESIJDESSOJdeUserName' in entry and entry.ESIJDESSOJdeUserName else "N/A"
             })
 
         return {"data": results}
@@ -1301,6 +1303,33 @@ def imprimir_etiqueta_movimex(req: ImprimirRequest):
         return {"status": "sucesso"}
     except Exception:
         raise HTTPException(status_code=500, detail="Impressora offline.")
+
+@app.get("/users/{username}/attributes")
+def get_all_attributes(username: str, creds: dict = Depends(get_current_credentials)):
+    conn = get_ldap_connection(creds)
+    try:
+        # Usa ldap3.ALL_ATTRIBUTES (*) para trazer o dicionário completo do objeto
+        conn.search(creds['search_base'], f"(sAMAccountName={username})", search_scope=ldap3.SUBTREE, attributes=ldap3.ALL_ATTRIBUTES)
+        if not conn.entries:
+            raise HTTPException(status_code=404, detail="Objeto não encontrado para leitura de atributos.")
+        
+        entry = conn.entries[0]
+        attrs = {}
+        
+        # Varre todos os atributos brutos encontrados e formata para o frontend
+        for attr_name in entry.entry_attributes_as_dict.keys():
+            val = entry[attr_name].value
+            if isinstance(val, list):
+                attrs[attr_name] = ", ".join([str(v) for v in val])
+            elif isinstance(val, datetime):
+                attrs[attr_name] = val.strftime('%d/%m/%Y %H:%M:%S')
+            else:
+                attrs[attr_name] = str(val)
+        
+        # Retorna os atributos ordenados alfabeticamente
+        return {"data": dict(sorted(attrs.items()))}
+    finally:
+        conn.unbind()
 
 # ==========================================================
 # MÓDULO FRONTEND (HOSPEDAGEM DOS DOIS SISTEMAS REACT)

@@ -67,6 +67,11 @@ export default function Dashboard() {
   const [groupSearchTerm, setGroupSearchTerm] = useState('');
   const [innerTab, setInnerTab] = useState('geral');
 
+  // ESTADOS NOVOS: Editor de Atributos
+  const [attrData, setAttrData] = useState(null);
+  const [attrLoading, setAttrLoading] = useState(false);
+  const [attrSearch, setAttrSearch] = useState('');
+
   // Estados: Busca AD
   const [searchTerm, setSearchTerm] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -424,6 +429,8 @@ export default function Dashboard() {
     // Zera os dados enquanto busca
     setVetorhData({ tipcol: 1, techacc: 'NTU', sitafa: 'Carregando...', igadigid: 'Carregando...' });
     setGroupSearchTerm(''); // <-- ADICIONE ESTA LINHA AQUI
+    setAttrData(null); // <--- Zera os atributos antigos
+    setAttrSearch(''); // <--- Limpa a barra de pesquisa de atributos
 
     if (user.Type === 'User' && user.EmployeeID) {
       setVetorhStatus('Consultando DB...');
@@ -766,6 +773,16 @@ export default function Dashboard() {
     }
   };
 
+  React.useEffect(() => {
+    if (innerTab === 'atributos' && selectedUser && !attrData) {
+      setAttrLoading(true);
+      api.get(`/users/${selectedUser.SamAccountName}/attributes`)
+        .then(res => setAttrData(res.data.data))
+        .catch(() => toast.error('Falha ao extrair matriz de atributos do AD.'))
+        .finally(() => setAttrLoading(false));
+    }
+  }, [innerTab, selectedUser, attrData]);
+
   const isUser = selectedUser?.Type === 'User';
   const isComputer = selectedUser?.Type === 'Computer';
   const isGroup = selectedUser?.Type === 'Group';
@@ -985,6 +1002,10 @@ export default function Dashboard() {
                   <button style={innerTab === 'grupos' ? styles.innerTabActive : styles.innerTabInactive} onClick={() => setInnerTab('grupos')}>
                     {isGroup ? `Membros (${selectedUser.Members?.length || 0})` : `Grupos (${selectedUser.MemberOf?.length || 0})`}
                   </button>
+                  {/* NOVA ABA AQUI */}
+                  <button style={innerTab === 'atributos' ? styles.innerTabActive : styles.innerTabInactive} onClick={() => setInnerTab('atributos')}>
+                    Editor de Atributos
+                  </button>
                   {isUser && selectedUser.EmployeeID && <button style={innerTab === 'vetorh' ? styles.innerTabActive : styles.innerTabInactive} onClick={() => setInnerTab('vetorh')}>Vetorh DB</button>}
                 </div>
 
@@ -1071,6 +1092,13 @@ export default function Dashboard() {
                             </div>
                             
                             <div style={styles.detailItem}><span style={styles.detailLabel}>IGA DIGID</span><span style={{...styles.detailValue, fontFamily: 'monospace'}}>{vetorhData.igadigid}</span></div>
+                            {/* NOVO CAMPO PERSONALIZADO */}
+                            <div style={styles.detailItemFull}>
+                              <span style={styles.detailLabel}>SSO Username (ESIJDESSOJdeUserName)</span>
+                              <span style={{...styles.detailValue, fontFamily: 'monospace', color: COLORS.gold}}>
+                                {selectedUser.ESIJ_User}
+                              </span>
+                            </div>
                           </div>
                         </>
                       )}
@@ -1300,6 +1328,55 @@ export default function Dashboard() {
                           )}
                         </div>
                       )}
+                    </div>
+                  )}
+
+                  {/* ABA EDITOR DE ATRIBUTOS */}
+                  {innerTab === 'atributos' && (
+                    <div style={styles.actionSection}>
+                      <div style={{ display: 'flex', gap: '8px', marginBottom: '15px' }}>
+                        <div style={{...styles.searchWrapper, flex: 1, padding: '6px 12px'}}>
+                          <Search size={16} color={COLORS.muted} style={{marginRight: '8px'}} />
+                          <input
+                            type="text"
+                            placeholder="Filtrar atributo (Ex: mail, sAMAccountName, pwdLastSet...)"
+                            value={attrSearch}
+                            onChange={(e) => setAttrSearch(e.target.value)}
+                            style={{...styles.input, padding: '4px 0'}}
+                          />
+                        </div>
+                      </div>
+
+                      <div style={{...styles.listContainer, maxHeight: '400px', overflowY: 'auto'}}>
+                        {attrLoading ? (
+                          <p style={{...styles.hintText, textAlign: 'center', margin: '20px 0'}}>
+                            <div style={styles.spinner}></div> Extraindo matriz completa do Active Directory...
+                          </p>
+                        ) : attrData ? (
+                          <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: '12px', textAlign: 'left', color: COLORS.text }}>
+                            <thead>
+                              <tr style={{ borderBottom: `1px solid ${COLORS.border}` }}>
+                                <th style={{ padding: '10px 8px', color: COLORS.muted }}>Atributo</th>
+                                <th style={{ padding: '10px 8px', color: COLORS.muted }}>Valor</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {Object.entries(attrData)
+                                .filter(([key]) => key.toLowerCase().includes(attrSearch.toLowerCase()))
+                                .map(([key, val], idx) => (
+                                  <tr key={idx} style={{ borderBottom: `1px solid ${COLORS.border}` }}>
+                                    <td style={{ padding: '8px', color: COLORS.gold, fontWeight: 'bold', width: '40%', wordBreak: 'break-all' }}>{key}</td>
+                                    <td style={{ padding: '8px', wordBreak: 'break-all', fontFamily: 'monospace' }}>
+                                      {val || <span style={{color: COLORS.muted}}>N/A</span>}
+                                    </td>
+                                  </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        ) : (
+                          <p style={styles.hintText}>Nenhum atributo carregado.</p>
+                        )}
+                      </div>
                     </div>
                   )}
 

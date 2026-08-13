@@ -3660,3 +3660,158 @@ INFO:     10.205.99.242:64191 - "GET /dashboard/summary HTTP/1.1" 200 OK
 INFO:     10.205.99.242:64191 - "GET /ous HTTP/1.1" 200 OK
 INFO:     10.205.99.242:56815 - "GET /users/riqborges HTTP/1.1" 200 OK
 INFO:     10.205.99.242:56815 - "GET /vetorh/60474 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55907 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55907 - "GET /Movimex/sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55907 - "GET /workbox-9c191d2f.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55907 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55907 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55907 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55907 - "GET /assets/index-5Mvizao8.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55907 - "GET /pwa-192x192.png HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55907 - "GET /pwa-512x512.png HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52906 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55907 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55907 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:55907 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55907 - "GET /users/k30909 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55907 - "GET /vetorh/60474 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55907 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55907 - "GET /assets/index-5Mvizao8.js HTTP/1.1" 304 Not Modified
+INFO:     10.205.99.242:55907 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:55907 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:55907 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:49667 - "GET /users/Gleidson HTTP/1.1" 200 OK
+INFO:     10.205.99.242:49667 - "GET /vetorh/27418 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54707 - "GET /users/3044 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54707 - "GET /vetorh/search/3044 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54707 - "GET /users/3099 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54707 - "GET /vetorh/search/3099 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54707 - "GET /users/3099 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54707 - "GET /users/K30909 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54707 - "GET /vetorh/60474 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54707 - "GET /ous HTTP/1.1" 200 OK
+INFO:     10.205.49.130:54424 - "GET /Movimex/ HTTP/1.1" 200 OK
+INFO:     10.205.49.130:54424 - "GET /Movimex/assets/index-DI7RFqZG.css HTTP/1.1" 200 OK
+INFO:     10.205.49.130:54424 - "GET /Movimex/assets/index-mbxAK-oQ.js HTTP/1.1" 200 OK
+INFO:     10.205.49.130:54444 - "GET /Movimex/favicon.svg HTTP/1.1" 200 OK
+INFO:     10.205.49.130:42908 - "GET /api/impressora/10.205.69.61 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54707 - "GET /users/k11860 HTTP/1.1" 404 Not Found
+INFO:     10.205.99.242:54707 - "GET /users/k11860 HTTP/1.1" 404 Not Found
+INFO:     10.205.99.242:54707 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:54707 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54707 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:54707 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54707 - "GET /users/K30909 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54707 - "GET /vetorh/60474 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54707 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54707 - "GET /Movimex/sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54707 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54707 - "GET /workbox-9c191d2f.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54707 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54707 - "GET /assets/index-5Mvizao8.js HTTP/1.1" 304 Not Modified
+INFO:     10.205.99.242:54707 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54707 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 304 Not Modified
+INFO:     10.205.99.242:52819 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54707 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:54707 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54707 - "GET /users/K11860 HTTP/1.1" 404 Not Found
+INFO:     10.205.99.242:54707 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:54707 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54707 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:54707 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.98.82:63513 - "GET /Movimex/ HTTP/1.1" 200 OK
+INFO:     10.205.98.82:63513 - "GET /Movimex/assets/index-mbxAK-oQ.js HTTP/1.1" 200 OK
+INFO:     10.205.98.82:63513 - "GET /Movimex/assets/index-DI7RFqZG.css HTTP/1.1" 200 OK
+INFO:     10.205.98.82:63513 - "GET /Movimex/registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.98.82:55323 - "GET /Movimex/manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.98.82:63513 - "GET /Movimex/sw.js HTTP/1.1" 200 OK
+INFO:     10.205.98.82:63513 - "GET /Movimex/workbox-9c191d2f.js HTTP/1.1" 200 OK
+INFO:     10.205.98.82:63513 - "GET /Movimex/favicon.svg HTTP/1.1" 200 OK
+INFO:     10.205.98.82:63513 - "GET /Movimex/pwa-192x192.png HTTP/1.1" 200 OK
+INFO:     10.205.98.82:63513 - "GET /Movimex/index.html HTTP/1.1" 200 OK
+INFO:     10.205.98.82:63513 - "GET /Movimex/assets/index-mbxAK-oQ.js HTTP/1.1" 200 OK
+INFO:     10.205.98.82:63513 - "GET /Movimex/assets/index-DI7RFqZG.css HTTP/1.1" 200 OK
+INFO:     10.205.98.82:63513 - "GET /Movimex/pwa-512x512.png HTTP/1.1" 200 OK
+INFO:     10.205.98.82:63513 - "GET /api/impressora/10.205.69.5 HTTP/1.1" 200 OK
+INFO:     10.205.98.82:63513 - "GET /api/busca/30R0034 HTTP/1.1" 200 OK
+INFO:     10.205.98.82:63513 - "POST /api/imprimir HTTP/1.1" 200 OK
+INFO:     10.205.98.82:63513 - "GET /api/busca/30R0034 HTTP/1.1" 200 OK
+INFO:     10.205.98.82:63513 - "POST /api/imprimir HTTP/1.1" 200 OK
+INFO:     10.205.99.242:60257 - "GET /users/62926 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:60257 - "GET /vetorh/62926 HTTP/1.1" 200 OK
+INFO:     10.205.98.82:54547 - "GET /api/busca/3F6156 HTTP/1.1" 200 OK
+INFO:     10.205.98.82:54547 - "POST /api/imprimir HTTP/1.1" 200 OK
+INFO:     10.205.98.82:56033 - "GET /api/impressora/10.205.69.7 HTTP/1.1" 200 OK
+INFO:     10.205.98.82:56033 - "GET /api/busca/1653935 HTTP/1.1" 200 OK
+INFO:     10.205.98.82:56033 - "POST /api/imprimir HTTP/1.1" 200 OK
+INFO:     10.205.99.242:59820 - "GET /sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:59820 - "GET /Movimex/sw.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:59820 - "GET /Movimex/workbox-9c191d2f.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:59820 - "GET /workbox-9c191d2f.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:59820 - "GET /index.html HTTP/1.1" 200 OK
+INFO:     10.205.99.242:59820 - "GET /registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.99.242:59820 - "GET /assets/index-TF7n19Rb.css HTTP/1.1" 304 Not Modified
+INFO:     10.205.99.242:59820 - "GET /assets/index-5Mvizao8.js HTTP/1.1" 304 Not Modified
+INFO:     10.205.99.242:59337 - "GET /manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.99.242:59820 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:59820 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:59820 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:60635 - "GET /users/riqborges HTTP/1.1" 401 Unauthorized
+INFO:     10.205.99.242:60635 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:60635 - "POST /token HTTP/1.1" 200 OK
+INFO:     10.205.99.242:60635 - "GET /favicon.ico HTTP/1.1" 500 Internal Server Error
+INFO:     10.205.99.242:60635 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:60635 - "GET /users/riqborges HTTP/1.1" 200 OK
+INFO:     10.205.99.242:60635 - "GET /vetorh/60474 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:60635 - "GET /dashboard/summary HTTP/1.1" 200 OK
+INFO:     10.205.99.242:60635 - "POST /compare HTTP/1.1" 200 OK
+INFO:     10.205.99.242:60635 - "GET /printers/ptu-prn-01 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:60635 - "GET /vetorh/search/60474 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52546 - "GET /users/GuPOliveira%40kinross HTTP/1.1" 404 Not Found
+INFO:     10.205.99.242:52546 - "GET /users/GuPOliveira HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52546 - "GET /vetorh/12511 HTTP/1.1" 200 OK
+INFO:     10.205.69.11:62828 - "GET /Movimex/ HTTP/1.1" 200 OK
+INFO:     10.205.69.11:62828 - "GET /Movimex/assets/index-DI7RFqZG.css HTTP/1.1" 200 OK
+INFO:     10.205.69.11:62828 - "GET /Movimex/registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.69.11:62828 - "GET /Movimex/assets/index-mbxAK-oQ.js HTTP/1.1" 200 OK
+INFO:     10.205.69.11:62828 - "GET /Movimex/manifest.webmanifest HTTP/1.1" 200 OK
+INFO:     10.205.69.11:62828 - "GET /Movimex/sw.js HTTP/1.1" 200 OK
+INFO:     10.205.69.11:62828 - "GET /Movimex/workbox-9c191d2f.js HTTP/1.1" 200 OK
+INFO:     10.205.69.11:62828 - "GET /Movimex/index.html HTTP/1.1" 200 OK
+INFO:     10.205.69.11:62828 - "GET /Movimex/assets/index-mbxAK-oQ.js HTTP/1.1" 200 OK
+INFO:     10.205.69.11:62828 - "GET /Movimex/assets/index-DI7RFqZG.css HTTP/1.1" 200 OK
+INFO:     10.205.69.11:62828 - "GET /Movimex/pwa-192x192.png HTTP/1.1" 200 OK
+INFO:     10.205.69.11:62828 - "GET /Movimex/pwa-512x512.png HTTP/1.1" 200 OK
+INFO:     10.205.69.11:62828 - "GET /api/impressora/10.205.69.7 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52347 - "GET /users/GuPOliveira HTTP/1.1" 200 OK
+INFO:     10.205.99.242:52347 - "GET /vetorh/12511 HTTP/1.1" 200 OK
+INFO:     10.205.98.82:51585 - "GET /api/impressora/10.205.69.7 HTTP/1.1" 200 OK
+INFO:     10.205.98.82:51585 - "GET /api/busca/30R0034 HTTP/1.1" 200 OK
+INFO:     10.205.98.82:51585 - "GET /api/busca/1511272 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61497 - "GET /users/25856 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61497 - "GET /vetorh/696107 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61497 - "GET /users/25647 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61497 - "GET /vetorh/25647 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61497 - "GET /users/3099 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61497 - "GET /users/4008 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61497 - "GET /vetorh/4008 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61497 - "GET /users/k11690 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:61497 - "GET /vetorh/4008 HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53174 - "GET /users/sareis HTTP/1.1" 200 OK
+INFO:     10.205.99.242:53174 - "GET /vetorh/41202 HTTP/1.1" 200 OK
+INFO:     10.205.70.58:50710 - "GET /Movimex/ HTTP/1.1" 200 OK
+INFO:     10.205.70.58:50740 - "GET /Movimex/registerSW.js HTTP/1.1" 200 OK
+INFO:     10.205.70.58:50740 - "GET /Movimex/assets/index-mbxAK-oQ.js HTTP/1.1" 200 OK
+INFO:     10.205.70.58:50740 - "GET /Movimex/assets/index-DI7RFqZG.css HTTP/1.1" 200 OK
+INFO:     10.205.70.58:50740 - "GET /Movimex/sw.js HTTP/1.1" 200 OK
+INFO:     10.205.70.58:50740 - "GET /Movimex/favicon.svg HTTP/1.1" 200 OK
+INFO:     10.205.70.58:50740 - "GET /api/impressora/10.205.69.7 HTTP/1.1" 200 OK
+INFO:     10.205.70.58:50740 - "GET /api/busca/30R0034 HTTP/1.1" 200 OK
+INFO:     10.205.70.58:50740 - "POST /api/imprimir HTTP/1.1" 200 OK
+INFO:     10.205.70.58:50740 - "GET /api/busca/1511272 HTTP/1.1" 200 OK
+INFO:     10.205.98.82:53067 - "POST /api/imprimir HTTP/1.1" 200 OK
+INFO:     10.205.70.58:50740 - "GET /Movimex/ HTTP/1.1" 200 OK
+INFO:     10.205.70.58:50740 - "GET /Movimex/assets/index-mbxAK-oQ.js HTTP/1.1" 200 OK
+INFO:     10.205.70.58:50740 - "GET /Movimex/assets/index-DI7RFqZG.css HTTP/1.1" 200 OK
+INFO:     10.205.70.58:50740 - "GET /Movimex/favicon.svg HTTP/1.1" 200 OK
+INFO:     10.205.70.58:50740 - "GET /Movimex/sw.js HTTP/1.1" 200 OK
