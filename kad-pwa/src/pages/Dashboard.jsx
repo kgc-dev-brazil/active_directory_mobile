@@ -228,6 +228,7 @@ export default function Dashboard() {
   const [compareInput, setCompareInput] = useState('');
   const [compareLoading, setCompareLoading] = useState(false);
   const [compareResult, setCompareResult] = useState(null);
+  const [compareSearch, setCompareSearch] = useState('');
 
   // Estados: Vetorh
   // Antes: const [vetorhData, setVetorhData] = useState({ tipcol: 1, techacc: 'NTU' });
@@ -5547,8 +5548,7 @@ export default function Dashboard() {
                 <h3 style={styles.cardTitle}>Matriz de Permissões</h3>
                 <p style={styles.hintText}>Avalie divergências em políticas de segurança.</p>
               </div>
-              {compareResult && (
-                <div className="cmpActions">
+              {(<div className="cmpActions"><button type="button" className="bulkTool gold" title="Importar carrinho" aria-label="Importar carrinho" disabled={cart.length === 0} onClick={() => { const names = cart.map(i => i.SamAccountName).filter(Boolean); if (names.length < 2) { toast.error("Adicione ao menos 2 itens ao carrinho."); return; } setCompareInput(names.join(", ")); }}><Layers size={15} /></button>{compareResult && (<button type="button" className="bulkTool gold" title="Exportar CSV" aria-label="Exportar CSV" onClick={() => kadExportCompareCsv(compareResult)}><Download size={15} /></button>)}
                   <button
                     type="button"
                     className="bulkTool bad"
@@ -5596,6 +5596,7 @@ export default function Dashboard() {
                   ))}
                 </div>
 
+                <div className="cmpFilter"><Search size={14} /><input type="text" placeholder="Filtrar grupos..." value={compareSearch} onChange={(e) => setCompareSearch(e.target.value)} />{compareSearch && (<button type="button" className="bulkTool muted" title="Limpar filtro" aria-label="Limpar filtro" onClick={() => setCompareSearch("")}><X size={14} /></button>)}</div>
                 <div className="cmpGrid">
                   <div className="cmpCard ok">
                     <div className="cmpCardHead">
@@ -5614,8 +5615,7 @@ export default function Dashboard() {
                       {(compareResult.common_groups || []).length === 0 ? (
                         <div className="cmpEmpty">Nenhum grupo em comum.</div>
                       ) : (
-                        (compareResult.common_groups || []).map((g, idx) => (
-                          <div key={idx} className="cmpItem">{g}</div>
+                        kadFilterList(compareResult.common_groups || [], compareSearch).map((g, idx) => (<div key={idx} className="cmpItem">{g}</div>
                         ))
                       )}
                     </div>
@@ -5641,8 +5641,7 @@ export default function Dashboard() {
                           {groups.length === 0 ? (
                             <div className="cmpEmpty">Sem grupos exclusivos.</div>
                           ) : (
-                            groups.map((g, i) => (
-                              <div key={i} className="cmpItem">{g}</div>
+                            kadFilterList(groups, compareSearch).map((g, i) => (<div key={i} className="cmpItem">{g}</div>
                             ))
                           )}
                         </div>
@@ -6492,6 +6491,35 @@ const kadExportBulkResultCsv = (result) => {
   toast.success(rows.length + ' item(ns) exportado(s).');
 };
 
+const kadFilterList = (list, term) => {
+  const q = String(term || '').trim().toLowerCase();
+  return q ? list.filter((g) => String(g).toLowerCase().includes(q)) : list;
+};
+
+const kadExportCompareCsv = (result) => {
+  const clean = (v) => {
+    let c = String(v === undefined || v === null ? '' : v);
+    if (/^[=+\-@]/.test(c)) { c = "'" + c; }
+    return '"' + c.replace(/"/g, '""') + '"';
+  };
+  const lines = [['Tipo', 'Usuario', 'Grupo'].map(clean).join(';')];
+  (result.common_groups || []).forEach((g) => lines.push(['Em comum', 'Todos', g].map(clean).join(';')));
+  Object.keys(result.users || {}).forEach((u) => {
+    ((result.users[u] || {}).ExclusiveGroups || []).forEach((g) => lines.push(['Exclusivo', u, g].map(clean).join(';')));
+  });
+  if (lines.length < 2) { toast.error('Nada para exportar.'); return; }
+  const blob = new Blob(['\ufeff' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'kad_compare_' + new Date().toISOString().slice(0, 19).replace(/[-:T]/g, '') + '.csv';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  toast.success((lines.length - 1) + ' linha(s) exportada(s).');
+};
+
 const kadCopyText = (value) => {
   if (navigator.clipboard && value) {
     navigator.clipboard.writeText(value).then(() => toast.success('Copiado.'));
@@ -7182,6 +7210,12 @@ styleSheet.innerText = `
   .kadContent { box-sizing: border-box !important; }
   .cmpWorkspace .cmpGrid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
 }
+
+/* KAD COMPARE TOOLS */
+.cmpWorkspace .cmpFilter { display: flex; align-items: center; gap: 8px; margin: 0 0 10px; padding: 3px 4px 3px 11px; border: 1px solid rgba(148, 163, 184, 0.22); border-radius: 8px; background: rgba(11, 17, 30, 0.72); color: #94A3B8; }
+.cmpWorkspace .cmpFilter:focus-within { border-color: #C5A059; box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.12); }
+.cmpWorkspace .cmpFilter input { flex: 1; min-width: 0; border: none; outline: none; background: transparent; color: #F8FAFC; font-size: 13px; padding: 7px 4px; }
+@media (min-width: 900px) { .cmpWorkspace .cmpFilter { max-width: 420px; } }
 /* KAD COMPARE END */
 
 /* KAD BULK TAGS START */
