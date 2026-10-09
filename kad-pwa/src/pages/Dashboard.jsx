@@ -7304,6 +7304,20 @@ styleSheet.innerText = `
     margin: 6px 0 2px 0 !important;
   }
 }
+
+/* KAD LDAP CARD */
+@media (min-width: 900px) {
+  .kadSummary > *:nth-child(1),
+  .kadSummary > *:nth-child(2),
+  .kadSummary > *:nth-child(3) {
+    align-self: stretch !important;
+  }
+  .kadSummary > *:nth-child(3) {
+    display: flex !important;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
 /* KAD DESKTOP PANEL END */
 /* KAD BULK VISUAL END */
 `;
