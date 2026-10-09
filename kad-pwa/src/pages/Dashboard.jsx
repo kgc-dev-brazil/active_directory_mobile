@@ -4324,7 +4324,7 @@ export default function Dashboard() {
                               onChange={(e) => setGroupSearchTerm(e.target.value)}
                               style={{...styles.input, padding: '4px 0'}}
                             />
-                          </div>
+                          </div><div className="grpTools"><span className="grpCount">{(isGroup ? filteredMembers : filteredMemberOf).length}</span><button type="button" className="grpTool" title="Copiar lista" aria-label="Copiar lista" onClick={() => kadCopyText((isGroup ? filteredMembers : filteredMemberOf).join("\n"))}><Copy size={15} /></button><button type="button" className="grpTool" title="Exportar CSV" aria-label="Exportar CSV" onClick={() => kadExportGroupsCsv(selectedUser.SamAccountName, isGroup ? 'Membro' : 'Grupo', (isGroup ? filteredMembers : filteredMemberOf))}><Download size={15} /></button></div>
                         </div>
 
                         <div style={styles.listContainer}>
@@ -4334,7 +4334,7 @@ export default function Dashboard() {
                             ) : (
                               filteredMembers.map((m, i) => (
                                 <div key={i} style={styles.listItem}>
-                                  <User size={14} style={{ marginRight: '8px', color: COLORS.muted }} /> {m}
+                                  <User size={14} style={{ marginRight: '8px', color: COLORS.muted }} /> <span className="grpCopy" title="Copiar" onClick={() => kadCopyText(m)}>{m}</span>
                                 </div>
                               ))
                             )
@@ -4344,7 +4344,7 @@ export default function Dashboard() {
                             filteredMemberOf.map((g, i) => (
                               <div key={i} style={{ ...styles.listItem, justifyContent: 'space-between' }}>
                                 <div style={{ display: 'flex', alignItems: 'center' }}>
-                                  <Users size={14} style={{ marginRight: '8px', color: COLORS.gold }} /> {g}
+                                  <Users size={14} style={{ marginRight: '8px', color: COLORS.gold }} /> <span className="grpCopy" title="Copiar" onClick={() => kadCopyText(g)}>{g}</span>
                                 </div>
                                 <button
                                   type="button"
@@ -6520,6 +6520,27 @@ const kadExportCompareCsv = (result) => {
   toast.success((lines.length - 1) + ' linha(s) exportada(s).');
 };
 
+const kadExportGroupsCsv = (owner, kind, list) => {
+  if (!list || list.length === 0) { toast.error('Nada para exportar.'); return; }
+  const clean = (v) => {
+    let c = String(v === undefined || v === null ? '' : v);
+    if (/^[=+\-@]/.test(c)) { c = "'" + c; }
+    return '"' + c.replace(/"/g, '""') + '"';
+  };
+  const lines = [['Tipo', 'Objeto', 'Item'].map(clean).join(';')];
+  list.forEach((g) => lines.push([kind, owner, g].map(clean).join(';')));
+  const blob = new Blob(['\ufeff' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'kad_grupos_' + String(owner).replace(/[^a-zA-Z0-9_.-]/g, '_') + '_' + new Date().toISOString().slice(0, 19).replace(/[-:T]/g, '') + '.csv';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  toast.success(list.length + ' item(ns) exportado(s).');
+};
+
 const kadCopyText = (value) => {
   if (navigator.clipboard && value) {
     navigator.clipboard.writeText(value).then(() => toast.success('Copiado.'));
@@ -7513,6 +7534,49 @@ styleSheet.innerText = `
   }
 }
 /* KAD IDENTITY DETAIL END */
+
+/* KAD GROUPS TOOLS */
+.idDetail .grpTools {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 3px 3px 10px;
+  border: 1px solid #24324D;
+  border-radius: 8px;
+  background: rgba(11, 17, 30, 0.55);
+  flex-shrink: 0;
+}
+.idDetail .grpCount {
+  color: #94A3B8;
+  font-size: 11px;
+  font-weight: 700;
+  padding-right: 4px;
+}
+.idDetail .grpTool {
+  width: 32px;
+  height: 32px;
+  padding: 0 !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: #C5A059;
+  cursor: pointer;
+}
+.idDetail .grpTool:hover {
+  background: rgba(197, 160, 89, 0.16);
+}
+.idDetail .grpCopy {
+  cursor: copy;
+  border-bottom: 1px dotted transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.idDetail .grpCopy:hover {
+  color: #C5A059;
+  border-bottom-color: rgba(197, 160, 89, 0.7);
+}
 /* KAD BULK VISUAL END */
 `;
 
