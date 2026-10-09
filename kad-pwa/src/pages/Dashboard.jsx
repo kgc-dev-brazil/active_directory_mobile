@@ -1082,7 +1082,22 @@ export default function Dashboard() {
   };
 
   // ==================== VETORH (SQL) ====================
-  const saveVetorh = async () => {
+  const saveVetorh = () => {
+    const matricula = String(selectedUser && selectedUser.EmployeeID ? selectedUser.EmployeeID : '').trim();
+    if (!/^\d+$/.test(matricula)) {
+      toast.error('Matricula invalida para a procedure.');
+      return;
+    }
+    setRequireSecurityWord(false);
+    setConfirmInputText('');
+    showConfirm(
+      'Procedure Vetorh (SQL Server)',
+      'Aplicar o acesso "' + vetorhData.techacc + '" (Tipo ' + vetorhData.tipcol + ') para a matricula ' + matricula + '?',
+      saveVetorhExecutar
+    );
+  };
+
+  const saveVetorhExecutar = async () => {
     setVetorhLoading(true);
     try {
       await api.post('/vetorh/update', { matriculas: [selectedUser.EmployeeID], tipcol: vetorhData.tipcol, techacc: vetorhData.techacc });
