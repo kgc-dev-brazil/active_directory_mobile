@@ -4418,31 +4418,38 @@ def unlock_user(username: str, creds: dict = Depends(get_current_credentials)):
 
 
 
+def _ps_quote(value):
+    text = str(value)
+    for q in ("'", "\u2018", "\u2019", "\u201a", "\u201b"):
+        text = text.replace(q, q + q)
+    return text
+
+
 @app.post("/users/{username}/reset-password")
 
 def reset_password(username: str, payload: PasswordReset, creds: dict = Depends(get_current_credentials)):
 
     # Reconstruído em PowerShell para contornar o bloqueio de Política de Senha do AD
 
-    script = f"$Password = ConvertTo-SecureString '{payload.new_password}' -AsPlainText -Force; "
+    script = f"$Password = ConvertTo-SecureString '{_ps_quote(payload.new_password)}' -AsPlainText -Force; "
 
-    script += f"Set-ADAccountPassword -Identity '{username}' -NewPassword $Password -Reset:$true -Credential $mycreds; "
+    script += f"Set-ADAccountPassword -Identity '{_ps_quote(username)}' -NewPassword $Password -Reset:$true -Credential $mycreds; "
 
     
 
     if payload.unlock_account:
 
-        script += f"Unlock-ADAccount -Identity '{username}' -Credential $mycreds; "
+        script += f"Unlock-ADAccount -Identity '{_ps_quote(username)}' -Credential $mycreds; "
 
         
 
     if payload.force_change:
 
-        script += f"Set-ADUser -Identity '{username}' -ChangePasswordAtLogon $true -Credential $mycreds; "
+        script += f"Set-ADUser -Identity '{_ps_quote(username)}' -ChangePasswordAtLogon $true -Credential $mycreds; "
 
     else:
 
-        script += f"Set-ADUser -Identity '{username}' -ChangePasswordAtLogon $false -Credential $mycreds; "
+        script += f"Set-ADUser -Identity '{_ps_quote(username)}' -ChangePasswordAtLogon $false -Credential $mycreds; "
 
         
 
