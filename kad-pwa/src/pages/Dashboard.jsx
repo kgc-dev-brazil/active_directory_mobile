@@ -5726,7 +5726,7 @@ export default function Dashboard() {
         )}
         {/* ================= ABA 5: VETORH DIRETO (SQL SERVER) ================= */}
         {activeTab === 'vetorh_direct' && (
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          <div className="vetorhWorkspace" style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
             
             {/* CARD 1: CONSULTA RÁPIDA POR MATRÍCULA */}
             <div style={styles.card}>
@@ -5766,7 +5766,7 @@ export default function Dashboard() {
                         </div>
                         <div style={styles.detailItem}>
                           <span style={styles.detailLabel}>Network ID</span>
-                          <span style={styles.detailValue}>{vetorhSearchResult[0].networkid || 'N/A'}</span>
+                          <span style={styles.detailValue}><span className="vtCopy" title="Copiar" onClick={() => kadCopyText(vetorhSearchResult[0].networkid)}>{vetorhSearchResult[0].networkid || 'N/A'}</span></span>
                         </div>
                         <div style={styles.detailItem}>
                           <span style={styles.detailLabel}>Situação (sitafa)</span>
@@ -5792,7 +5792,7 @@ export default function Dashboard() {
                         </div>
                         <div style={styles.detailItemFull}>
                           <span style={styles.detailLabel}>IGA DIGID</span>
-                          <span style={{...styles.detailValue, fontFamily: 'monospace'}}>{vetorhSearchResult[0].igadigid}</span>
+                          <span style={{...styles.detailValue, fontFamily: 'monospace'}}><span className="vtCopy" title="Copiar" onClick={() => kadCopyText(vetorhSearchResult[0].igadigid)}>{vetorhSearchResult[0].igadigid}</span></span>
                         </div>
                         <div style={styles.detailItemFull}>
                           <span style={styles.detailLabel}>E-mails (Comercial / Particular)</span>
@@ -5821,11 +5821,11 @@ export default function Dashboard() {
                          <tbody>
                             {vetorhSearchResult.map((row, idx) => (
                                 <tr key={idx} style={{ borderBottom: `1px solid ${COLORS.border}` }}>
-                                   <td style={{ padding: '8px' }}>{row.numcad}</td>
+                                   <td style={{ padding: '8px' }}><span className="vtCopy" title="Copiar" onClick={() => kadCopyText(row.numcad)}>{row.numcad}</span></td>
                                    <td style={{ padding: '8px', fontWeight: 'bold' }}>{row.nomfun}</td>
                                    <td style={{ padding: '8px', color: row.sitafa.includes('Trabalhando') ? COLORS.success : row.sitafa.includes('Demitido') ? COLORS.danger : COLORS.warning }}>{row.sitafa}</td>
                                    <td style={{ padding: '8px', color: COLORS.gold, fontWeight: 'bold' }}>{row.techacc}</td>
-                                   <td style={{ padding: '8px', fontFamily: 'monospace' }}>{row.igadigid || 'N/A'}</td>
+                                   <td style={{ padding: '8px', fontFamily: 'monospace' }}><span className="vtCopy" title="Copiar" onClick={() => kadCopyText(row.igadigid)}>{row.igadigid || 'N/A'}</span></td>
                                 </tr>
                             ))}
                          </tbody>
@@ -5913,7 +5913,7 @@ export default function Dashboard() {
                       <p style={{ color: COLORS.danger, fontSize: '13px', margin: '0 0 5px 0' }}>Erros SQL:</p>
                       <ul style={{ color: COLORS.danger, fontSize: '12px', paddingLeft: '20px', margin: 0 }}>
                         {vetorhDirectResult.errors.map((err, idx) => (
-                          <li key={idx}><strong>Matrícula {err.matricula}:</strong> {err.error}[cite: 5]</li>
+                          <li key={idx}><strong>Matrícula {err.matricula}:</strong> {err.error}</li>
                         ))}
                       </ul>
                     </div>
@@ -7330,6 +7330,78 @@ styleSheet.innerText = `
   color: #C5A059;
   border-bottom-color: rgba(197, 160, 89, 0.7);
 }
+
+/* KAD VETORH START */
+.vetorhWorkspace > div {
+  position: relative;
+  overflow: hidden;
+  padding: 18px !important;
+  border-color: rgba(197, 160, 89, 0.24) !important;
+  background:
+    radial-gradient(circle at top right, rgba(197, 160, 89, 0.09), transparent 32%),
+    #161F32 !important;
+}
+.vetorhWorkspace > div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 18px;
+  right: 18px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, #C5A059, transparent);
+  pointer-events: none;
+}
+.vetorhWorkspace input,
+.vetorhWorkspace textarea,
+.vetorhWorkspace select {
+  border-radius: 8px !important;
+  border-color: rgba(148, 163, 184, 0.22) !important;
+  background-color: rgba(11, 17, 30, 0.76) !important;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.vetorhWorkspace input:hover,
+.vetorhWorkspace textarea:hover,
+.vetorhWorkspace select:hover {
+  border-color: rgba(197, 160, 89, 0.48) !important;
+}
+.vetorhWorkspace input:focus,
+.vetorhWorkspace textarea:focus,
+.vetorhWorkspace select:focus {
+  border-color: #C5A059 !important;
+  box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.12);
+  outline: none;
+}
+.vetorhWorkspace button {
+  min-height: 38px;
+  border-radius: 8px !important;
+  transition: transform 0.14s ease, filter 0.14s ease, opacity 0.14s ease;
+}
+.vetorhWorkspace button:hover {
+  filter: brightness(1.08);
+}
+.vetorhWorkspace button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.vetorhWorkspace .vtCopy {
+  cursor: pointer;
+  border-bottom: 1px dotted transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.vetorhWorkspace .vtCopy:hover {
+  color: #C5A059;
+  border-bottom-color: rgba(197, 160, 89, 0.7);
+}
+@media (min-width: 900px) {
+  .vetorhWorkspace {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 16px !important;
+  }
+}
+/* KAD VETORH END */
 /* KAD BULK VISUAL END */
 `;
 
