@@ -1,0 +1,14 @@
+
+# KAD: ambientes virtuais, backups e artefatos locais
+.venv/
+venv/
+venv_bkp/
+.venv_old/
+backups/
+recovery/
+__pycache__/
+*.pyc
+kad-pwa/build-validacao-*/
+kad-pwa/dist_backup*/
+kad-pwa/dist.bak*/
+*.bak*
