@@ -3974,13 +3974,13 @@ export default function Dashboard() {
                         <>
                           <p style={styles.sectionLabel}>Organização Corporativa</p>
                           <div style={styles.detailGrid}>
-                            <div style={styles.detailItemFull}><span style={styles.detailLabel}>E-mail</span><span style={styles.detailValue}>{selectedUser.EmailAddress || 'N/A'}</span></div>
-                            <div style={styles.detailItem}><span style={styles.detailLabel}>Telefone</span><span style={styles.detailValue}>{selectedUser.TelephoneNumber}</span></div>
-                            <div style={styles.detailItem}><span style={styles.detailLabel}>Cargo</span><span style={styles.detailValue}>{selectedUser.Title}</span></div>
-                            <div style={styles.detailItem}><span style={styles.detailLabel}>Departamento</span><span style={styles.detailValue}>{selectedUser.Department}</span></div>
-                            <div style={styles.detailItem}><span style={styles.detailLabel}>Empresa</span><span style={styles.detailValue}>{selectedUser.Company}</span></div>
-                            <div style={styles.detailItem}><span style={styles.detailLabel}>Escritório</span><span style={styles.detailValue}>{selectedUser.Office}</span></div>
-                            <div style={styles.detailItem}><span style={styles.detailLabel}>Gerente Direto</span><span style={styles.detailValue}>{selectedUser.Manager}</span></div>
+                            <div style={styles.detailItemFull}><span style={styles.detailLabel}>E-mail</span><span style={styles.detailValue}><span className="idCopy" title="Copiar" onClick={() => kadCopyText(selectedUser.EmailAddress)}>{selectedUser.EmailAddress || 'N/A'}</span></span></div>
+                            <div style={styles.detailItem}><span style={styles.detailLabel}>Telefone</span><span style={styles.detailValue}><span className="idCopy" title="Copiar" onClick={() => kadCopyText(selectedUser.TelephoneNumber)}>{selectedUser.TelephoneNumber}</span></span></div>
+                            <div style={styles.detailItem}><span style={styles.detailLabel}>Cargo</span><span style={styles.detailValue}><span className="idCopy" title="Copiar" onClick={() => kadCopyText(selectedUser.Title)}>{selectedUser.Title}</span></span></div>
+                            <div style={styles.detailItem}><span style={styles.detailLabel}>Departamento</span><span style={styles.detailValue}><span className="idCopy" title="Copiar" onClick={() => kadCopyText(selectedUser.Department)}>{selectedUser.Department}</span></span></div>
+                            <div style={styles.detailItem}><span style={styles.detailLabel}>Empresa</span><span style={styles.detailValue}><span className="idCopy" title="Copiar" onClick={() => kadCopyText(selectedUser.Company)}>{selectedUser.Company}</span></span></div>
+                            <div style={styles.detailItem}><span style={styles.detailLabel}>Escritório</span><span style={styles.detailValue}><span className="idCopy" title="Copiar" onClick={() => kadCopyText(selectedUser.Office)}>{selectedUser.Office}</span></span></div>
+                            <div style={styles.detailItem}><span style={styles.detailLabel}>Gerente Direto</span><span style={styles.detailValue}><span className="idCopy" title="Copiar" onClick={() => kadCopyText(selectedUser.Manager)}>{selectedUser.Manager}</span></span></div>
                             <div style={styles.detailItemFull}>
                               <span style={styles.detailLabel}>Supervisiona ({selectedUser.DirectReports?.length || 0})</span>
                               {selectedUser.DirectReports?.length > 0 ? (
@@ -4005,7 +4005,7 @@ export default function Dashboard() {
                                       alignItems: 'center',
                                       gap: '4px'
                                     }}>
-                                      <User size={10} color={COLORS.muted} /> {report}
+                                      <User size={10} color={COLORS.muted} /> <span className="idCopy" title="Copiar" onClick={() => kadCopyText(report)}>{report}</span>
                                     </span>
                                   ))}
                                 </div>
@@ -7675,6 +7675,14 @@ styleSheet.innerText = `
   top: 0;
   background: #161F32;
   z-index: 1;
+}
+
+/* KAD GERAL TAB */
+.idDetail div[style*="grid-template-columns"] > div {
+  transition: border-color 0.15s ease;
+}
+.idDetail div[style*="grid-template-columns"] > div:hover {
+  border-color: rgba(197, 160, 89, 0.38) !important;
 }
 /* KAD BULK VISUAL END */
 `;
