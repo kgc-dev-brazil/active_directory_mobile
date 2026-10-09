@@ -3707,7 +3707,7 @@ export default function Dashboard() {
                   {searchResults.map((item, idx) => {
                     const isDanger = !item.Enabled || item.LockedOut;
                     return (
-                      <div key={idx} onClick={() => selectUserForDetail(item)} style={{...styles.miniCard, borderColor: isDanger ? COLORS.danger : COLORS.border}}>
+                      <div className="idResult" key={idx} onClick={() => selectUserForDetail(item)} style={{...styles.miniCard, borderColor: isDanger ? COLORS.danger : COLORS.border}}>
                         
                         {/* NOVO: CHECKBOX DO CARRINHO */}
                         <div onClick={(e) => e.stopPropagation()} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '0 5px' }}>
@@ -3727,7 +3727,7 @@ export default function Dashboard() {
                              {item.DisplayName} {isDanger && <Ban size={12} style={{marginLeft: '6px'}} />}
                           </h4>
                           <p style={styles.miniCardSubtitle}>
-                             {item.SamAccountName} {item.EmployeeID ? `• Mat: ${item.EmployeeID}` : ''}
+                             <span className="idCopy" title="Copiar login" onClick={(e) => { e.stopPropagation(); kadCopyText(item.SamAccountName); }}>{item.SamAccountName}</span> {item.EmployeeID ? `• Mat: ${item.EmployeeID}` : ''}
                              {isDanger && <span style={{color: COLORS.danger, fontWeight: 'bold'}}> • ({item.LockedOut ? 'Bloqueado' : 'Desativado'})</span>}
                           </p>
                         </div>
@@ -7402,6 +7402,34 @@ styleSheet.innerText = `
   }
 }
 /* KAD VETORH END */
+
+/* KAD IDENTITY LIST START */
+.idResult {
+  position: relative;
+  transition: border-color 0.16s ease, transform 0.16s ease, background-color 0.16s ease;
+}
+.idResult:hover {
+  border-color: rgba(197, 160, 89, 0.55) !important;
+  background-color: rgba(22, 31, 50, 0.98) !important;
+  transform: translateY(-1px);
+}
+.idResult .idCopy {
+  cursor: copy;
+  border-bottom: 1px dotted transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.idResult .idCopy:hover {
+  color: #C5A059;
+  border-bottom-color: rgba(197, 160, 89, 0.7);
+}
+@media (min-width: 900px) {
+  div:has(> .idResult) {
+    display: grid !important;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 10px !important;
+  }
+}
+/* KAD IDENTITY LIST END */
 /* KAD BULK VISUAL END */
 `;
 
