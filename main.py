@@ -1110,9 +1110,9 @@ def run_powershell(command: str, creds: dict, return_json: bool = True):
 
     auth_prefix = (
 
-        f"$secpasswd = ConvertTo-SecureString '{creds['password']}' -AsPlainText -Force; "
+        f"$secpasswd = ConvertTo-SecureString '{_ps_quote(creds['password'])}' -AsPlainText -Force; "
 
-        f"$mycreds = New-Object System.Management.Automation.PSCredential ('{domain_netbios}\\{creds['username']}', $secpasswd); "
+        f"$mycreds = New-Object System.Management.Automation.PSCredential ('{_ps_quote(domain_netbios)}\\{_ps_quote(creds['username'])}', $secpasswd); "
 
     )
 
@@ -1208,7 +1208,7 @@ async def enable_winrm_via_dcom(hostname: str, creds: dict = Depends(get_current
 
         "$opcao = New-CimSessionOption -Protocol Dcom; "
 
-        f"$sessao = New-CimSession -ComputerName '{network_target}' -SessionOption $opcao -Credential $mycreds; "
+        f"$sessao = New-CimSession -ComputerName '{_ps_quote(network_target)}' -SessionOption $opcao -Credential $mycreds; "
 
         "$res = Invoke-CimMethod -CimSession $sessao -ClassName Win32_Process -MethodName Create -Arguments @{CommandLine = 'powershell.exe -ExecutionPolicy Bypass -WindowStyle Hidden -Command Enable-PSRemoting -Force'}; "
 
@@ -1228,9 +1228,9 @@ async def enable_winrm_via_dcom(hostname: str, creds: dict = Depends(get_current
 
         auth_prefix = (
 
-            f"$secpasswd = ConvertTo-SecureString '{creds['password']}' -AsPlainText -Force; "
+            f"$secpasswd = ConvertTo-SecureString '{_ps_quote(creds['password'])}' -AsPlainText -Force; "
 
-            f"$mycreds = New-Object System.Management.Automation.PSCredential ('{domain_netbios}\\{creds['username']}', $secpasswd); "
+            f"$mycreds = New-Object System.Management.Automation.PSCredential ('{_ps_quote(domain_netbios)}\\{_ps_quote(creds['username'])}', $secpasswd); "
 
         )
 
@@ -4471,7 +4471,7 @@ def toggle_force_change(username: str, payload: ForceChangeUpdate, creds: dict =
 
     bool_str = "$true" if payload.force else "$false"
 
-    script = f"Set-ADUser -Identity '{username}' -ChangePasswordAtLogon {bool_str} -Credential $mycreds"
+    script = f"Set-ADUser -Identity '{_ps_quote(username)}' -ChangePasswordAtLogon {bool_str} -Credential $mycreds"
 
     
 
@@ -4922,7 +4922,7 @@ def get_computer_local_groups(hostname: str, creds: dict = Depends(get_current_c
 
         f"$so = New-PSSessionOption -OpenTimeout 10000 -OperationTimeout 20000; "
 
-        f"Invoke-Command -ComputerName '{network_target}' -SessionOption $so -ScriptBlock {{ {script_block} }} -Credential $mycreds"
+        f"Invoke-Command -ComputerName '{_ps_quote(network_target)}' -SessionOption $so -ScriptBlock {{ {script_block} }} -Credential $mycreds"
 
     )
 
@@ -5106,13 +5106,13 @@ def run_diagnostics(target: str, diag_type: str, creds: dict = Depends(get_curre
 
     if diag_type == "ping":
 
-        script = f"Test-Connection -ComputerName '{network_target}' -Count 4 -ErrorAction SilentlyContinue | Format-Table Address, IPv4Address, ResponseTime"
+        script = f"Test-Connection -ComputerName '{_ps_quote(network_target)}' -Count 4 -ErrorAction SilentlyContinue | Format-Table Address, IPv4Address, ResponseTime"
 
     elif diag_type == "wmi":
 
         script = (
 
-            f"Invoke-Command -ComputerName '{network_target}' -Credential $mycreds -ScriptBlock {{ "
+            f"Invoke-Command -ComputerName '{_ps_quote(network_target)}' -Credential $mycreds -ScriptBlock {{ "
 
             f"Get-CimInstance Win32_OperatingSystem -ErrorAction SilentlyContinue | Select-Object LastBootUpTime | Format-List | Out-String; "
 
@@ -5166,9 +5166,9 @@ def run_diagnostics(target: str, diag_type: str, creds: dict = Depends(get_curre
 
     auth_prefix = (
 
-        f"$secpasswd = ConvertTo-SecureString '{creds['password']}' -AsPlainText -Force; "
+        f"$secpasswd = ConvertTo-SecureString '{_ps_quote(creds['password'])}' -AsPlainText -Force; "
 
-        f"$mycreds = New-Object System.Management.Automation.PSCredential ('{domain_netbios}\\{creds['username']}', $secpasswd); "
+        f"$mycreds = New-Object System.Management.Automation.PSCredential ('{_ps_quote(domain_netbios)}\\{_ps_quote(creds['username'])}', $secpasswd); "
 
     )
 
@@ -5224,7 +5224,7 @@ def kill_remote_process(hostname: str, pid: int, creds: dict = Depends(get_curre
 
         f"$so = New-PSSessionOption -OpenTimeout 10000 -OperationTimeout 20000; "
 
-        f"Invoke-Command -ComputerName '{network_target}' -SessionOption $so -ScriptBlock {{ {script_block} }} -Credential $mycreds"
+        f"Invoke-Command -ComputerName '{_ps_quote(network_target)}' -SessionOption $so -ScriptBlock {{ {script_block} }} -Credential $mycreds"
 
     )
 
@@ -6928,7 +6928,7 @@ def notify_active_user(hostname: str, payload: NotifyPayload, creds: dict = Depe
 
         f"$so = New-PSSessionOption -OpenTimeout 10000 -OperationTimeout 20000; "
 
-        f"Invoke-Command -ComputerName '{network_target}' -SessionOption $so -ScriptBlock {{ {script_block} }} -Credential $mycreds"
+        f"Invoke-Command -ComputerName '{_ps_quote(network_target)}' -SessionOption $so -ScriptBlock {{ {script_block} }} -Credential $mycreds"
 
     )
 
