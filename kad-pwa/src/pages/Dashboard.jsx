@@ -2872,7 +2872,7 @@ export default function Dashboard() {
 
             {/* MELHORIA 4: CARDS DE RESUMO NA TELA INICIAL */}
             {!selectedUser && searchResults.length === 0 && (
-              <div style={styles.summaryGrid}>
+              <div className="kadSummary" style={styles.summaryGrid}>
                 <div style={styles.summaryCard}>
                   <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                     <span style={styles.summaryLabel}>Contas Bloqueadas</span>
@@ -7277,6 +7277,34 @@ styleSheet.innerText = `
 .bulkWorkspace .bulkResEmpty { padding: 16px; text-align: center; border: 1px dashed #24324D; border-radius: 8px; color: #94A3B8; font-size: 12px; }
 @media (min-width: 900px) { .bulkWorkspace .bulkResGrid { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); } }
 /* KAD BULK RESULT END */
+
+/* KAD DESKTOP PANEL START */
+@media (min-width: 900px) {
+  .kadSummary {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 12px !important;
+    align-items: start;
+  }
+  .kadSummary > *:nth-child(3) {
+    grid-column: span 2 !important;
+  }
+  .kadSummary > *:nth-child(n+4) {
+    grid-column: span 2 !important;
+  }
+  .kadSummary > *:nth-child(n+4):last-child:nth-child(even) {
+    grid-column: 1 / -1 !important;
+  }
+  .kadSummary > *:nth-child(1),
+  .kadSummary > *:nth-child(2) {
+    padding: 12px 14px !important;
+  }
+  .kadSummary > *:nth-child(1) h3,
+  .kadSummary > *:nth-child(2) h3 {
+    font-size: 22px !important;
+    margin: 6px 0 2px 0 !important;
+  }
+}
+/* KAD DESKTOP PANEL END */
 /* KAD BULK VISUAL END */
 `;
 
