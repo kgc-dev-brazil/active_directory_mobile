@@ -5090,7 +5090,7 @@ export default function Dashboard() {
                               overflowWrap: 'anywhere'
                             }}
                           >
-                            {item.displayName}
+                            <span className="bulkCopy" title="Copiar" onClick={(e) => { e.stopPropagation(); if (item.displayName) { kadCopyText(item.displayName); } }}>{item.displayName}</span>
                           </div>
 
                           <div
@@ -5101,7 +5101,7 @@ export default function Dashboard() {
                               overflowWrap: 'anywhere'
                             }}
                           >
-                            {item.id}
+                            <span className="bulkCopy" title="Copiar" onClick={(e) => { e.stopPropagation(); if (item.id) { kadCopyText(item.id); } }}>{item.id}</span>
                             {' | '}
                             {item.type === 'User'
                               ? 'Usuario'
@@ -5153,7 +5153,7 @@ export default function Dashboard() {
                                         fontWeight: '600'
                                       }}
                                     >
-                                      {item.matricula || 'Nao informado'}
+                                      <span className="bulkCopy" title="Copiar" onClick={(e) => { e.stopPropagation(); if (item.matricula) { kadCopyText(item.matricula); } }}>{item.matricula || 'Nao informado'}</span>
                                     </span>
                                   </span>
 
@@ -5168,7 +5168,7 @@ export default function Dashboard() {
                                         fontFamily: 'monospace'
                                       }}
                                     >
-                                      {item.igaDigid || 'Nao informado'}
+                                      <span className="bulkCopy" title="Copiar" onClick={(e) => { e.stopPropagation(); if (item.igaDigid) { kadCopyText(item.igaDigid); } }}>{item.igaDigid || 'Nao informado'}</span>
                                     </span>
                                   </span>
                                 </div>
@@ -5190,7 +5190,7 @@ export default function Dashboard() {
                                       fontWeight: '600'
                                     }}
                                   >
-                                    {item.gerenciadoPor || 'Nao informado'}
+                                    <span className="bulkCopy" title="Copiar" onClick={(e) => { e.stopPropagation(); if (item.gerenciadoPor) { kadCopyText(item.gerenciadoPor); } }}>{item.gerenciadoPor || 'Nao informado'}</span>
                                   </span>
                                 </div>
                               )}
@@ -7319,6 +7319,17 @@ styleSheet.innerText = `
   }
 }
 /* KAD DESKTOP PANEL END */
+
+/* KAD BULK COPY */
+.bulkWorkspace .bulkCopy {
+  cursor: pointer;
+  border-bottom: 1px dotted transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.bulkWorkspace .bulkCopy:hover {
+  color: #C5A059;
+  border-bottom-color: rgba(197, 160, 89, 0.7);
+}
 /* KAD BULK VISUAL END */
 `;
 
