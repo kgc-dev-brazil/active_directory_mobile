@@ -11,8 +11,8 @@ cd C:\Apps\KAD_Mobile\active_directory_mobile
 git pull origin main
 
 # 3. Atualizar dependências no ambiente virtual caso o requirements.txt tenha mudado
-Write-Host "3. Verificando dependências no .venv..." -ForegroundColor Yellow
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+Write-Host "3. Verificando dependências no venv..." -ForegroundColor Yellow
+.\venv\Scripts\python.exe -m pip install -r requirements.txt
 
 # 4. Iniciar o serviço novamente
 Write-Host "4. Reiniciando o serviço KADMobileService..." -ForegroundColor Yellow
