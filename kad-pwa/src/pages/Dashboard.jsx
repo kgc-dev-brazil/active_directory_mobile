@@ -210,6 +210,7 @@ export default function Dashboard() {
   const [unifiedBulkView, setUnifiedBulkView] = useState('list');
   const [unifiedBulkFilter, setUnifiedBulkFilter] = useState('all');
   const [unifiedBulkResult, setUnifiedBulkResult] = useState(null);
+  const [bulkResultFilter, setBulkResultFilter] = useState('all');
   const [unifiedBulkHistoryOpen, setUnifiedBulkHistoryOpen] = useState(false);
   const [unifiedBulkHistory, setUnifiedBulkHistory] = useState(() => {
     try {
@@ -2224,7 +2225,9 @@ export default function Dashboard() {
             success,
             failed:
               executionResults.length - success,
-            results: executionResults
+            results: executionResults,
+            action: actionLabel,
+            executedAt: new Date().toISOString()
           });
 
           saveUnifiedBulkHistory(
@@ -5487,80 +5490,50 @@ export default function Dashboard() {
                   )}
                 </div>
 
-                {unifiedBulkResult && (
-                  <div style={styles.bulkResultBox}>
-                    <p
-                      style={{
-                        color:
-                          unifiedBulkResult.failed === 0
-                            ? COLORS.success
-                            : COLORS.warning,
-                        fontWeight: '700',
-                        margin: '0 0 10px 0'
-                      }}
-                    >
-                      Processados:
-                      {' '}
-                      {unifiedBulkResult.success}
-                      {' de '}
-                      {unifiedBulkResult.total}
-                    </p>
-
-                    <div
-                      style={{
-                        display: 'grid',
-                        gap: '7px'
-                      }}
-                    >
-                      {unifiedBulkResult.results.map(
-                        (item, index) => (
-                          <div
-                            key={
-                              item.id
-                              + '-execution-'
-                              + index
-                            }
-                            style={{
-                              display: 'flex',
-                              justifyContent: 'space-between',
-                              alignItems: 'center',
-                              gap: '10px',
-                              padding: '8px 10px',
-                              borderRadius: '6px',
-                              border:
-                                `1px solid ${
-                                  item.success
-                                    ? COLORS.success
-                                    : COLORS.danger
-                                }`
-                            }}
-                          >
-                            <strong
-                              style={{
-                                color: COLORS.text,
-                                fontSize: '12px'
-                              }}
-                            >
-                              {item.id}
-                            </strong>
-
-                            <span
-                              style={{
-                                color: item.success
-                                  ? COLORS.success
-                                  : COLORS.danger,
-                                fontSize: '11px',
-                                textAlign: 'right'
-                              }}
-                            >
-                              {item.message}
-                            </span>
+                {unifiedBulkResult && (() => {
+                  const all = unifiedBulkResult.results || [];
+                  const ok = all.filter(i => i.success).length;
+                  const bad = all.length - ok;
+                  const f = (bulkResultFilter === 'failed' && bad === 0) || (bulkResultFilter === 'success' && ok === 0) ? 'all' : bulkResultFilter;
+                  const shown = all.filter(i => f === 'success' ? i.success : f === 'failed' ? !i.success : true);
+                  const chips = [
+                    { k: 'all', l: 'Todos', n: all.length },
+                    { k: 'success', l: 'Sucesso', n: ok },
+                    { k: 'failed', l: 'Falhas', n: bad }
+                  ].filter(c => c.k === 'all' || c.n > 0);
+                  return (
+                    <div className="bulkResult">
+                      <div className="bulkResultHead">
+                        <div>
+                          <div className="bulkResultTitle" data-state={bad === 0 ? 'ok' : 'warn'}>Processados: {ok} de {all.length}</div>
+                          <div className="bulkResultSub">{unifiedBulkResult.action || 'Execucao'}</div>
+                        </div>
+                        <div className="bulkResultTools">
+                          <button type="button" className="bulkTool gold" title="Exportar CSV" aria-label="Exportar CSV" onClick={() => kadExportBulkResultCsv(unifiedBulkResult)}><Download size={15} /></button>
+                          <button type="button" className="bulkTool muted" title="Fechar resultado" aria-label="Fechar resultado" onClick={() => setUnifiedBulkResult(null)}><X size={15} /></button>
+                        </div>
+                      </div>
+                      <div className="bulkChips">
+                        {chips.map(c => (
+                          <button key={c.k} type="button" data-active={f === c.k ? 'true' : 'false'} onClick={() => setBulkResultFilter(c.k)}>{c.l}<span>{c.n}</span></button>
+                        ))}
+                      </div>
+                      <div className="bulkResGrid">
+                        {shown.map((i, x) => (
+                          <div key={i.id + '-r-' + x} className={'bulkResRow ' + (i.success ? 'ok' : 'bad')}>
+                            <span className="bulkResIcon">{i.type === 'Computer' ? <Monitor size={15} /> : <User size={15} />}</span>
+                            <div className="bulkResBody">
+                              <div className="bulkResId">{i.id}</div>
+                              <div className="bulkResMsg">{i.message}</div>
+                            </div>
+                            <span className={'bulkTag ' + (i.success ? 'ok' : 'bad')}>{i.success ? 'Sucesso' : 'Falha'}</span>
                           </div>
-                        )
-                      )}
+                        ))}
+                        {shown.length === 0 && <div className="bulkResEmpty">Nenhum item neste filtro.</div>}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  );
+                })()}
               </div>
             )}
           </div>
@@ -6494,6 +6467,31 @@ export default function Dashboard() {
 }
 
 // ESTILOS CORPORATIVOS
+const kadExportBulkResultCsv = (result) => {
+  const rows = result && result.results ? result.results : [];
+  if (rows.length === 0) { toast.error('Nao ha resultado para exportar.'); return; }
+  const clean = (v) => {
+    let c = String(v === undefined || v === null ? '' : v).replace(/\r?\n/g, ' ');
+    if (/^[=+\-@]/.test(c)) { c = "'" + c; }
+    return '"' + c.replace(/"/g, '""') + '"';
+  };
+  const when = result.executedAt ? new Date(result.executedAt) : new Date();
+  const lines = [['Data', 'Acao', 'Objeto', 'Tipo', 'Situacao', 'Mensagem'].map(clean).join(';')];
+  rows.forEach((i) => {
+    lines.push([when.toLocaleString('pt-BR'), result.action || '', i.id, i.type === 'Computer' ? 'Computador' : 'Usuario', i.success ? 'Sucesso' : 'Falha', i.message].map(clean).join(';'));
+  });
+  const blob = new Blob(['\ufeff' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'kad_bulk_resultado_' + when.toISOString().slice(0, 19).replace(/[-:T]/g, '') + '.csv';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  toast.success(rows.length + ' item(ns) exportado(s).');
+};
+
 const kadCopyText = (value) => {
   if (navigator.clipboard && value) {
     navigator.clipboard.writeText(value).then(() => toast.success('Copiado.'));
@@ -7226,6 +7224,25 @@ styleSheet.innerText = `
   font-weight: 600;
 }
 /* KAD BULK TAGS END */
+
+/* KAD BULK RESULT START */
+.bulkWorkspace .bulkResult { margin-top: 18px; padding: 14px; border: 1px solid #24324D; border-radius: 10px; background: rgba(18, 24, 36, 0.6); animation: bulkReveal 0.18s ease-out; }
+.bulkWorkspace .bulkResultHead { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; margin-bottom: 12px; }
+.bulkWorkspace .bulkResultTitle { font-size: 13px; font-weight: 700; color: #10B981; }
+.bulkWorkspace .bulkResultTitle[data-state="warn"] { color: #F59E0B; }
+.bulkWorkspace .bulkResultSub { margin-top: 3px; font-size: 11px; letter-spacing: 0.04em; text-transform: uppercase; color: #94A3B8; }
+.bulkWorkspace .bulkResultTools { display: inline-flex; gap: 4px; padding: 3px; border: 1px solid #24324D; border-radius: 8px; background: rgba(11, 17, 30, 0.55); }
+.bulkWorkspace .bulkResGrid { display: grid; grid-template-columns: 1fr; gap: 6px; max-height: 420px; overflow-y: auto; }
+.bulkWorkspace .bulkResRow { display: flex; align-items: center; gap: 10px; min-width: 0; padding: 8px 10px; border: 1px solid rgba(16, 185, 129, 0.35); border-radius: 8px; background: rgba(11, 17, 30, 0.5); }
+.bulkWorkspace .bulkResRow.bad { border-color: rgba(239, 68, 68, 0.45); background: rgba(239, 68, 68, 0.06); }
+.bulkWorkspace .bulkResIcon { display: inline-flex; flex-shrink: 0; color: #94A3B8; }
+.bulkWorkspace .bulkResBody { flex: 1; min-width: 0; }
+.bulkWorkspace .bulkResId { font-size: 12px; font-weight: 700; color: #F8FAFC; overflow-wrap: anywhere; }
+.bulkWorkspace .bulkResMsg { margin-top: 2px; font-size: 11px; color: #94A3B8; overflow-wrap: anywhere; }
+.bulkWorkspace .bulkResRow.bad .bulkResMsg { color: #F87171; }
+.bulkWorkspace .bulkResEmpty { padding: 16px; text-align: center; border: 1px dashed #24324D; border-radius: 8px; color: #94A3B8; font-size: 12px; }
+@media (min-width: 900px) { .bulkWorkspace .bulkResGrid { grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); } }
+/* KAD BULK RESULT END */
 /* KAD BULK VISUAL END */
 `;
 
