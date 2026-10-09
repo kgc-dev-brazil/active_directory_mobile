@@ -4364,7 +4364,7 @@ export default function Dashboard() {
 
                   {/* ABA DE SEGURANÇA / DIAGNÓSTICO */}
                   {innerTab === 'seguranca' && (
-                    <div style={styles.actionSection}>
+                    <div className="secTab" style={styles.actionSection}>
                       
                       <div style={styles.actionsGrid}>
                         {(isUser || isComputer) && <button onClick={handleOpenEditProfile} style={styles.gridBtn}><Settings size={14} /> Editar Perfil</button>}
@@ -5939,7 +5939,7 @@ export default function Dashboard() {
               <>
                 <div style={styles.resetContainer}>
                   <p style={styles.sectionLabel}>Senha Local Admin (LAPS)</p>
-                  <input type="text" readOnly value={securityData.laps} style={{...styles.modalInput, color: COLORS.success, fontWeight: 'bold', fontSize: '18px', letterSpacing: '1px', textAlign: 'center'}} />
+                  <input type="text" readOnly title="Clique para copiar" onClick={() => kadCopyText(securityData.laps)} value={securityData.laps} style={{...styles.modalInput, color: COLORS.success, fontWeight: 'bold', fontSize: '18px', letterSpacing: '1px', textAlign: 'center'}} />
                 </div>
                 
                 <div style={{...styles.resetContainer, marginTop: '15px'}}>
@@ -7576,6 +7576,60 @@ styleSheet.innerText = `
 .idDetail .grpCopy:hover {
   color: #C5A059;
   border-bottom-color: rgba(197, 160, 89, 0.7);
+}
+
+/* KAD SECURITY TAB START */
+.idDetail .secTab button:not(.secCopy) {
+  min-height: 38px;
+  border-radius: 8px !important;
+  transition: transform 0.14s ease, filter 0.14s ease, opacity 0.14s ease;
+}
+.idDetail .secTab button:not(.secCopy):hover:not(:disabled) {
+  filter: brightness(1.12);
+  transform: translateY(-1px);
+}
+.idDetail .secTab button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.idDetail .secTab button:focus-visible {
+  outline: 2px solid rgba(197, 160, 89, 0.9);
+  outline-offset: 2px;
+}
+.idDetail .secTab input {
+  border-radius: 8px !important;
+  border-color: rgba(148, 163, 184, 0.22) !important;
+  background-color: rgba(11, 17, 30, 0.76) !important;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+.idDetail .secTab input:focus {
+  border-color: #C5A059 !important;
+  box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.12);
+  outline: none;
+}
+.idDetail .secTab .secCopy {
+  width: 38px;
+  min-width: 38px;
+  height: 38px;
+  padding: 0 !important;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(197, 160, 89, 0.48);
+  border-radius: 8px;
+  background: rgba(11, 17, 30, 0.62);
+  color: #C5A059;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+.idDetail .secTab .secCopy:hover {
+  background: rgba(197, 160, 89, 0.16);
+}
+/* KAD SECURITY TAB END */
+
+/* KAD SECURITY POLISH */
+.idDetail .secTab > p {
+  margin: 8px 0 -6px 0 !important;
 }
 /* KAD BULK VISUAL END */
 `;
