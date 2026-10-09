@@ -3740,17 +3740,17 @@ export default function Dashboard() {
             )}
 
             {selectedUser && (
-              <div style={styles.card}>
+              <div className="idDetail" style={styles.card}>
                 {searchResults.length > 1 && <button onClick={() => setSelectedUser(null)} style={styles.backBtn}><ArrowLeft size={16} /> Voltar à lista</button>}
-                <div style={styles.cardHeader}>
+                <div className="idHead" style={styles.cardHeader}>
                   <div style={styles.avatar}>{renderIcon(selectedUser.Type, 24)}</div>
                   <div style={{flex: 1}}>
                     <h3 style={styles.cardTitle}>{selectedUser.DisplayName}</h3>
-                    <p style={styles.cardSubtitle}>{selectedUser.SamAccountName} {selectedUser.EmployeeID ? `• Matrícula: ${selectedUser.EmployeeID}` : ''}</p>
+                    <p style={styles.cardSubtitle}><span className="idCopy" title="Copiar" onClick={() => kadCopyText(selectedUser.SamAccountName)}>{selectedUser.SamAccountName}</span> {selectedUser.EmployeeID ? `• Matrícula: ${selectedUser.EmployeeID}` : ''}</p>
                   </div>
                 </div>
 
-                <div style={styles.statusRow}>
+                <div className="idStatus" style={styles.statusRow}>
                   <button onClick={handleToggleStatus} style={selectedUser.Enabled ? styles.tagActive : styles.tagInactive}>
                     {selectedUser.Enabled ? <><CheckCircle size={14}/> Ativo (Desativar)</> : <><Ban size={14}/> Desativado (Ativar)</>}
                   </button>
@@ -3784,18 +3784,18 @@ export default function Dashboard() {
                   )}
                 </div>
 
-                <div style={styles.innerTabs}>
-                  <button style={innerTab === 'geral' ? styles.innerTabActive : styles.innerTabInactive} onClick={() => setInnerTab('geral')}>Geral</button>
-                  {isUser && <button style={innerTab === 'seguranca' ? styles.innerTabActive : styles.innerTabInactive} onClick={() => setInnerTab('seguranca')}>Segurança</button>}
-                  {isComputer && <button style={innerTab === 'seguranca' ? styles.innerTabActive : styles.innerTabInactive} onClick={() => setInnerTab('seguranca')}>Diagnósticos</button>}
-                  <button style={innerTab === 'grupos' ? styles.innerTabActive : styles.innerTabInactive} onClick={() => setInnerTab('grupos')}>
+                <div className="idTabs" style={styles.innerTabs}>
+                  <button style={innerTab === 'geral' ? styles.innerTabActive : styles.innerTabInactive} data-on={innerTab === 'geral' ? 'true' : 'false'} onClick={() => setInnerTab('geral')}>Geral</button>
+                  {isUser && <button style={innerTab === 'seguranca' ? styles.innerTabActive : styles.innerTabInactive} data-on={innerTab === 'seguranca' ? 'true' : 'false'} onClick={() => setInnerTab('seguranca')}>Segurança</button>}
+                  {isComputer && <button style={innerTab === 'seguranca' ? styles.innerTabActive : styles.innerTabInactive} data-on={innerTab === 'seguranca' ? 'true' : 'false'} onClick={() => setInnerTab('seguranca')}>Diagnósticos</button>}
+                  <button style={innerTab === 'grupos' ? styles.innerTabActive : styles.innerTabInactive} data-on={innerTab === 'grupos' ? 'true' : 'false'} onClick={() => setInnerTab('grupos')}>
                     {isGroup ? `Membros (${selectedUser.Members?.length || 0})` : `Grupos (${selectedUser.MemberOf?.length || 0})`}
                   </button>
                   {/* NOVA ABA AQUI */}
-                  <button style={innerTab === 'atributos' ? styles.innerTabActive : styles.innerTabInactive} onClick={() => setInnerTab('atributos')}>
+                  <button style={innerTab === 'atributos' ? styles.innerTabActive : styles.innerTabInactive} data-on={innerTab === 'atributos' ? 'true' : 'false'} onClick={() => setInnerTab('atributos')}>
                     Editor de Atributos
                   </button>
-                  {isUser && selectedUser.EmployeeID && <button style={innerTab === 'vetorh' ? styles.innerTabActive : styles.innerTabInactive} onClick={() => setInnerTab('vetorh')}>Vetorh DB</button>}
+                  {isUser && selectedUser.EmployeeID && <button style={innerTab === 'vetorh' ? styles.innerTabActive : styles.innerTabInactive} data-on={innerTab === 'vetorh' ? 'true' : 'false'} onClick={() => setInnerTab('vetorh')}>Vetorh DB</button>}
                 </div>
 
                 <div style={styles.innerContent}>
@@ -3807,8 +3807,8 @@ export default function Dashboard() {
                         <>
                           <p style={styles.sectionLabel}>Identificação de Rede</p>
                           <div style={styles.detailGrid}>
-                            <div style={styles.detailItem}><span style={styles.detailLabel}>DNS</span><span style={styles.detailValue}>{selectedUser.DNS}</span></div>
-                            <div style={styles.detailItem}><span style={styles.detailLabel}>IPv4</span><span style={styles.detailValue}>{selectedUser.IPv4}</span></div>
+                            <div style={styles.detailItem}><span style={styles.detailLabel}>DNS</span><span style={styles.detailValue}><span className="idCopy" title="Copiar" onClick={() => kadCopyText(selectedUser.DNS)}>{selectedUser.DNS}</span></span></div>
+                            <div style={styles.detailItem}><span style={styles.detailLabel}>IPv4</span><span style={styles.detailValue}><span className="idCopy" title="Copiar" onClick={() => kadCopyText(selectedUser.IPv4)}>{selectedUser.IPv4}</span></span></div>
                             <div style={styles.detailItem}><span style={styles.detailLabel}>S. Operacional</span><span style={styles.detailValue}>{selectedUser.OS}</span></div>
                             <div style={styles.detailItem}><span style={styles.detailLabel}>Gerenciado Por</span><span style={styles.detailValue}>{selectedUser.Manager}</span></div>
                             <div style={styles.detailItemFull}><span style={styles.detailLabel}>Descrição</span><span style={styles.detailValue}>{selectedUser.Description}</span></div>
@@ -7430,6 +7430,89 @@ styleSheet.innerText = `
   }
 }
 /* KAD IDENTITY LIST END */
+
+/* KAD IDENTITY DETAIL START */
+.idDetail {
+  position: relative;
+  overflow: hidden;
+  padding: 18px !important;
+  border-color: rgba(197, 160, 89, 0.24) !important;
+  background:
+    radial-gradient(circle at top right, rgba(197, 160, 89, 0.09), transparent 32%),
+    #161F32 !important;
+}
+.idDetail::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 18px;
+  right: 18px;
+  height: 2px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, transparent, #C5A059, transparent);
+  pointer-events: none;
+}
+.idDetail .idHead > div:first-child {
+  width: 52px !important;
+  height: 52px !important;
+  border-radius: 12px !important;
+  flex-shrink: 0;
+}
+.idDetail .idStatus > * {
+  border-radius: 999px !important;
+  padding: 4px 12px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+}
+.idDetail .idTabs {
+  display: flex;
+  gap: 4px !important;
+  width: fit-content;
+  max-width: 100%;
+  padding: 4px !important;
+  overflow-x: auto;
+  scrollbar-width: none;
+  border: 1px solid #24324D !important;
+  border-radius: 10px;
+  background: rgba(11, 17, 30, 0.55);
+}
+.idDetail .idTabs::-webkit-scrollbar {
+  display: none;
+}
+.idDetail .idTabs > button {
+  flex: 0 0 auto;
+  padding: 7px 14px !important;
+  border: 0 none !important;
+  border-radius: 7px !important;
+  background: transparent !important;
+  color: #94A3B8 !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+.idDetail .idTabs > button:hover {
+  background: rgba(148, 163, 184, 0.12) !important;
+  color: #F8FAFC !important;
+}
+.idDetail .idTabs > button[data-on="true"] {
+  background: #C5A059 !important;
+  color: #0B111E !important;
+}
+.idDetail .idCopy {
+  cursor: copy;
+  border-bottom: 1px dotted transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
+}
+.idDetail .idCopy:hover {
+  color: #C5A059;
+  border-bottom-color: rgba(197, 160, 89, 0.7);
+}
+@media (min-width: 900px) {
+  .idDetail div[style*="grid-template-columns: 1fr 1fr"] {
+    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  }
+}
+/* KAD IDENTITY DETAIL END */
 /* KAD BULK VISUAL END */
 `;
 
