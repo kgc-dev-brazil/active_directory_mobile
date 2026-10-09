@@ -4543,10 +4543,10 @@ export default function Dashboard() {
                             onChange={(e) => setAttrSearch(e.target.value)}
                             style={{...styles.input, padding: '4px 0'}}
                           />
-                        </div>
+                        </div>{attrData && (<div className="grpTools"><span className="grpCount">{kadAttrEntries(attrData, attrSearch).length}</span><button type="button" className="grpTool" title="Copiar atributos" aria-label="Copiar atributos" onClick={() => kadCopyText(kadAttrEntries(attrData, attrSearch).map((e) => e[0] + ': ' + kadAttrText(e[1])).join("\n"))}><Copy size={15} /></button><button type="button" className="grpTool" title="Exportar CSV" aria-label="Exportar CSV" onClick={() => kadExportAttrCsv(selectedUser.SamAccountName, kadAttrEntries(attrData, attrSearch))}><Download size={15} /></button></div>)}
                       </div>
 
-                      <div style={{...styles.listContainer, maxHeight: '400px', overflowY: 'auto'}}>
+                      <div className="attrBox" style={{...styles.listContainer, maxHeight: '400px', overflowY: 'auto'}}>
                         {attrLoading ? (
                           <p style={{...styles.hintText, textAlign: 'center', margin: '20px 0'}}>
                             <div style={styles.spinner}></div> Extraindo matriz completa do Active Directory...
@@ -4564,9 +4564,9 @@ export default function Dashboard() {
                                 .filter(([key]) => key.toLowerCase().includes(attrSearch.toLowerCase()))
                                 .map(([key, val], idx) => (
                                   <tr key={idx} style={{ borderBottom: `1px solid ${COLORS.border}` }}>
-                                    <td style={{ padding: '8px', color: COLORS.gold, fontWeight: 'bold', width: '40%', wordBreak: 'break-all' }}>{key}</td>
+                                    <td style={{ padding: '8px', color: COLORS.gold, fontWeight: 'bold', width: '40%', wordBreak: 'break-all' }}><span className="grpCopy" title="Copiar" onClick={() => kadCopyText(key)}>{key}</span></td>
                                     <td style={{ padding: '8px', wordBreak: 'break-all', fontFamily: 'monospace' }}>
-                                      {val || <span style={{color: COLORS.muted}}>N/A</span>}
+                                      {val ? <span className="grpCopy" title="Copiar" onClick={() => kadCopyText(kadAttrText(val))}>{val}</span> : <span style={{color: COLORS.muted}}>N/A</span>}
                                     </td>
                                   </tr>
                               ))}
@@ -6541,6 +6541,38 @@ const kadExportGroupsCsv = (owner, kind, list) => {
   toast.success(list.length + ' item(ns) exportado(s).');
 };
 
+const kadAttrText = (v) => {
+  if (Array.isArray(v)) { return v.join('; '); }
+  if (v && typeof v === 'object') { return JSON.stringify(v); }
+  return String(v === undefined || v === null ? '' : v);
+};
+
+const kadAttrEntries = (data, term) => {
+  const q = String(term || '').toLowerCase();
+  return Object.entries(data || {}).filter((e) => e[0].toLowerCase().includes(q));
+};
+
+const kadExportAttrCsv = (owner, entries) => {
+  if (!entries || entries.length === 0) { toast.error('Nada para exportar.'); return; }
+  const clean = (v) => {
+    let c = String(v === undefined || v === null ? '' : v).replace(/\r?\n/g, ' ');
+    if (/^[=+\-@]/.test(c)) { c = "'" + c; }
+    return '"' + c.replace(/"/g, '""') + '"';
+  };
+  const lines = [['Atributo', 'Valor'].map(clean).join(';')];
+  entries.forEach((e) => lines.push([e[0], kadAttrText(e[1])].map(clean).join(';')));
+  const blob = new Blob(['\ufeff' + lines.join('\r\n')], { type: 'text/csv;charset=utf-8;' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = 'kad_atributos_' + String(owner).replace(/[^a-zA-Z0-9_.-]/g, '_') + '_' + new Date().toISOString().slice(0, 19).replace(/[-:T]/g, '') + '.csv';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  toast.success(entries.length + ' atributo(s) exportado(s).');
+};
+
 const kadCopyText = (value) => {
   if (navigator.clipboard && value) {
     navigator.clipboard.writeText(value).then(() => toast.success('Copiado.'));
@@ -7630,6 +7662,19 @@ styleSheet.innerText = `
 /* KAD SECURITY POLISH */
 .idDetail .secTab > p {
   margin: 8px 0 -6px 0 !important;
+}
+
+/* KAD ATTR TOOLS */
+@media (min-width: 900px) {
+  .idDetail .attrBox {
+    max-height: 60vh !important;
+  }
+}
+.idDetail .attrBox thead th {
+  position: sticky;
+  top: 0;
+  background: #161F32;
+  z-index: 1;
 }
 /* KAD BULK VISUAL END */
 `;
